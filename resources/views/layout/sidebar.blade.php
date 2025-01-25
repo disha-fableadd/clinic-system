@@ -13,19 +13,19 @@
                     <a href="{{ route('doctor.index') }}"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
                 </li>
                 <li class="menu-link {{ request()->is('patients') ? 'active' : '' }}">
-                    <a href="patients.html"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
+                    <a href="{{ route('patients.index') }}"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
                 </li>
                 <li class="menu-link {{ request()->is('appointments') ? 'active' : '' }}">
-                    <a href="appointments.html"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
+                    <a href="{{ route('appointment.index') }}"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
                 </li>
                 <li class="menu-link {{ request()->is('schedule') ? 'active' : '' }}">
-                    <a href="schedule.html"><i class="fa fa-calendar-check-o"></i> <span>Doctor Schedule</span></a>
+                    <a href="{{ route('schedule.index') }}"><i class="fa fa-calendar-check-o"></i> <span>Doctor Schedule</span></a>
                 </li>
                 <li class="menu-link {{ request()->is('departments') ? 'active' : '' }}">
-                    <a href="departments.html"><i class="fa fa-hospital-o"></i> <span>Departments</span></a>
+                    <a href="{{ route('department.index') }}"><i class="fa fa-hospital-o"></i> <span>Departments</span></a>
                 </li>
                 <li class="menu-link {{ request()->is('calendar') ? 'active' : '' }}">
-                    <a href="calendar.html"><i class="fa fa-calendar"></i> <span>Calendar</span></a>
+                    <a href="{{ route('calender.index') }}"><i class="fa fa-calendar"></i> <span>Calendar</span></a>
                 </li>
                 <li class="menu-link {{ request()->is('profile') ? 'active' : '' }}">
                     <a href="{{ route('profile') }}"><i class="fa fa-user"></i> <span>Profile</span></a>

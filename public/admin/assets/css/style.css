@@ -281,6 +281,7 @@ table.table td h2 span {
 	font-size: 21px;
 	font-weight: normal;
 	margin-bottom: 20px;
+	text-align: center;
 }
 .page-sub-title {
 	color: #565656;
@@ -1074,7 +1075,8 @@ textarea.form-control {
 	vertical-align: middle;
 }
 .account-box {
-	background-color: #fff;
+	background-color: rgb(255, 244, 234);
+	/* background-color: #ff8e29; */
 	border: 1px solid #eaeaea;
 	margin: 0 auto;
 	padding: 20px;
@@ -1095,11 +1097,17 @@ textarea.form-control {
 	color: #ff8e29;
 }
 .account-box .form-control {
-	border: 1px solid #eaeaea;
+	/* border: 1px solid #eaeaea;
 	border-radius: 0;
 	box-shadow: inherit;
 	font-size: 14px;
-	height: 40px;
+	height: 40px; */
+	border-radius: 50px;
+    box-shadow: none;
+    padding: 0.469rem 0.75rem;
+    border-color: #ff8e29;
+    font-size: 14px;
+    min-height: 40px;
 }
 .account-box textarea.form-control {
 	height: 130px;
@@ -2466,7 +2474,7 @@ ul.chat-user-total li i.old-users {
 	min-height: 30px;
 	padding: 10px 30px;
 	text-transform: uppercase;
-	margin-top: 27px;
+
 	
 }
 .form-focus.select-focus .focus-label {

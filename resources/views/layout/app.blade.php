@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/fullcalendar.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/select2.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/bootstrap-datetimepicker.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/style.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
@@ -26,7 +29,8 @@
         }
 
         .offset-lg-2 {
-            margin: 0 30px !important;
+            margin: auto;
+            width: 80%;
         }
 
         .icon {

@@ -4,7 +4,7 @@
             <div class="content">
                 <div class="row">
                     <div class="col-sm-4 col-3">
-                        <h4 class="page-title">Doctors</h4>
+                        <h4 class="page-title" style="text-align:left; !important">Doctors</h4>
                     </div>
               
                 </div>

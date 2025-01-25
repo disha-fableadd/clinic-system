@@ -4,28 +4,20 @@
     <div class="content" style="height:100vh">
         <div class="row">
             <div class="col-sm-4 col-3">
-                <h4 class="page-title" style="text-align:left; !important">All Users</h4>
+                <h4 class="page-title" style="text-align:left; !important">All Patients</h4>
             </div>
             <div class="col-sm-8 col-9 text-right m-b-2 ">
-                <a href="{{ route('user.create') }}" class="btn btn-primary  btn-rounded"><i class="fa fa-plus"></i>
-                    Add User</a>
+                <a href="{{ route('patients.create') }}" class="btn btn-primary  btn-rounded"><i class="fa fa-plus"></i>
+                    Add Patients</a>
             </div>
         </div>
         <div class="row filter-row">
 
             <div class="col-sm-6 col-md-3">
                 <div class="form-group">
-                 
+                  
 
-                    <select class="form-control select">
-                        <option>Select Role</option>
-                        <option>Doctor</option>
-                        <option>Nurse</option>
-                        <option>Accountant</option>
-                        <option>Laboratorist</option>
-                        <option>Accountant</option>
-                        <option>Receptionist</option>
-                    </select>
+                    <input class="form-control" type="text" placeholder="Search Patients..">
 
                 </div>
             </div>
@@ -184,11 +176,16 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const toggleBtn = document.getElementById('toggle_btn');
-        toggleBtn.addEventListener('click', function () {
-            document.body.classList.toggle('mini-sidebar');
-        });
+   document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.getElementById('toggle_btn');
+    const sidebar = document.querySelector('.sidebar'); // Assuming the sidebar has this class
+    
+    toggleBtn.addEventListener('click', function () {
+        if (sidebar) {
+            sidebar.classList.toggle('mini-sidebar'); // This toggles the class on the sidebar
+        }
     });
+});
+
 </script>
 @endsection

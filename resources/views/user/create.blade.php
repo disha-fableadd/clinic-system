@@ -1,18 +1,16 @@
 @extends('layout.app')
 
-
 @section('content')  
-
 
 <div class="page-wrapper">
     <div class="content">
         <div class="row">
-            <div class="col-lg-8 offset-lg-2">
+            <div class="col-lg-12">
                 <h4 class="page-title">Add User</h4>
             </div>
         </div>
         <div class="row">
-            <div class=" offset-lg-2">
+            <div class="offset-lg-2">
                 <form class="form-container">
                     <div class="row">
                         <div class="col-sm-6">
@@ -79,14 +77,12 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Address</label>
-                                <input type="text" class="form-control ">
+                                <input type="text" class="form-control">
                             </div>
                         </div>
 
                         <div class="col-sm-12">
                             <div class="row">
-
-
                                 <div class="col-sm-6 col-md-6 col-lg-3">
                                     <div class="form-group">
                                         <label>City</label>
@@ -106,7 +102,7 @@
                                         <label>State</label>
                                         <select class="form-control select">
                                             <option value="">Select State</option>
-                                            <option v>Gujarat</option>
+                                            <option value="Gujarat">Gujarat</option>
                                             <option value="Maharashtra">Maharashtra</option>
                                             <option value="Rajasthan">Rajasthan</option>
                                         </select>
@@ -115,20 +111,23 @@
                                 <div class="col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label>Role</label>
-                                        <select class="form-control select">
-                                            <option>Select Role</option>
-                                            <option>Doctor</option>
-                                            <option>Nurse</option>
-                                            <option>Accountant</option>
-                                            <option>Laboratorist</option>
-                                            <option>Accountant</option>
-                                            <option>Receptionist</option>
+                                        <select id="role" class="form-control select">
+                                            <option value="">Select Role</option>
+                                            <option value="Doctor">Doctor</option>
+                                            <option value="Nurse">Nurse</option>
+                                            <option value="Accountant">Accountant</option>
+                                            <option value="Laboratorist">Laboratorist</option>
+                                            <option value="Receptionist">Receptionist</option>
                                         </select>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
+
+
+
+
+
 
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -141,7 +140,7 @@
                                 <label>Avatar</label>
                                 <div class="profile-upload">
                                     <div class="upload-img">
-                                        <img alt="" src="{{asset('admin/assets/img/user.jpg')}}">
+                                        <img alt="" src="{{ asset('admin/assets/img/user.jpg') }}">
                                     </div>
                                     <div class="upload-input">
                                         <input type="file" class="form-control">
@@ -149,44 +148,170 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="display-block">Status</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="doctor_active"
-                                value="option1" checked>
-                            <label class="form-check-label" for="doctor_active">
-                                Active
-                            </label>
+                        <div class="col-sm-12">
+                            <label>Permissions</label>
+                            <div class="row m-0">
+                                <div class="form-control">
+                                    <div class="row ">
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="add_user">
+                                                <label class="form-check-label" for="add_user">Add User</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="view_user">
+                                                <label class="form-check-label" for="view_user">View User</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="show_doctor">
+                                                <label class="form-check-label" for="show_doctor">Show Doctor</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="show_patients">
+                                                <label class="form-check-label" for="show_patients">Show
+                                                    Patients</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-control mt-3">
+                                    <div class="row ">
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="add_patients">
+                                                <label class="form-check-label" for="add_patients">Add Patients</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="show_appointment">
+                                                <label class="form-check-label" for="show_appointment">Show
+                                                    Appointment</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="add_user">
+                                                <label class="form-check-label" for="add_user">Add Appointment</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="view_user">
+                                                <label class="form-check-label" for="view_user">Show Department</label>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="form-control mt-3">
+                                    <div class="row ">
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="show_doctor">
+                                                <label class="form-check-label" for="show_doctor">Add Department</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="show_patients">
+                                                <label class="form-check-label" for="show_patients">Calender</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="show_doctor">
+                                                <label class="form-check-label" for="show_doctor">Add Schedule</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="show_patients">
+                                                <label class="form-check-label" for="show_patients">Show
+                                                    Schedule</label>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="doctor_inactive"
-                                value="option2">
-                            <label class="form-check-label" for="doctor_inactive">
-                                Inactive
-                            </label>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="display-block mt-2">Status</label>
+                                <div class="form-control">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="status" id="doctor_active"
+                                            value="option1" checked>
+                                        <label class="form-check-label" for="doctor_active">
+                                            Active
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="status" id="doctor_inactive"
+                                            value="option2">
+                                        <label class="form-check-label" for="doctor_inactive">
+                                            Inactive
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6" id="department-field" style="display: none;">
+                            <div class="form-group">
+                                <label class="mt-2">Department</label>
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
                     </div>
                     <div class="m-t-20 text-center">
-                        <button class="btn btn-primary submit-btn">Create Doctor</button>
+                        <button class="btn btn-primary submit-btn">Create User</button>
                     </div>
-                </form>
             </div>
+            </form>
         </div>
     </div>
+</div>
 
 </div>
 
-
-
-
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const toggleBtn = document.getElementById('toggle_btn');
-    toggleBtn.addEventListener('click', function () {
-        document.body.classList.toggle('mini-sidebar');
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.getElementById('toggle_btn');
+        toggleBtn.addEventListener('click', function () {
+            document.body.classList.toggle('mini-sidebar');
+        });
     });
-});
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const roleSelect = document.getElementById('role');
+        const departmentField = document.getElementById('department-field');
+
+        roleSelect.addEventListener('change', function () {
+            if (roleSelect.value === 'Doctor') {
+                departmentField.style.display = 'block';
+            } else {
+                departmentField.style.display = 'none';
+            }
+        });
+    });
+
 </script>
 @endsection

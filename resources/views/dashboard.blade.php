@@ -74,7 +74,7 @@
             <div class="col-12 col-md-6 col-lg-8 col-xl-8">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a href="appointments.html"
+                        <h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a href="{{ route('appointment.index') }}"
                             class="btn btn-primary float-right">View all</a>
                     </div>
                     <div class="card-body p-0">
@@ -279,11 +279,12 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title d-inline-block">New Patients </h4> <a href="patients.html"
+                        <h4 class="card-title d-inline-block">New Patients </h4> <a href="{{ route('patients.index') }}"
                             class="btn btn-primary float-right">View all</a>
                     </div>
                     <div class="card-block">
