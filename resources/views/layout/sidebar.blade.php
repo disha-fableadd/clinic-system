@@ -4,7 +4,7 @@
             <ul>
                 <li class="menu-title">Main</li>
                 <li class="menu-link {{ request()->is('dashboard') ? 'active' : '' }}">
-                    <a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                    <a href="{{ route('dashboard') }}"> <i class="fa fa-tachometer-alt"></i> <span>Dashboard</span></a>
                 </li>
                 <li class="menu-link {{ request()->is('user*') ? 'active' : '' }}">
                     <a href="{{ route('user.index') }}"><i class="fa fa-user"></i> <span>User</span></a>
@@ -27,11 +27,14 @@
                 <li class="menu-link {{ request()->is('calendar') ? 'active' : '' }}">
                     <a href="{{ route('calender.index') }}"><i class="fa fa-calendar"></i> <span>Calendar</span></a>
                 </li>
+                <li class="menu-link {{ request()->is('chart') ? 'active' : '' }}">
+                    <a href="{{ route('chart') }}"> <i class="fas fa-chart-line"></i> <span>Chart</span></a>
+                </li>
                 <li class="menu-link {{ request()->is('profile') ? 'active' : '' }}">
                     <a href="{{ route('profile') }}"><i class="fa fa-user"></i> <span>Profile</span></a>
                 </li>
                 <li class="menu-link">
-                    <a href="logout.html"><i class="fa fa-sign-out"></i> <span>Logout</span></a>
+                    <a href="logout.html"> <i class="fa fa-sign-out-alt"></i> <span>Logout</span></a>
                 </li>
             </ul>
         </div>

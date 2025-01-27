@@ -12,7 +12,7 @@ use App\Http\Controllers\DoctorScheduleController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CalenderController;
-
+use App\Http\Controllers\ChartController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -43,5 +43,7 @@ Route::get('/department', [DepartmentController::class, 'index'])->name('departm
 Route::get('/department/create', [DepartmentController::class, 'create'])->name('department.create');
 
 Route::get('/calender', [CalenderController::class, 'index'])->name('calender.index');
+
+Route::get('/chart', [ChartController::class, 'index'])->name('chart');
 
 Route::get('/doctors', [DoctorController::class, 'index'])->name('doctor.index');
