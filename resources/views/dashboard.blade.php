@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('content')  
+@section('content')
 <div class="page-wrapper">
     <div class="content">
         <div class="row">
@@ -17,7 +17,7 @@
                 <div class="dash-widget2">
                     <span class="dash-widget-bg2"><i class="fa fa-stethoscope" aria-hidden="true"></i> </span>
                     <div class="dash-widget-info text-right">
-                        <span class="widget-title2 mb-3">Total Doctors </span>
+                        <span class="widget-title2 mb-3"> Doctors </span>
                         <h3>1072</h3>
 
                     </div>
@@ -27,7 +27,7 @@
                 <div class="dash-widget1">
                     <span class="dash-widget-bg3"><i class="fa fa-user-md" aria-hidden="true"></i></span>
                     <div class="dash-widget-info text-right">
-                        <span class="widget-title3">Total Patients </span>
+                        <span class="widget-title3"> Patients </span>
                         <h3>72</h3>
 
                     </div>
@@ -37,9 +37,9 @@
                 <div class="dash-widget2">
                     <span class="dash-widget-bg4"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
                     <div class="dash-widget-info text-right">
-                    <span class="widget-title2 mb-3"> Department </span>
+                        <span class="widget-title2 mb-3"> Department </span>
                         <h3>618</h3>
-                       
+
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
 
 
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-12 col-md-6 col-lg-6 col-xl-6">
                 <div class="card">
                     <div class="card-body" style=" height: 380px;">
@@ -221,8 +221,40 @@
                 });
             </script>
 
-        </div>
+        </div> -->
 
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="card">
+                    <div class="card-body" style="height:479px">
+                        <div class="chart-title">
+                            <div style="margin-top:20px">
+                                <h4>Patient Total</h4>
+                                <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> 15% Higher
+                                    than
+                                    Last Month</span>
+                                <canvas id="linegraph" class="mt-5" style="
+    display: block;
+    width: 475px;
+    height: 300px;
+"></canvas>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="card">
+
+
+                    <div id="calendar"></div>
+
+
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-12 col-md-12 col-lg-12 col-xl-12">
@@ -280,19 +312,6 @@
 
         </div>
 
-        <div class="row">
-            <div class="col-12 col-md-12 col-lg-12 col-xl-12">
-                <div class="card">
-                    <div class="card-body calender">
-                        <div class="chart-title">
-                            <h4>Appointment </h4>
-
-                        </div>
-                        <div id="calendar"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
         <div class="row">
@@ -391,4 +410,57 @@
 
     </div>
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth', // Default view
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: [
+                {
+                    title: 'Doctor Meeting',
+                    start: '2025-01-29',
+                    end: '2025-01-30',
+                    description: 'Discussion about patient progress'
+                },
+                {
+                    title: 'Surgery Appointment',
+                    start: '2025-02-02',
+                    allDay: true
+                },
+                {
+                    title: 'Follow-Up',
+                    start: '2025-02-05T10:30:00',
+                    description: 'Follow-up with patient #1001'
+                }
+            ],
+            eventClick: function (info) {
+                alert('Event: ' + info.event.title + '\nDescription: ' + info.event.extendedProps.description);
+            }
+        });
+
+        calendar.render();
+    });
+</script>
+
+<style>
+    #calendar {
+        max-width: 100%;
+        margin: 0;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+
+
 @endsection

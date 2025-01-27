@@ -35,64 +35,70 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
+
+
+   <!-- jQuery Library -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
     <style>
-      
+    .form-container {
+        width: 100%;
 
-        .form-container {
-            width: 100%;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+    }
 
-            padding: 30px;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 20px auto;
-        }
+    .offset-lg-2 {
+        margin: auto;
+        width: 80%;
+    }
 
-        .offset-lg-2 {
-            margin: auto;
-            width: 80%;
-        }
+    .icon {
+        font-size: 15px;
 
-        .icon {
-            font-size: 15px;
+    }
 
-        }
+    .icon .icon1 {
+        padding: 8px;
+        background-color: #f89884;
+        color: white;
+        border-radius: 10px;
 
-        .icon .icon1 {
-            padding: 8px;
-            background-color: #f89884;
-            color: white;
-            border-radius: 10px;
+    }
 
-        }
+    .icon .icon2 {
+        padding: 8px;
+        background-color: #f89884;
+        color: white;
+        border-radius: 10px;
+    }
 
-        .icon .icon2 {
-            padding: 8px;
-            background-color: #f89884;
-            color: white;
-            border-radius: 10px;
-        }
+    .icon .icon3 {
+        padding: 8px;
+        background-color: #f89884;
+        color: white;
+        border-radius: 10px;
+    }
 
-        .icon .icon3 {
-            padding: 8px;
-            background-color:#f89884;
-            color: white;
-            border-radius: 10px;
-        }
+    .table thead tr {
+        background-color: #f89884;
+        color: white;
+        text-align: center;
+    }
 
-        .table thead tr {
-            background-color:#f89884;
-            color: white;
-            text-align: center;
-        }
-
-        .page-title {
-            color: #565656;
-            font-size: 35px;
-            font-weight: normal;
-            margin-bottom: 10px;
-            text-align: left;
-        }
+    .page-title {
+        color: #565656;
+        font-size: 35px;
+        font-weight: normal;
+        margin-bottom: 10px;
+        text-align: left;
+    }
     </style>
 </head>
 
