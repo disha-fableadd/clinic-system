@@ -7,8 +7,16 @@
 <div class="page-wrapper">
     <div class="content">
         <div class="row">
-            <div class="col-lg-12 ">
+            <!-- <div class="col-lg-12 ">
                 <h4 class="page-title">Add Patients</h4>
+            </div> -->
+            <div class="col-sm-6 col-5">
+                <h4 class="page-title" style="text-align:center; margin-right: 120px ;!important">Add Patients</h4>
+            </div>
+            <div class="col-sm-6 col-7 text-center m-b-2 ">
+                <a href="{{ route('patients.index') }}" class="btn btn-primary  btn-rounded" style="margin-left: 200px;">
+                    <i class="fa fa-eye m-r-5 icon3"></i>
+                    All Patients</a>
             </div>
         </div>
         <div class="row">

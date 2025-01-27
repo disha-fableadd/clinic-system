@@ -34,7 +34,7 @@
                     <a href="{{ route('profile') }}"><i class="fa fa-user"></i> <span>Profile</span></a>
                 </li>
                 <li class="menu-link">
-                    <a href="logout.html"> <i class="fa fa-sign-out-alt"></i> <span>Logout</span></a>
+                    <a href="#"> <i class="fa fa-sign-out-alt"></i> <span>Logout</span></a>
                 </li>
             </ul>
         </div>

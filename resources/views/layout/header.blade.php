@@ -9,19 +9,14 @@
             <ul class="nav user-menu float-right">
                
                 <li class="nav-item dropdown has-arrow">
-                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                    <a href="{{ route('profile') }}" class=" nav-link user-link" >
                         <span class="user-img">
 							<img class="rounded-circle" src="{{asset('admin/assets/img/user.jpg')}}" width="24" alt="Admin">
 							<span class="status online"></span>
 						</span>
 						<span>Admin</span>
                     </a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="profile.html">My Profile</a>
-						<a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
-						
-						<a class="dropdown-item" href="login.html">Logout</a>
-					</div>
+					
                 </li>
             </ul>
           

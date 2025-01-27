@@ -5,8 +5,13 @@
 <div class="page-wrapper">
     <div class="content">
         <div class="row">
-            <div class="col-lg-12">
-                <h4 class="page-title">Add User</h4>
+            <div class="col-sm-4 col-3">
+                <h4 class="page-title" style="text-align:center; !important">Add User</h4>
+            </div>
+            <div class="col-sm-8 col-9 text-center m-b-2 ">
+                <a href="{{ route('user.index') }}" class="btn btn-primary  btn-rounded" style="margin-left: 430px;">
+                    <i class="fa fa-eye m-r-5 icon3"></i>
+                    All User</a>
             </div>
         </div>
         <div class="row">
@@ -199,14 +204,16 @@
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="add_user">
-                                                <label class="form-check-label" for="add_user">Add Appointment</label>
+                                                <input class="form-check-input" type="checkbox" id="add_appointment">
+                                                <label class="form-check-label" for="add_appointment">Add
+                                                    Appointment</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="view_user">
-                                                <label class="form-check-label" for="view_user">Show Department</label>
+                                                <input class="form-check-input" type="checkbox" id="show_department">
+                                                <label class="form-check-label" for="show_department">Show
+                                                    Department</label>
                                             </div>
                                         </div>
 
@@ -217,26 +224,27 @@
                                     <div class="row ">
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="show_doctor">
-                                                <label class="form-check-label" for="show_doctor">Add Department</label>
+                                                <input class="form-check-input" type="checkbox" id="add_department">
+                                                <label class="form-check-label" for="add_department">Add
+                                                    Department</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="show_patients">
-                                                <label class="form-check-label" for="show_patients">Calender</label>
+                                                <input class="form-check-input" type="checkbox" id="calender">
+                                                <label class="form-check-label" for="calender">Calender</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="show_doctor">
-                                                <label class="form-check-label" for="show_doctor">Add Schedule</label>
+                                                <input class="form-check-input" type="checkbox" id="add_schedule">
+                                                <label class="form-check-label" for="add_schedule">Add Schedule</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="show_patients">
-                                                <label class="form-check-label" for="show_patients">Show
+                                                <input class="form-check-input" type="checkbox" id="show_schedule">
+                                                <label class="form-check-label" for="show_schedule">Show
                                                     Schedule</label>
                                             </div>
                                         </div>

@@ -19,6 +19,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <style>
         .form-container {
@@ -67,6 +68,14 @@
             background-color: #ff8e29;
             color: white;
             text-align: center;
+        }
+
+        .page-title {
+            color: #565656;
+            font-size: 35px;
+            font-weight: normal;
+            margin-bottom: 10px;
+            text-align: left;
         }
     </style>
 </head>

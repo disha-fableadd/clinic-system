@@ -11,22 +11,11 @@
                     Add User</a>
             </div>
         </div>
-        <div class="row filter-row">
+        <div class="row filter-row mb-2 mt-2">
 
             <div class="col-sm-6 col-md-3">
                 <div class="form-group">
-                 
-
-                    <select class="form-control select">
-                        <option>Select Role</option>
-                        <option>Doctor</option>
-                        <option>Nurse</option>
-                        <option>Accountant</option>
-                        <option>Laboratorist</option>
-                        <option>Accountant</option>
-                        <option>Receptionist</option>
-                    </select>
-
+                <input class="form-control" type="text" placeholder="Search User..">
                 </div>
             </div>
             <div class="col-sm-6 col-md-3">
@@ -66,7 +55,8 @@
                                 </td>
                                 <td class="text-right">
                                     <div class="icon">
-                                    <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i> <i class="fa fa-trash-o m-r-5 icon2"></i>
+                                    <i class="fa fa-eye m-r-5 icon3"></i>
+                                     <i class="fa fa-pencil m-r-5 icon1"></i> <i class="fa fa-trash-o m-r-5 icon2"></i>
 
                                     </div>
                                    

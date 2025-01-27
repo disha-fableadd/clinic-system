@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

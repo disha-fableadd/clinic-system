@@ -11,7 +11,7 @@
                     Add Department</a>
             </div>
         </div>
-        <div class="row filter-row">
+        <div class="row filter-row mt-2 mb-2">
 
             <div class="col-sm-6 col-md-3">
                 <div class="form-group">

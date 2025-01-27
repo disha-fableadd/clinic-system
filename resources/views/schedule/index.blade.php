@@ -11,7 +11,7 @@
                     Add Schedule</a>
             </div>
         </div>
-        <div class="row filter-row">
+        <div class="row filter-row mb-2 mt-2">
 
             <div class="col-sm-6 col-md-3">
                 <div class="form-group">
