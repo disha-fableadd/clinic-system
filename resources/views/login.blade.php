@@ -56,19 +56,27 @@
         <div class="account-page">
             <div class="account-center">
                 <div class="account-box">
-                    <form action="http://dreamguys.co.in/preclinic/template/index.html" class="form-signin">
+                    <form action="{{ route('login.submit') }}" method="POST" class="form-signin">
+                        @csrf
                         <div class="account-logo">
                             <a href="" class="logo">
-                                <img src="{{asset('admin/assets/img/logo-dark.png')}}" width="35" height="35" alt=""> <span style="color:#ff8e29">Preclinic</span>
+                                <img src="{{asset('admin/assets/img/logo-dark.png')}}" width="35" height="35" alt="">
+                                <span style="color:#ff8e29">Preclinic</span>
                             </a>
                         </div>
                         <div class="form-group">
-                            <label>Username or Email</label>
-                            <input type="text" autofocus="" class="form-control">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control"  required>
+                            @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control">
+                            <input type="password" name="password" class="form-control" required>
+                            @error('password')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group text-right">
                             <a href="forgot-password.html">Forgot your password?</a>

@@ -4,11 +4,11 @@
     <div class="content" style="height:100vh">
         <div class="row">
             <div class="col-sm-4 col-3">
-                <h4 class="page-title" style="text-align:left; !important">All Patients</h4>
+                <h4 class="page-title" style="text-align:left; !important">All Medicines</h4>
             </div>
             <div class="col-sm-8 col-9 text-right m-b-2 ">
-                <a href="{{ route('patients.create') }}" class="btn btn-primary  btn-rounded"><i class="fa fa-plus"></i>
-                    Add Patients</a>
+                <a href="{{ route('medicine.create') }}" class="btn btn-primary  btn-rounded"><i class="fa fa-plus"></i>
+                    Add Medicine</a>
             </div>
         </div>
         <div class="row filter-row mt-2 mb-2">
@@ -17,7 +17,7 @@
                 <div class="form-group">
                   
 
-                    <input class="form-control" type="text" placeholder="Search Patients..">
+                    <input class="form-control" type="text" placeholder="Search Medicine..">
 
                 </div>
             </div>
@@ -33,8 +33,7 @@
                             <tr>
                             <th >Image</th>
                                 <th >Name</th>
-                                <th>Email</th>
-                                <th>Treatment</th>
+                                <th>Category</th>
                                 <th >Action</th>
                             </tr>
                         </thead>
@@ -46,10 +45,8 @@
                                   
                                     <h2>Albina Simonis</h2>
                                 </td>
-                             
-                                <td>albinasimonis@example.com</td>
-                                <td>fddfg</td>
-                                
+                                <td>NS-0001</td>
+                              
                                 <td >
                                     <div class="icon">
                                     <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i> <i class="fa fa-trash-o m-r-5 icon2"></i>
@@ -65,10 +62,8 @@
                                     
                                     <h2>Cristina Groves</h2>
                                 </td>
+                                <td>DR-0001</td>
                                
-                                <td>cristinagroves@example.com</td>
-                                <td>fdgsrtgh</td>
-                              
                                 <td >
                                     <div class="icon">
                                     <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i> <i class="fa fa-trash-o m-r-5 icon2"></i>
@@ -84,10 +79,8 @@
                                 
                                     <h2>Mary Mericle</h2>
                                 </td>
+                                <td>SF-0003</td>
                                
-                                <td>marymericle@example.com</td>
-                                <td>gfhfgh</td>
-                                
                                 <td >
                                     <div class="icon">
                                     <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i> <i class="fa fa-trash-o m-r-5 icon2"></i>
@@ -103,10 +96,8 @@
                                    
                                     <h2>Haylie Feeney</h2>
                                 </td>
-                                
-                                <td>hayliefeeney@example.com</td>
-                                <td>yhgjhhk</td>
-                              
+                                <td>SF-0002</td>
+                               
                                 <td >
                                     <div class="icon">
                                     <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i> <i class="fa fa-trash-o m-r-5 icon2"></i>
@@ -123,10 +114,8 @@
                                   
                                     <h2>Zoe Butler</h2>
                                 </td>
-                               
-                                <td>zoebutler@example.com</td>
-                                <td>tghgfhg</td>
-                               
+                                <td>SF-0001</td>
+                                
                                 <td >
                                     <div class="icon">
                                     <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i> <i class="fa fa-trash-o m-r-5 icon2"></i>

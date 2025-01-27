@@ -118,10 +118,8 @@
                                         <label>Role</label>
                                         <select id="role" class="form-control select">
                                             <option value="">Select Role</option>
+
                                             <option value="Doctor">Doctor</option>
-                                            <option value="Nurse">Nurse</option>
-                                            <option value="Accountant">Accountant</option>
-                                            <option value="Laboratorist">Laboratorist</option>
                                             <option value="Receptionist">Receptionist</option>
                                         </select>
                                     </div>
@@ -161,25 +159,29 @@
                                     <div class="row ">
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="add_user">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="add_user">
                                                 <label class="form-check-label" for="add_user">Add User</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="view_user">
-                                                <label class="form-check-label" for="view_user">View User</label>
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="show_user">
+                                                <label class="form-check-label" for="show_user">View User</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="show_doctor">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="show_doctor">
                                                 <label class="form-check-label" for="show_doctor">Show Doctor</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="show_patients">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="show_patients">
                                                 <label class="form-check-label" for="show_patients">Show
                                                     Patients</label>
                                             </div>
@@ -191,27 +193,31 @@
                                     <div class="row ">
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="add_patients">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="add_patients">
                                                 <label class="form-check-label" for="add_patients">Add Patients</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="show_appointment">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="show_appointment">
                                                 <label class="form-check-label" for="show_appointment">Show
                                                     Appointment</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="add_appointment">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="add_appointment">
                                                 <label class="form-check-label" for="add_appointment">Add
                                                     Appointment</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="show_department">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="show_department">
                                                 <label class="form-check-label" for="show_department">Show
                                                     Department</label>
                                             </div>
@@ -224,28 +230,61 @@
                                     <div class="row ">
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="add_department">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="add_department">
                                                 <label class="form-check-label" for="add_department">Add
                                                     Department</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="calender">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="calender">
                                                 <label class="form-check-label" for="calender">Calender</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="add_schedule">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="add_schedule">
                                                 <label class="form-check-label" for="add_schedule">Add Schedule</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="show_schedule">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="show_schedule">
                                                 <label class="form-check-label" for="show_schedule">Show
                                                     Schedule</label>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="form-control mt-3">
+                                    <div class="row ">
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="add_medicine">
+                                                <label class="form-check-label" for="add_medicine">Add
+                                                    Medicine</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="show_medicine">
+                                                <label class="form-check-label" for="show_medicine">Show
+                                                    Medicines</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                    id="all">
+                                                <label class="form-check-label" for="all">All</label>
                                             </div>
                                         </div>
 
@@ -318,6 +357,16 @@
             } else {
                 departmentField.style.display = 'none';
             }
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        const allCheckbox = document.getElementById('all');
+        const permissionCheckboxes = document.querySelectorAll('.form-check-input:not(#all)');
+
+        allCheckbox.addEventListener('change', function () {
+            permissionCheckboxes.forEach(function (checkbox) {
+                checkbox.checked = allCheckbox.checked;
+            });
         });
     });
 

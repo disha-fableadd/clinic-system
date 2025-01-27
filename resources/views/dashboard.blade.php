@@ -4,193 +4,66 @@
     <div class="content">
         <div class="row">
             <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                <div class="dash-widget">
-                    <span class="dash-widget-bg1"><i class="fa fa-stethoscope" aria-hidden="true"></i></span>
+                <div class="dash-widget1">
+                    <span class="dash-widget-bg1"><i class="fa fa-user"></i></span>
                     <div class="dash-widget-info text-right">
+                        <span class="widget-title1">Total Users </span>
                         <h3>98</h3>
-                        <span class="widget-title1">Doctors <i class="fa fa-check" aria-hidden="true"></i></span>
+
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                <div class="dash-widget">
-                    <span class="dash-widget-bg2"><i class="fa fa-user"></i> </span>
+                <div class="dash-widget2">
+                    <span class="dash-widget-bg2"><i class="fa fa-stethoscope" aria-hidden="true"></i> </span>
                     <div class="dash-widget-info text-right">
+                        <span class="widget-title2 mb-3">Total Doctors </span>
                         <h3>1072</h3>
-                        <span class="widget-title2">Patients <i class="fa fa-check" aria-hidden="true"></i></span>
+
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                <div class="dash-widget">
+                <div class="dash-widget1">
                     <span class="dash-widget-bg3"><i class="fa fa-user-md" aria-hidden="true"></i></span>
                     <div class="dash-widget-info text-right">
+                        <span class="widget-title3">Total Patients </span>
                         <h3>72</h3>
-                        <span class="widget-title3">Attend <i class="fa fa-check" aria-hidden="true"></i></span>
+
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                <div class="dash-widget">
+                <div class="dash-widget2">
                     <span class="dash-widget-bg4"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
                     <div class="dash-widget-info text-right">
+                    <span class="widget-title2 mb-3"> Department </span>
                         <h3>618</h3>
-                        <span class="widget-title4">Pending <i class="fa fa-check" aria-hidden="true"></i></span>
+                       
                     </div>
                 </div>
             </div>
+
         </div>
+
+
+
         <div class="row">
             <div class="col-12 col-md-6 col-lg-6 col-xl-6">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" style=" height: 380px;">
                         <div class="chart-title">
-                            <h4>Patient Total</h4>
-                            <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> 15% Higher than
-                                Last Month</span>
+                            <h4>Patient and Doctor Data</h4>
+                            <span class="float-right">
+                                <i class="fa fa-caret-up" aria-hidden="true"></i> Updated Data
+                            </span>
                         </div>
-                        <canvas id="linegraph"></canvas>
+                        <canvas id="combinedChart"></canvas>
                     </div>
                 </div>
             </div>
+
             <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="chart-title">
-                            <h4>Patients In</h4>
-                            <div class="float-right">
-                                <ul class="chat-user-total">
-                                    <li><i class="fa fa-circle current-users" aria-hidden="true"></i>ICU</li>
-                                    <li><i class="fa fa-circle old-users" aria-hidden="true"></i> OPD</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <canvas id="bargraph"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-8 col-xl-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a href="{{ route('appointment.index') }}"
-                            class="btn btn-primary float-right">View all</a>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="table-responsive">
-                            <table class="table mb-0">
-                                <thead class="d-none">
-                                    <tr>
-                                        <th>Patient Name</th>
-                                        <th>Doctor Name</th>
-                                        <th>Timing</th>
-                                        <th class="text-right">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a>
-                                            </h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take
-                                                up</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a>
-                                            </h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take
-                                                up</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a>
-                                            </h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take
-                                                up</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a>
-                                            </h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take
-                                                up</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="min-width: 200px;">
-                                            <a class="avatar" href="profile.html">B</a>
-                                            <h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a>
-                                            </h2>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Appointment With</h5>
-                                            <p>Dr. Cristina Groves</p>
-                                        </td>
-                                        <td>
-                                            <h5 class="time-title p-0">Timing</h5>
-                                            <p>7.00 PM</p>
-                                        </td>
-                                        <td class="text-right">
-                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take
-                                                up</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4 col-xl-4">
                 <div class="card member-panel">
                     <div class="card-header ">
                         <h4 class="card-title mb-0">Doctors</h4>
@@ -200,7 +73,8 @@
                             <li>
                                 <div class="contact-cont">
                                     <div class="float-left user-img m-r-10">
-                                        <a href="profile.html" title="John Doe"><img src="{{asset('admin/assets/img/user.jpg')}}" alt=""
+                                        <a href="profile.html" title="John Doe"><img
+                                                src="{{asset('admin/assets/img/user.jpg')}}" alt=""
                                                 class="w-40 rounded-circle"><span class="status online"></span></a>
                                     </div>
                                     <div class="contact-info">
@@ -212,9 +86,9 @@
                             <li>
                                 <div class="contact-cont">
                                     <div class="float-left user-img m-r-10">
-                                        <a href="profile.html" title="Richard Miles"><img src="{{asset('admin/assets/img/user.jpg')}}"
-                                                alt="" class="w-40 rounded-circle"><span
-                                                class="status offline"></span></a>
+                                        <a href="profile.html" title="Richard Miles"><img
+                                                src="{{asset('admin/assets/img/user.jpg')}}" alt=""
+                                                class="w-40 rounded-circle"><span class="status offline"></span></a>
                                     </div>
                                     <div class="contact-info">
                                         <span class="contact-name text-ellipsis">Richard Miles</span>
@@ -225,7 +99,8 @@
                             <li>
                                 <div class="contact-cont">
                                     <div class="float-left user-img m-r-10">
-                                        <a href="profile.html" title="John Doe"><img src="{{asset('admin/assets/img/user.jpg')}}" alt=""
+                                        <a href="profile.html" title="John Doe"><img
+                                                src="{{asset('admin/assets/img/user.jpg')}}" alt=""
                                                 class="w-40 rounded-circle"><span class="status away"></span></a>
                                     </div>
                                     <div class="contact-info">
@@ -237,9 +112,9 @@
                             <li>
                                 <div class="contact-cont">
                                     <div class="float-left user-img m-r-10">
-                                        <a href="profile.html" title="Richard Miles"><img src="{{asset('admin/assets/img/user.jpg')}}"
-                                                alt="" class="w-40 rounded-circle"><span
-                                                class="status online"></span></a>
+                                        <a href="profile.html" title="Richard Miles"><img
+                                                src="{{asset('admin/assets/img/user.jpg')}}" alt=""
+                                                class="w-40 rounded-circle"><span class="status online"></span></a>
                                     </div>
                                     <div class="contact-info">
                                         <span class="contact-name text-ellipsis">Richard Miles</span>
@@ -250,7 +125,8 @@
                             <li>
                                 <div class="contact-cont">
                                     <div class="float-left user-img m-r-10">
-                                        <a href="profile.html" title="John Doe"><img src="{{asset('admin/assets/img/user.jpg')}}" alt=""
+                                        <a href="profile.html" title="John Doe"><img
+                                                src="{{asset('admin/assets/img/user.jpg')}}" alt=""
                                                 class="w-40 rounded-circle"><span class="status offline"></span></a>
                                     </div>
                                     <div class="contact-info">
@@ -262,8 +138,9 @@
                             <li>
                                 <div class="contact-cont">
                                     <div class="float-left user-img m-r-10">
-                                        <a href="profile.html" title="Richard Miles"><img src="{{asset('admin/assets/img/user.jpg')}}"
-                                                alt="" class="w-40 rounded-circle"><span class="status away"></span></a>
+                                        <a href="profile.html" title="Richard Miles"><img
+                                                src="{{asset('admin/assets/img/user.jpg')}}" alt=""
+                                                class="w-40 rounded-circle"><span class="status away"></span></a>
                                     </div>
                                     <div class="contact-info">
                                         <span class="contact-name text-ellipsis">Richard Miles</span>
@@ -273,12 +150,150 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="card-footer text-center bg-white">
-                        <a href="doctors.html" class="text-muted">View all Doctors</a>
+                    <div class="card-footer text-center " style="background-color:rgb(207 236 224);color:black">
+                        <a href="#" class="text-muted"> All Doctors</a>
+                    </div>
+                </div>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                // Sample data for Patients and Doctors
+                const labels = ['January', 'February', 'March', 'April', 'May', 'June'];
+                const patientData = [50, 70, 90, 120, 150, 180]; // Example patient data
+                const doctorData = [20, 30, 50, 60, 80, 100];    // Example doctor data
+
+                const ctx = document.getElementById('combinedChart').getContext('2d');
+                const combinedChart = new Chart(ctx, {
+                    type: 'line', // You can use 'bar' or 'line' based on your preference
+                    data: {
+                        labels: labels, // X-axis labels
+                        datasets: [
+                            {
+                                label: 'Patients',
+                                data: patientData,
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                fill: true,
+                                tension: 0.4,
+                            },
+                            {
+                                label: 'Doctors',
+                                data: doctorData,
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                fill: true,
+                                tension: 0.4,
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                            }
+                        },
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Months'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Count'
+                                },
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            </script>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a
+                            href="{{ route('appointment.index') }}" class="btn btn-primary float-right">View all</a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table  custom-table">
+                                <thead style="background-color:#ff8e29;" class="text-center">
+                                    <tr>
+                                        <th>Appointment ID</th>
+                                        <th>Patient Name</th>
+
+                                        <th>Doctor Name</th>
+                                        <th>Department</th>
+                                        <th>Appointment Date</th>
+                                        <th>Appointment Time</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr>
+                                        <td>1</td>
+                                        <td> Denise Stevens</td>
+
+                                        <td>Henry Daniels</td>
+                                        <td>Cardiology</td>
+                                        <td>30 Dec 2018</td>
+                                        <td>10:00am - 11:00am</td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td> Denise Stevens</td>
+
+                                        <td>Henry Daniels</td>
+                                        <td>Cardiology</td>
+                                        <td>30 Dec 2018</td>
+                                        <td>10:00am - 11:00am</td>
+
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="card">
+                    <div class="card-body calender">
+                        <div class="chart-title">
+                            <h4>Appointment </h4>
+
+                        </div>
+                        <div id="calendar"></div>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div class="row">
             <div class="col-12 col-md-12 col-lg-12 col-xl-12">
@@ -289,51 +304,82 @@
                     </div>
                     <div class="card-block">
                         <div class="table-responsive">
-                            <table class="table mb-0 new-patient-table">
-                                <tbody>
+                            <table class="table  custom-table">
+                                <thead style="background-color:#ff8e29;">
                                     <tr>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Treatment</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr>
+                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
                                         <td>
-                                            <img width="28" height="28" class="rounded-circle" src="{{asset('admin/assets/img/user.jpg')}}"
-                                                alt="">
-                                            <h2>John Doe</h2>
+
+                                            <h2>Albina Simonis</h2>
                                         </td>
-                                        <td>Johndoe21@gmail.com</td>
-                                        <td>+1-202-555-0125</td>
-                                        <td><button class="btn btn-primary btn-primary-one float-right">Fever</button>
-                                        </td>
+
+                                        <td>albinasimonis@example.com</td>
+                                        <td>fddfg</td>
+
+
                                     </tr>
                                     <tr>
+                                        <td><img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
                                         <td>
-                                            <img width="28" height="28" class="rounded-circle" src="{{asset('admin/assets/img/user.jpg')}}"
-                                                alt="">
-                                            <h2>Richard</h2>
+
+                                            <h2>Cristina Groves</h2>
                                         </td>
-                                        <td>Richard123@yahoo.com</td>
-                                        <td>202-555-0127</td>
-                                        <td><button class="btn btn-primary btn-primary-two float-right">Cancer</button>
-                                        </td>
+
+                                        <td>cristinagroves@example.com</td>
+                                        <td>fdgsrtgh</td>
+
+
                                     </tr>
                                     <tr>
+                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
                                         <td>
-                                            <img width="28" height="28" class="rounded-circle" src="{{asset('admin/assets/img/user.jpg')}}"
-                                                alt="">
-                                            <h2>Villiam</h2>
+
+                                            <h2>Mary Mericle</h2>
                                         </td>
-                                        <td>Richard123@yahoo.com</td>
-                                        <td>+1-202-555-0106</td>
-                                        <td><button class="btn btn-primary btn-primary-three float-right">Eye</button>
-                                        </td>
+
+                                        <td>marymericle@example.com</td>
+                                        <td>gfhfgh</td>
+
+
                                     </tr>
                                     <tr>
+                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
                                         <td>
-                                            <img width="28" height="28" class="rounded-circle" src="{{asset('admin/assets/img/user.jpg')}}"
-                                                alt="">
-                                            <h2>Martin</h2>
+
+                                            <h2>Haylie Feeney</h2>
                                         </td>
-                                        <td>Richard123@yahoo.com</td>
-                                        <td>776-2323 89562015</td>
-                                        <td><button class="btn btn-primary btn-primary-four float-right">Fever</button>
+
+                                        <td>hayliefeeney@example.com</td>
+                                        <td>yhgjhhk</td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
+
+                                        <td>
+
+                                            <h2>Zoe Butler</h2>
                                         </td>
+
+                                        <td>zoebutler@example.com</td>
+                                        <td>tghgfhg</td>
+
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -341,9 +387,8 @@
                     </div>
                 </div>
             </div>
-         
         </div>
+
     </div>
-  
 </div>
 @endsection

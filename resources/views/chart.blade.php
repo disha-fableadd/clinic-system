@@ -23,13 +23,8 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="chart-title">
-                            <h4>Patients In</h4>
-                            <div class="float-right">
-                                <ul class="chat-user-total">
-                                    <li><i class="fa fa-circle current-users" aria-hidden="true"></i>ICU</li>
-                                    <li><i class="fa fa-circle old-users" aria-hidden="true"></i> OPD</li>
-                                </ul>
-                            </div>
+                            <h4>Doctors</h4>
+                           
                         </div>
                         <canvas id="bargraph"></canvas>
                     </div>

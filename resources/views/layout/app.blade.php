@@ -20,8 +20,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
+      
+
         .form-container {
             width: 100%;
 
@@ -44,7 +60,7 @@
 
         .icon .icon1 {
             padding: 8px;
-            background-color: #ff8e29;
+            background-color: #f89884;
             color: white;
             border-radius: 10px;
 
@@ -52,20 +68,20 @@
 
         .icon .icon2 {
             padding: 8px;
-            background-color: #ff8e29;
+            background-color: #f89884;
             color: white;
             border-radius: 10px;
         }
 
         .icon .icon3 {
             padding: 8px;
-            background-color: #ff8e29;
+            background-color:#f89884;
             color: white;
             border-radius: 10px;
         }
 
         .table thead tr {
-            background-color: #ff8e29;
+            background-color:#f89884;
             color: white;
             text-align: center;
         }

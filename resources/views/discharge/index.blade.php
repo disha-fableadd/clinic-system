@@ -4,11 +4,11 @@
     <div class="content" style="height:100vh">
         <div class="row">
             <div class="col-sm-4 col-3">
-                <h4 class="page-title" style="text-align:left; !important">All Appointments</h4>
+                <h4 class="page-title" style="text-align:left; !important">All Discharge Details</h4>
             </div>
             <div class="col-sm-8 col-9 text-right m-b-2 ">
-                <a href="{{ route('appointment.create') }}" class="btn btn-primary  btn-rounded"><i class="fa fa-plus"></i>
-                    Add Appointment</a>
+                <a href="{{ route('discharge.create') }}" class="btn btn-primary  btn-rounded"><i class="fa fa-plus"></i>
+                    Add Discharge</a>
             </div>
         </div>
         <div class="row filter-row mt-2 mb-2">
@@ -30,13 +30,13 @@
                     <table class="table  custom-table">
                         <thead style="background-color:#ff8e29;"  class="text-center">
                             <tr>
-                                <th>Appointment ID</th>
+                                <th> ID</th>
                                 <th>Patient Name</th>
-                             
                                 <th>Doctor Name</th>
-                                <th>Department</th>
-                                <th>Appointment Date</th>
-                                <th>Appointment Time</th>
+                                <th>Treatment</th>
+                               
+                                <th>Discharge Date</th>
+                              
                                
                                 <th >Action</th>
                             </tr>
@@ -49,7 +49,7 @@
 										<td>Henry Daniels</td>
 										<td>Cardiology</td>
 										<td>30 Dec 2018</td>
-										<td>10:00am - 11:00am</td>
+										
 										
                                 <td >
                                     <div class="icon">
@@ -67,7 +67,7 @@
 										<td>Henry Daniels</td>
 										<td>Cardiology</td>
 										<td>30 Dec 2018</td>
-										<td>10:00am - 11:00am</td>
+									
 										
                                 <td >
                                     <div class="icon">

@@ -11,14 +11,16 @@
                     Add User</a>
             </div>
         </div>
-        <div class="row filter-row mb-2 mt-2">
+        <div class="row filter-row">
 
             <div class="col-sm-6 col-md-3">
                 <div class="form-group">
-                <input class="form-control" type="text" placeholder="Search User..">
+                 
+
+                <input class="form-control" type="text" placeholder="Search Appointments..">
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-3 c">
                 <a href="#" class="btn btn-primary  btn-rounded"> Search </a>
             </div>
         </div>
@@ -26,11 +28,10 @@
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table class="table  custom-table">
-                        <thead style="background-color:#ff8e29;"> 
+                        <thead style="background-color:rgb(254 217 207);"> 
                             <tr>
                             <th >Image</th>
                                 <th >Name</th>
-                                <th>Employee ID</th>
                                 <th>Email</th>
                                 <th>Mobile</th>
                                 <th style="min-width: 110px;">Join Date</th>
@@ -46,12 +47,12 @@
                                   
                                     <h2>Albina Simonis</h2>
                                 </td>
-                                <td>NS-0001</td>
+                              
                                 <td>albinasimonis@example.com</td>
                                 <td>828-634-2744</td>
                                 <td>7 May 2015</td>
                                 <td>
-                                    <span class="custom-badge status-green">Nurse</span>
+                                   Nurse
                                 </td>
                                 <td class="text-right">
                                     <div class="icon">
@@ -69,12 +70,12 @@
                                     
                                     <h2>Cristina Groves</h2>
                                 </td>
-                                <td>DR-0001</td>
+                              
                                 <td>cristinagroves@example.com</td>
                                 <td>928-344-5176</td>
                                 <td>1 Jan 2013</td>
                                 <td>
-                                    <span class="custom-badge status-blue">Doctor</span>
+                                  Doctor
                                 </td>
                                 <td class="text-right">
                                     <div class="icon">
@@ -91,12 +92,12 @@
                                 
                                     <h2>Mary Mericle</h2>
                                 </td>
-                                <td>SF-0003</td>
+                              
                                 <td>marymericle@example.com</td>
                                 <td>603-831-4983</td>
                                 <td>27 Dec 2017</td>
                                 <td>
-                                    <span class="custom-badge status-grey">Accountant</span>
+                                   Accountant
                                 </td>
                                 <td class="text-right">
                                     <div class="icon">
@@ -113,12 +114,12 @@
                                    
                                     <h2>Haylie Feeney</h2>
                                 </td>
-                                <td>SF-0002</td>
+                               
                                 <td>hayliefeeney@example.com</td>
                                 <td>616-774-4962</td>
                                 <td>21 Apr 2017</td>
                                 <td>
-                                    <span class="custom-badge status-grey">Laboratorist</span>
+                                   Laboratorist
                                 </td>
                                 <td class="text-right">
                                     <div class="icon">
@@ -136,12 +137,12 @@
                                   
                                     <h2>Zoe Butler</h2>
                                 </td>
-                                <td>SF-0001</td>
+                              
                                 <td>zoebutler@example.com</td>
                                 <td>444-555-9999</td>
                                 <td>19 May 2012</td>
                                 <td>
-                                    <span class="custom-badge status-grey">Pharmacist</span>
+                                   Pharmacist
                                 </td>
                                 <td class="text-right">
                                     <div class="icon">

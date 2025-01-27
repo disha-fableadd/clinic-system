@@ -1,60 +1,8 @@
-/*
-Author       : Dreamguys
-Template Name: PreClinic - Medical and Hospital Admin Template
-Version      : 1.0
-*/
-
-/*============================
- [Table of CSS]
-
-1. General
-2. Table
-3. Helper Class
-4. Bootstrap Classes
-5. Header
-6. Sidebar
-7. Content
-8. Login
-9. Dashboard
-10. Activity
-11. Select2
-12. Nav tabs
-13. Holidays
-14. Edit Profile
-15. Chat
-16. Focus Label
-17. Leave
-18. Employee
-19. Events
-20. Profile
-21. Notifications
-22. Roles & Permissions
-23. Chat Right Sidebar
-24. Invoice
-25. Doctors
-26. Add Doctor
-27. Payslip
-28. Attendance
-29. Inbox
-30. Mail View
-31. Blog
-32. Blog View
-33. UI Kit
-34. Error
-35. Lock Screen
-36. Voice call
-37. Video Call
-38. Incoming call
-39. Notification settings
-40. Chat Sidebar
-41. Gallery
-42. Responsive
-
-========================================*/
-
-/*-----------------
-	1. General
------------------------*/
+.card-body1 {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    height: 370px;
+}
 
 @import url('https://fonts.googleapis.com/css?family=Rubik:400,500,700');
 html {
@@ -111,12 +59,12 @@ a:focus {
 	border-radius: 50px;
 	box-shadow: none;
 	padding: 0.469rem 0.75rem;
-	border-color: #ff8e29;
+	border-color: rgb(207 236 224);;
 	font-size: 14px;
 	min-height: 40px;
 }
 .form-control:focus {
-	border-color: #ff8e29;
+	border-color: rgb(207 236 224);;
 	box-shadow: none;
 	outline: 0 none;
 }
@@ -434,16 +382,18 @@ table.table td h2 span {
 }
 .btn-primary {
 	border-color: transparent;
-	background-color: #ff8e29;
+	background-color: #cfece0;
+	color: #666666;
+	border-radius: 20px;
 }
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary.active,
 .btn-primary:active,
 .open > .dropdown-toggle.btn-primary {
-	background-color: #ff8e29;
-	border: 1px solid #ff8e29;
-	color: #fff;
+	background-color: #cfece0;
+	border: 1px solid #cfece0;
+	color: #666666;
 }
 .btn-primary.active.focus,
 .btn-primary.active:focus,
@@ -454,24 +404,24 @@ table.table td h2 span {
 .open > .dropdown-toggle.btn-primary.focus,
 .open > .dropdown-toggle.btn-primary:focus,
 .open > .dropdown-toggle.btn-primary:hover {
-	background-color: #ff8e29;
-	border: 1px solid #ff8e29;
+	background-color: #cfece0;
+	border: 1px solid #cfece0;
 }
 .btn-primary.active:not(:disabled):not(.disabled),
 .btn-primary:active:not(:disabled):not(.disabled),
 .show > .btn-primary.dropdown-toggle {
-	background-color: #ff8e29;
-	border-color: #ff8e29;
-	color: #fff;
+	background-color: #cfece0;
+	border-color: #cfece0;
+	color: #666666;
 }
 .btn-outline-primary {
-	border-color: #ff8e29;
-	color: #ff8e29;
+	border-color: #cfece0;
+	color: #666666;
 }
 .btn-outline-primary:hover {
-	background-color: #ff8e29;
-	border-color: #ff8e29;
-	color: #fff;
+	background-color: #cfece0;
+	border-color: #cfece0;
+	color: #666666;
 }
 .btn-outline-primary.active:not(:disabled):not(.disabled),
 .btn-outline-primary:active:not(:disabled):not(.disabled),
@@ -553,13 +503,16 @@ table.table td h2 span {
 	border: 1px solid #e9ab2e
 }
 .btn-danger {
-	background: #f62d51;
-	border: 1px solid #f62d51
+	background: #f5b6a5;
+	border: 1px solid #f5b6a5;
+	color: black;
 }
 .btn-danger:hover,
 .btn-danger:focus {
-	background-color: #e6294b;
-	border: 1px solid #e6294b
+	background-color: #f5b6a5;
+	border: 1px solid #f5b6a5;
+	color: black;
+
 }
 .pagination > .active > a,
 .pagination > .active > a:focus,
@@ -616,6 +569,7 @@ table.table td h2 span {
 	margin-bottom: 30px;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 	border: 0;
+	border-radius: 20px;
 }
 .card-title {
 	margin-bottom: 1.125rem;
@@ -668,11 +622,13 @@ textarea.form-control {
 	padding: 0.25rem 0.5rem;
 }
 .card .card-header {
-    background-color: rgb(255 142 41);
+    background-color:#fff;
     border: 0 none;
     font-size: 16px;
     line-height: 30px;
     padding: 15px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
    
 }
 .card .card-header .card-title {
@@ -681,7 +637,7 @@ textarea.form-control {
 	line-height: 20px;
 	margin: 0;
 	padding: 5px 0;
-	color: white;
+	color: #666666;
 }
 .table h5 {
 	font-size: 14px;
@@ -699,13 +655,22 @@ textarea.form-control {
 .page-link:focus {
     box-shadow: unset;
 }
+table tr{
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
 
+.card-footer:last-child {
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+
+}
 /*-----------------
 	5. Header
 -----------------------*/
 
 .header {
-	background-color: rgb(255, 142, 41);
+	background-color: rgb(252 177 162);
 	left: 0;
 	position: fixed;
 	right: 0;
@@ -857,11 +822,13 @@ textarea.form-control {
 	padding: 0 20px;
 }
 .sidebar-menu li a:hover {
-	color:rgb(255, 142, 41);
+	color:#95cab4;
 }
 .sidebar-menu li.active a {
-	color: rgb(255, 142, 41);
-	background-color: #ff8e2930;
+	color: black;
+	background-color: #cfece0;
+	border-radius: 15px;
+	margin: 0 10px;
 }
 .menu-title {
 	color: #333;
@@ -888,9 +855,9 @@ textarea.form-control {
 	margin-bottom: 15px;
 }
 .sidebar-menu ul ul a.active {
-	color: #ff8e29;
+	color: black;
 
-	text-decoration: underline;
+	
 }
 .mobile-user-menu {
 	color: #fff;
@@ -1006,7 +973,8 @@ textarea.form-control {
 	-webkit-transition: unset;
 }
 .sidebar-menu > ul > li > a {
-	padding: 12px 20px;
+	padding: 12px 10px;
+	margin: 0 10px;
 	align-items: center;
 	display: flex;
 	justify-content: flex-start;
@@ -1044,7 +1012,7 @@ textarea.form-control {
 }
 .page-wrapper > .content {
 	padding: 30px;
-	background-color: rgb(255, 244, 234);
+	background-color: rgb(248 246 245);
 	height: 100%;
 }
 
@@ -1133,9 +1101,17 @@ textarea.form-control {
 	9. Dashboard
 -----------------------*/
 
-.dash-widget {
-	background-color: #fff;
-	border-radius: 4px;
+.dash-widget1 {
+	background-color: #cfece0;
+	border-radius: 20px;
+	margin-bottom: 30px;
+	padding: 20px;
+	position: relative;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+.dash-widget2 {
+	background-color: #fed9cf;
+	border-radius: 20px;
 	margin-bottom: 30px;
 	padding: 20px;
 	position: relative;
@@ -1144,12 +1120,12 @@ textarea.form-control {
 .dash-widget-bg1 {
 	width: 65px;
 	float: left;
-	color: #fff;
+	color: black;
 	display: block;
-	font-size: 50px;
+	font-size: 30px;
 	text-align: center;
 	line-height: 65px;
-	background: #ff8e29;
+	background:white;
 	border-radius: 50%;
 	font-size: 40px;
 	height: 65px;
@@ -1157,12 +1133,12 @@ textarea.form-control {
 .dash-widget-bg2 {
 	width: 65px;
 	float: left;
-	color: #fff;
+	color: black;
 	display: block;
 	font-size: 50px;
 	text-align: center;
 	line-height: 65px;
-	background: #55ce63;
+	background: white;
 	border-radius: 50%;
 	font-size: 40px;
 	height: 65px;
@@ -1170,12 +1146,12 @@ textarea.form-control {
 .dash-widget-bg3 {
 	width: 65px;
 	float: left;
-	color: #fff;
+	color: black;
 	display: block;
 	font-size: 50px;
 	text-align: center;
 	line-height: 65px;
-	background: #7a92a3;
+	background: white;
 	border-radius: 50%;
 	font-size: 40px;
 	height: 65px;
@@ -1183,12 +1159,12 @@ textarea.form-control {
 .dash-widget-bg4 {
 	width: 65px;
 	float: left;
-	color: #fff;
+	color: black;
 	display: block;
 	font-size: 50px;
 	text-align: center;
 	line-height: 65px;
-	background: #ffbc35;
+	background: white;
 	border-radius: 50%;
 	font-size: 40px;
 	height: 65px;
@@ -1378,6 +1354,7 @@ ul.chat-user-total li i.old-users {
 	font-size: 24px;
 	font-weight: 500;
 	margin-bottom: 0.5rem;
+	padding: 5px 10px;
 }
 .dash-widget-info span i {
 	width: 16px;
@@ -1391,25 +1368,23 @@ ul.chat-user-total li i.old-users {
 	margin-left: 5px;
 }
 .dash-widget-info > span.widget-title1 {
-	background: #ff8e29;
-	color: #fff;
-	padding: 5px 10px;
-	border-radius: 4px;
-	font-size: 13px;
+	color: #666666;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 20px;
 }
 .dash-widget-info > span.widget-title2 {
-	background: #55ce63;
-	color: #fff;
+
+	color: #666666;
 	padding: 5px 10px;
 	border-radius: 4px;
-	font-size: 13px;
+	font-size: 20px;
 }
 .dash-widget-info > span.widget-title3 {
-	background: #7a92a3;
-	color: #fff;
-	padding: 5px 10px;
-	border-radius: 4px;
-	font-size: 13px;
+	color: #666666;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 20px;
 }
 .dash-widget-info > span.widget-title4 {
 	background: #ffbc35;
@@ -2470,11 +2445,10 @@ ul.chat-user-total li i.old-users {
 -----------------------*/
 
 .filter-row .btn {
-	border-radius: 50px;
-	min-height: 30px;
-	padding: 10px 30px;
-	text-transform: uppercase;
-
+    border-radius: 50px;
+    min-height: 30px;
+    padding: 9px 20px;
+    text-transform: uppercase;
 	
 }
 .form-focus.select-focus .focus-label {
@@ -3261,7 +3235,7 @@ html.menu-opened body {
 }
 .submit-btn {
 	border-radius: 50px;
-	color: #fff;
+	color: black;
 	font-size: 16px;
 	font-weight: 500;
 	min-width: 200px;

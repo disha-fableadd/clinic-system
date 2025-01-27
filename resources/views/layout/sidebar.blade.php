@@ -6,31 +6,84 @@
                 <li class="menu-link {{ request()->is('dashboard') ? 'active' : '' }}">
                     <a href="{{ route('dashboard') }}"> <i class="fa fa-tachometer-alt"></i> <span>Dashboard</span></a>
                 </li>
-                <li class="menu-link {{ request()->is('user*') ? 'active' : '' }}">
-                    <a href="{{ route('user.index') }}"><i class="fa fa-user"></i> <span>User</span></a>
+                <li class="submenu {{ request()->is('role*') ? 'active' : '' }}">
+                    <a href=""><i class="fa fa-user"></i> <span>Role</span><span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('role.create') }}">Add Role</a></li>
+                        <li><a href="{{ route('role.index') }}">All Role</a></li>
+
+                    </ul>
                 </li>
-                <li class="menu-link {{ request()->is('doctor*') ? 'active' : '' }}">
-                    <a href="{{ route('doctor.index') }}"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
+
+                <li class="submenu {{ request()->is('user*') ? 'active' : '' }}">
+                    <a href=""><i class="fa fa-user-md"></i><span>User</span><span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('user.create') }}">Add User</a></li>
+                        <li><a href="{{ route('user.index') }}">All User</a></li>
+
+                    </ul>
                 </li>
-                <li class="menu-link {{ request()->is('patients') ? 'active' : '' }}">
-                    <a href="{{ route('patients.index') }}"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
+
+                <li class="submenu {{ request()->is('medicine*') ? 'active' : '' }}">
+                    <a href="#"><i class="fa fa-pills"></i> <span>Medicines</span><span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('medicine.create') }}">Add Medicines</a></li>
+                        <li><a href="{{ route('medicine.index') }}">All Medicines</a></li>
+
+                    </ul>
                 </li>
-                <li class="menu-link {{ request()->is('appointments') ? 'active' : '' }}">
-                    <a href="{{ route('appointment.index') }}"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
+                <li class="submenu {{ request()->is('patients*') ? 'active' : '' }}">
+                    <a href="#"><i class="fa fa-wheelchair"></i> <span>Patients</span><span
+                            class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('patients.create') }}">Add Patients</a></li>
+                        <li><a href="{{ route('patients.index') }}">All Patients</a></li>
+
+                    </ul>
                 </li>
-                <li class="menu-link {{ request()->is('schedule') ? 'active' : '' }}">
-                    <a href="{{ route('schedule.index') }}"><i class="fa fa-calendar-check-o"></i> <span>Doctor Schedule</span></a>
+                <li class="submenu {{ request()->is('appointments*') ? 'active' : '' }}">
+                    <a href="#"><i class="fa fa-calendar"></i>
+                        <span>Appointments</span><span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('appointment.create') }}">Add Appointments</a></li>
+                        <li><a href="{{ route('appointment.index') }}">All Appointments</a></li>
+
+                    </ul>
                 </li>
-                <li class="menu-link {{ request()->is('departments') ? 'active' : '' }}">
-                    <a href="{{ route('department.index') }}"><i class="fa fa-hospital-o"></i> <span>Departments</span></a>
+                <li class="submenu {{ request()->is('treatment*') ? 'active' : '' }}">
+                    <a href="#"><i class="fa fa-calendar-check-o"></i> <span>Treatments
+                        </span><span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('treatment.create') }}">Add Treatments</a></li>
+                        <li><a href="{{ route('treatment.index') }}">All Treatments</a></li>
+
+                    </ul>
                 </li>
-                <li class="menu-link {{ request()->is('calendar') ? 'active' : '' }}">
-                    <a href="{{ route('calender.index') }}"><i class="fa fa-calendar"></i> <span>Calendar</span></a>
+                <li class="submenu {{ request()->is('departments*') ? 'active' : '' }}">
+                    <a href="#"><i class="fa fa-hospital-o"></i>
+                        <span>Departments</span><span class="menu-arrow"></span></a>
+                        <ul style="display: none;">
+                        <li><a href="{{ route('department.create') }}">Add Departments</a></li>
+                        <li><a href="{{ route('department.index') }}">All Departments</a></li>
+
+                    </ul>
                 </li>
-                <li class="menu-link {{ request()->is('chart') ? 'active' : '' }}">
+                <li class="menu-link {{ request()->is('calendar*') ? 'active' : '' }}">
+                    <a href="{{ route('calender.index') }}"><i class="fa fa-calendar"></i><span>Calendar</span></a>
+                </li>
+                <li class="submenu {{ request()->is('discharge*') ? 'active' : '' }}">
+                    <a href="#"><i class="fa fa-hospital-o"></i>
+                        <span>Discharge</span><span class="menu-arrow"></span></a>
+                        <ul style="display: none;">
+                        <li><a href="{{ route('discharge.create') }}">Add Discharge Details</a></li>
+                        <li><a href="{{ route('discharge.index') }}">All Discharge</a></li>
+
+                    </ul>
+                </li>
+                <li class="menu-link {{ request()->is('chart*') ? 'active' : '' }}">
                     <a href="{{ route('chart') }}"> <i class="fas fa-chart-line"></i> <span>Chart</span></a>
                 </li>
-                <li class="menu-link {{ request()->is('profile') ? 'active' : '' }}">
+                <li class="menu-link {{ request()->is('profile*') ? 'active' : '' }}">
                     <a href="{{ route('profile') }}"><i class="fa fa-user"></i> <span>Profile</span></a>
                 </li>
                 <li class="menu-link">
@@ -42,23 +95,23 @@
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-    // Get all menu links
-    const menuLinks = document.querySelectorAll('#sidebar-menu .menu-link a');
-    const currentUrl = window.location.href;
 
-    menuLinks.forEach(link => {
-        if (currentUrl.includes(link.getAttribute('href'))) {
-            link.closest('.menu-link').classList.add('active');
-        }
+        const menuLinks = document.querySelectorAll('#sidebar-menu .menu-link a');
+        const currentUrl = window.location.href;
 
-        // Add click event for manual interaction
-        link.addEventListener('click', function () {
-            document.querySelectorAll('.menu-link.active').forEach(activeLink => {
-                activeLink.classList.remove('active');
+        menuLinks.forEach(link => {
+            if (currentUrl.includes(link.getAttribute('href'))) {
+                link.closest('.menu-link').classList.add('active');
+            }
+
+
+            link.addEventListener('click', function () {
+                document.querySelectorAll('.menu-link.active').forEach(activeLink => {
+                    activeLink.classList.remove('active');
+                });
+                this.closest('.menu-link').classList.add('active');
             });
-            this.closest('.menu-link').classList.add('active');
         });
     });
-});
 
 </script>
