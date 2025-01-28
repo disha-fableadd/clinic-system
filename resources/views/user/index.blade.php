@@ -11,23 +11,12 @@
                     Add User</a>
             </div>
         </div>
-        <div class="row filter-row">
-
-            <div class="col-sm-6 col-md-3">
-                <div class="form-group">
-                 
-
-                <input class="form-control" type="text" placeholder="Search Appointments..">
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3 c">
-                <a href="#" class="btn btn-primary  btn-rounded"> Search </a>
-            </div>
-        </div>
-        <div class="row">
+      
+        <div class="row mt-5">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table  custom-table">
+                <div id="demo_info" class="box"></div>
+                    <table id="example" class="table  custom-table">
                         <thead style="background-color:rgb(254 217 207);"> 
                             <tr>
                             <th >Image</th>
@@ -160,19 +149,7 @@
     </div>
 
 </div>
-<div id="delete_employee" class="modal fade delete-modal" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <img src="{{asset('admin/assets/img/sent.png')}}" alt="" width="50" height="46">
-                <h3>Are you sure want to delete this User?</h3>
-                <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -181,5 +158,16 @@
             document.body.classList.toggle('mini-sidebar');
         });
     });
+    new DataTable('#example');
+            function eventFired(type) {
+                let n = document.querySelector('#demo_info');
+
+                n.scrollTop = n.scrollHeight;
+            }
+
+            new DataTable('#example')
+                .on('order.dt', () => eventFired('Order'))
+                .on('search.dt', () => eventFired('Search'))
+                .on('page.dt', () => eventFired('Page'));
 </script>
 @endsection

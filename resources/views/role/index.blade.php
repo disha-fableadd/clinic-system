@@ -6,152 +6,73 @@
             <div class="col-sm-4 col-3">
                 <h4 class="page-title" style="text-align:left; !important">All Role</h4>
             </div>
-            <div class="col-sm-8 col-9 text-right m-b-2 ">
-                <a href="{{ route('role.create') }}" class="btn btn-primary  btn-rounded"><i
-                        class="fa fa-plus"></i>
+            <div class="col-sm-8 col-9 text-right m-b-2">
+                <a href="{{ route('role.create') }}" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i>
                     Add Role</a>
             </div>
         </div>
-        <div class="row filter-row mt-2 mb-2">
 
-            <div class="col-sm-6 col-md-3">
-                <div class="form-group">
 
-                    <input class="form-control" type="text" placeholder="Search Department..">
 
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3 p-0">
-                <a href="#" class="btn btn-primary  btn-rounded"> Search </a>
-            </div>
-        </div>
-        <div class="row">
+
+        <div class="row mt-5">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table  custom-table">
+                    <div id="demo_info" class="box"></div>
+                    <table id="example" class="table custom-table mt-3">
                         <thead style="background-color:#ff8e29;" class="text-center">
                             <tr>
-                                <th>#</th>
+                                <th>Sr.No</th>
                                 <th>Role Name</th>
                                 <th>Description</th>
-                                <th>Permissions</th>
+
                                 <th>Joining Date</th>
-                                <th>Action</th>
+                                <th style="width: 145px;">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="text-center">
-                            <tr>
+                        <tbody>
+                            @if ($roles->isEmpty())
+                                <tr>
+                                    <td colspan="6">No records found.</td>
+                                </tr>
+                            @else
+                                @foreach ($roles as $key => $role)
+                                    <tr>
+                                        <td class="text-left">{{ $key + 1 }}</td>
+                                        <td>{{ $role->name }}</td>
+                                        <td>{{ $role->description }}</td>
 
-                                <td>1</td>
-                                <td>Dentists</td>
-                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                <td>21/02/2025</td>
-
-                                <td>
-                                    <div class="icon">
-                                        <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
-                                        <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                    </div>
-
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>2</td>
-                                <td>Neurology</td>
-                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                <td>21/02/2025</td>
-
-                                <td>
-                                    <div class="icon">
-                                        <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
-                                        <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                    </div>
-
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>3</td>
-                                <td>Opthalmology</td>
-                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                <td>21/02/2025</td>
-
-                                <td>
-                                    <div class="icon">
-                                        <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
-                                        <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                    </div>
-
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>4</td>
-                                <td>Orthopedics</td>
-                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                <td>21/02/2025</td>
-                                <td>
-                                    <div class="icon">
-                                        <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
-                                        <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                    </div>
-
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>5</td>
-                                <td>Cancer Department</td>
-                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                <td>21/02/2025</td>
-
-                                <td>
-                                    <div class="icon">
-                                        <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
-                                        <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                    </div>
-
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td>6</td>
-                                <td>ENT Department</td>
-                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                <td>21/02/2025</td>
-
-                                <td>
-                                    <div class="icon">
-                                        <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
-                                        <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                    </div>
-
-                                </td>
-                            </tr>
-
-
+                                        <td>{{ $role->created_at->format('d/m/Y') }}</td>
+                                        <td>
+                                            <div class="icon">
+                                                <a href="{{ route('role.show', $role->id) }}" class="m-r-5">
+                                                    <i class="fa fa-eye icon3"></i>
+                                                </a>
+                                                <a href="{{ route('role.edit', $role->id) }}" class="m-r-5">
+                                                    <i class="fa fa-pencil icon1"></i>
+                                                </a>
+                                                <form action="{{ route('role.destroy', $role->id) }}" method="POST"
+                                                    style="display:inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" style="border: none; background: none;" class="m-r-5">
+                                                        <i class="fa fa-trash-o icon2"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
+
+
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -164,5 +85,8 @@
             }
         });
     });
+
+
 </script>
+
 @endsection

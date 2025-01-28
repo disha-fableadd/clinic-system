@@ -1,8 +1,63 @@
+
+
+
+div.dt-container .dt-search input {
+	border-radius: 50px !important;
+    box-shadow: none !important;
+    padding: 0.469rem 0.75rem !important;
+    border-color: #87ceb0 !important;
+    font-size: 14px !important;
+    min-height: 40px !important;
+	width:250px !important;
+
+}
+
+div.dt-container .dt-input {
+    border: 1px solid #87ceb0 !important;
+	border-radius: 10px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: inherit;
+	margin-right: 5px !important;
+}
+div.dt-container .dt-paging .dt-paging-button.current, div.dt-container .dt-paging .dt-paging-button.current:hover {
+    color: inherit !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: #bff0db !important;
+   
+}
+
 .card-body1 {
     flex: 1 1 auto;
     padding: 1.25rem;
     height: 370px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @import url('https://fonts.googleapis.com/css?family=Rubik:400,500,700');
 html {
@@ -1076,7 +1131,7 @@ table tr{
 	border-radius: 50px;
     box-shadow: none;
     padding: 0.469rem 0.75rem;
-    border-color: #ff8e29;
+    border-color: rgb(159 217 193);;
     font-size: 14px;
     min-height: 40px;
 }

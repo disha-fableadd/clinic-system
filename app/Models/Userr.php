@@ -4,45 +4,34 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class Userr extends Authenticatable
+class Userr extends Model
 {
-    use Notifiable;
-    protected $primaryKey = 'id';
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'gender',
-        'password',
-        'joining_date',
-        'address',
-        'city',
-        'state',
-        'role',
-        'phone',
-        'avatar',
-        'permissions',
-        'status',
-        'department_id'
-    ];
+    use HasFactory;
 
     protected $table = 'userr';
 
-    public function department()
-    {
-        return $this->belongsTo(Department::class, 'department_id');
-    }
+    protected $fillable = [
+        'role_id', 
+        'fname', 
+        'lname', 
+        'email', 
+        'password', 
+        'gender', 
+        'address', 
+        'city', 
+        'state', 
+        'phone', 
+        'image', 
+        'joining_date'
+    ];
 
-    public function appointment()
-    {
-        return $this->belongsTo(Appointment::class, 'patient_id');
-    }
-    public function schedule()
-    {
-        return $this->belongsTo(Schedule::class, 'doctor_id');
-    }
+    protected $hidden = [
+        'password',
+    ];
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
 }

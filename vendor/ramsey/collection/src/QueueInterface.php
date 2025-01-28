@@ -34,7 +34,7 @@ use RuntimeException;
  * capacity-restricted `QueueInterface` implementations; in most
  * implementations, insert operations cannot fail.
  *
- * <table>
+ * <div id="demo_info" class="box"></div>  <table id="example" >
  * <caption>Summary of QueueInterface methods</caption>
  * <thead>
  * <tr>

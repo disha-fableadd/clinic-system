@@ -11,24 +11,12 @@
                     Add Patients</a>
             </div>
         </div>
-        <div class="row filter-row mt-2 mb-2">
-
-            <div class="col-sm-6 col-md-3">
-                <div class="form-group">
-                  
-
-                    <input class="form-control" type="text" placeholder="Search Patients..">
-
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3 p-0">
-                <a href="#" class="btn btn-primary  btn-rounded"> Search </a>
-            </div>
-        </div>
-        <div class="row">
+      
+        <div class="row mt-5">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table  custom-table">
+                <div id="demo_info" class="box"></div>
+                    <table id="example" class="table  custom-table">
                         <thead style="background-color:#ff8e29;"> 
                             <tr>
                                 <th>Id</th>
@@ -176,6 +164,16 @@
         }
     });
 });
+new DataTable('#example');
+            function eventFired(type) {
+                let n = document.querySelector('#demo_info');
 
+                n.scrollTop = n.scrollHeight;
+            }
+
+            new DataTable('#example')
+                .on('order.dt', () => eventFired('Order'))
+                .on('search.dt', () => eventFired('Search'))
+                .on('page.dt', () => eventFired('Page'));
 </script>
 @endsection

@@ -41,10 +41,22 @@
     <!-- jQuery Library -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css">
+    <script src=" https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+
 
 
     <style>
-       
+        .menu-link1.active {
+            font-weight: bold;
+            text-decoration-line: underline;
+            text-decoration-style: double;
+
+        }
+
+
+
 
         .icon-style {
             background-color: white;
@@ -54,7 +66,7 @@
             border-radius: 50%;
 
         }
-      
+
 
         .form-container {
             width: 100%;
@@ -123,3 +135,16 @@
         @yield('scripts')
 
         @include('layout.footer')
+        <script>
+            new DataTable('#example');
+            function eventFired(type) {
+                let n = document.querySelector('#demo_info');
+
+                n.scrollTop = n.scrollHeight;
+            }
+
+            new DataTable('#example')
+                .on('order.dt', () => eventFired('Order'))
+                .on('search.dt', () => eventFired('Search'))
+                .on('page.dt', () => eventFired('Page'));
+        </script>

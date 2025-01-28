@@ -35,7 +35,7 @@ use RuntimeException;
  *
  * The twelve methods described above are summarized in the following table:
  *
- * <table>
+ * <div id="demo_info" class="box"></div>  <table id="example" >
  * <caption>Summary of DoubleEndedQueueInterface methods</caption>
  * <thead>
  * <tr>
@@ -82,7 +82,7 @@ use RuntimeException;
  * The methods inherited from the `QueueInterface` are precisely equivalent to
  * `DoubleEndedQueueInterface` methods as indicated in the following table:
  *
- * <table>
+ * <div id="demo_info" class="box"></div>  <table id="example" >
  * <caption>Comparison of QueueInterface and DoubleEndedQueueInterface methods</caption>
  * <thead>
  * <tr>
@@ -124,7 +124,7 @@ use RuntimeException;
  * equivalent to `DoubleEndedQueueInterface` methods as indicated in the table
  * below:
  *
- * <table>
+ * <div id="demo_info" class="box"></div>  <table id="example" >
  * <caption>Comparison of stack concepts and DoubleEndedQueueInterface methods</caption>
  * <thead>
  * <tr>

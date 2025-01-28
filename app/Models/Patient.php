@@ -8,17 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class Patient extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id'; 
+
+    protected $table = 'patient';
+
+  
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'gender', 'dob', 'age',
-        'address', 'city', 'state', 'phone', 'avatar'
+        'full_name',
+        'email',
+        'gender',
+        'dob',
+        'age',
+        'phone',
+        'address',
+        'city',
+        'state',
+        'image',
+        'treatment_id',
     ];
 
-    protected $table = 'patients';
-
-    public function appointment()
+    public function treatment()
     {
-        return $this->belongsTo(Appointment::class,'patient_id');
+        return $this->belongsTo(Treatment::class, 'treatment_id');
     }
-
 }

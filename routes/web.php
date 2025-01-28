@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('login', [LoginController::class, 'authenticate'])->name('login.submit');
+Route::post('login', [LoginController::class, 'loginSubmit'])->name('login.submit');
 
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
@@ -34,8 +34,7 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/user', [EmployeeController::class, 'index'])->name('user.index');
 Route::get('/user/create', [EmployeeController::class, 'create'])->name('user.create');
 
-Route::get('/role', [RoleController::class, 'index'])->name('role.index');
-Route::get('/role/create', [RoleController::class, 'create'])->name('role.create');
+Route::resource('role', RoleController::class);
 
 Route::get('/discharge', [DischargeController::class, 'index'])->name('discharge.index');
 Route::get('/discharge/create', [DischargeController::class, 'create'])->name('discharge.create');

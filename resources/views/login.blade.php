@@ -23,7 +23,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: rgb(255, 244, 234);
+            background: rgb(247 243 242);
         }
 
         .account-logo img {
@@ -31,18 +31,25 @@
         }
 
         .btn-primary.account-btn {
-            background-color: #ff8e29;
-            border-color: #ff8e29;
+            background-color: rgb(159 217 193);
+            border-color: rgb(159 217 193);
             transition: all 0.3s;
+            color: black;
         }
 
-        .btn-primary.account-btn:hover {
-            background-color: #ff5e57;
-            border-color: #ff5e57;
-        }
+       
 
         .form-group label {
             font-weight: bold;
+
+        }
+
+        .logo span {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0;
+          
         }
 
         .form-control {
@@ -61,12 +68,12 @@
                         <div class="account-logo">
                             <a href="" class="logo">
                                 <img src="{{asset('admin/assets/img/logo-dark.png')}}" width="35" height="35" alt="">
-                                <span style="color:#ff8e29">Preclinic</span>
+                                <span style="color:#f89884;">Preclinic</span>
                             </a>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="email" class="form-control"  required>
+                            <input type="email" name="email" class="form-control" required>
                             @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

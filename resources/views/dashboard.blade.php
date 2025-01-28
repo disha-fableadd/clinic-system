@@ -59,7 +59,7 @@
                                 <canvas id="linegraph" class="mt-5" style="
                                     display: block;
                                     width: 475px;
-                                    height: 400px;  margin-top:80px">
+                                    height: 370px;  margin-top:80px">
                                 </canvas>
 
                             </div>

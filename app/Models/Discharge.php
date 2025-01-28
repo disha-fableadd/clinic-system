@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Appointment extends Model
+class Discharge extends Model
 {
     use HasFactory;
 
-    protected $table = 'appointment';
+    protected $table = 'discharge';
 
     protected $fillable = [
-        'pid', 
-        'tid', 
-        'did', 
-        'date', 
-        'time', 
-        'patient_email', 
-        'patient_phone'
+        'pid',
+        'tid',
+        'did',
+        'admit_date',
+        'discharge_date',
+        'discharge_reason',
     ];
 
     public function patient()
@@ -35,4 +34,7 @@ class Appointment extends Model
     {
         return $this->belongsTo(Userr::class, 'did');
     }
+
+
+
 }

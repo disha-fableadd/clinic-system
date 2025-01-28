@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Schedule extends Model
+class Treatment extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id'; 
-    protected $fillable = [
-        'doctor_id', 'days', 'start_time', 'end_time'
-    ];
 
-    protected $table = 'schedules';
+    protected $table = 'treatment';
+
+    protected $fillable = [
+        'name',
+        'doctor_id',
+        'description',
+    ];
 
     public function doctor()
     {
