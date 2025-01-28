@@ -34,9 +34,9 @@
                                 <th>Patient Name</th>
                              
                                 <th>Doctor Name</th>
-                                <th>Department</th>
+                                <th>Treatment</th>
                                 <th>Appointment Date</th>
-                                <th>Appointment Time</th>
+                              
                                
                                 <th >Action</th>
                             </tr>
@@ -49,7 +49,7 @@
 										<td>Henry Daniels</td>
 										<td>Cardiology</td>
 										<td>30 Dec 2018</td>
-										<td>10:00am - 11:00am</td>
+									
 										
                                 <td >
                                     <div class="icon">
@@ -67,7 +67,7 @@
 										<td>Henry Daniels</td>
 										<td>Cardiology</td>
 										<td>30 Dec 2018</td>
-										<td>10:00am - 11:00am</td>
+										
 										
                                 <td >
                                     <div class="icon">

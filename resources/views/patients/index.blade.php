@@ -31,8 +31,10 @@
                     <table class="table  custom-table">
                         <thead style="background-color:#ff8e29;"> 
                             <tr>
+                                <th>Id</th>
                             <th >Image</th>
                                 <th >Name</th>
+                                <th>age</th>
                                 <th>Email</th>
                                 <th>Treatment</th>
                                 <th >Action</th>
@@ -40,12 +42,14 @@
                         </thead>
                         <tbody class="text-center">
                             <tr>
+                                <td>1</td>
                                 <td>  <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
                                 class="rounded-circle" alt=""></td>
                                 <td>
                                   
                                     <h2>Albina Simonis</h2>
                                 </td>
+                                <td>25</td>
                              
                                 <td>albinasimonis@example.com</td>
                                 <td>fddfg</td>
@@ -59,13 +63,14 @@
                                 </td>
                             </tr>
                             <tr>
+                            <td>1</td>
                                 <td><img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
                                 class="rounded-circle" alt=""></td>
                                 <td>
                                     
                                     <h2>Cristina Groves</h2>
                                 </td>
-                               
+                                <td>25</td>
                                 <td>cristinagroves@example.com</td>
                                 <td>fdgsrtgh</td>
                               
@@ -78,13 +83,14 @@
                                 </td>
                             </tr>
                             <tr>
+                            <td>1</td>
                                 <td>    <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
                                 class="rounded-circle" alt=""></td>
                                 <td>
                                 
                                     <h2>Mary Mericle</h2>
                                 </td>
-                               
+                                <td>25</td>
                                 <td>marymericle@example.com</td>
                                 <td>gfhfgh</td>
                                 
@@ -97,13 +103,14 @@
                                 </td>
                             </tr>
                             <tr>
+                            <td>1</td>
                                 <td> <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
                                 class="rounded-circle" alt=""></td>
                                 <td>
                                    
                                     <h2>Haylie Feeney</h2>
                                 </td>
-                                
+                                <td>25</td>
                                 <td>hayliefeeney@example.com</td>
                                 <td>yhgjhhk</td>
                               
@@ -116,6 +123,7 @@
                                 </td>
                             </tr>
                             <tr>
+                            <td>1</td>
                             <td> <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
                                 class="rounded-circle" alt=""></td>
                                
@@ -123,7 +131,7 @@
                                   
                                     <h2>Zoe Butler</h2>
                                 </td>
-                               
+                                <td>25</td>
                                 <td>zoebutler@example.com</td>
                                 <td>tghgfhg</td>
                                

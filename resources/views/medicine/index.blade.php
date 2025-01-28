@@ -15,7 +15,7 @@
 
             <div class="col-sm-6 col-md-3">
                 <div class="form-group">
-                  
+
 
                     <input class="form-control" type="text" placeholder="Search Medicine..">
 
@@ -29,99 +29,112 @@
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table class="table  custom-table">
-                        <thead style="background-color:#ff8e29;"> 
+                        <thead style="background-color:#ff8e29;">
                             <tr>
-                            <th >Image</th>
-                                <th >Name</th>
+                                <th>Id</th>
+                                <th>Image</th>
+                                <th>Name</th>
                                 <th>Category</th>
-                                <th >Action</th>
+                                <th>Description</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
                             <tr>
-                                <td>  <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
-                                class="rounded-circle" alt=""></td>
+                                <td>1</td>
+                                <td> <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
+                                        class="rounded-circle" alt=""></td>
                                 <td>
-                                  
+
                                     <h2>Albina Simonis</h2>
                                 </td>
                                 <td>NS-0001</td>
-                              
-                                <td >
+                                <td>cgftghjhjkkkthfghgh</td>
+                                <td>
                                     <div class="icon">
-                                    <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i> <i class="fa fa-trash-o m-r-5 icon2"></i>
+                                        <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
+                                        <i class="fa fa-trash-o m-r-5 icon2"></i>
 
                                     </div>
-                                   
+
                                 </td>
                             </tr>
                             <tr>
+                                <td>1</td>
                                 <td><img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
-                                class="rounded-circle" alt=""></td>
+                                        class="rounded-circle" alt=""></td>
                                 <td>
-                                    
+
                                     <h2>Cristina Groves</h2>
                                 </td>
                                 <td>DR-0001</td>
-                               
-                                <td >
+                                <td>cgftghjhjkkkthfghgh</td>
+                                <td>
                                     <div class="icon">
-                                    <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i> <i class="fa fa-trash-o m-r-5 icon2"></i>
+                                        <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
+                                        <i class="fa fa-trash-o m-r-5 icon2"></i>
 
                                     </div>
-                                   
+
                                 </td>
                             </tr>
                             <tr>
-                                <td>    <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
-                                class="rounded-circle" alt=""></td>
+                                <td>1</td>
+                                <td> <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
+                                        class="rounded-circle" alt=""></td>
                                 <td>
-                                
+
                                     <h2>Mary Mericle</h2>
                                 </td>
                                 <td>SF-0003</td>
-                               
-                                <td >
+                                <td>cgftghjhjkkkthfghgh</td>
+                                <td>
+
                                     <div class="icon">
-                                    <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i> <i class="fa fa-trash-o m-r-5 icon2"></i>
+                                        <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
+                                        <i class="fa fa-trash-o m-r-5 icon2"></i>
 
                                     </div>
-                                   
+
                                 </td>
                             </tr>
                             <tr>
+                                <td>1</td>
                                 <td> <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
-                                class="rounded-circle" alt=""></td>
+                                        class="rounded-circle" alt=""></td>
                                 <td>
-                                   
+
                                     <h2>Haylie Feeney</h2>
                                 </td>
                                 <td>SF-0002</td>
-                               
-                                <td >
+                                <td>cgftghjhjkkkthfghgh</td>
+                                <td>
                                     <div class="icon">
-                                    <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i> <i class="fa fa-trash-o m-r-5 icon2"></i>
+                                        <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
+                                        <i class="fa fa-trash-o m-r-5 icon2"></i>
 
                                     </div>
-                                   
+
                                 </td>
                             </tr>
                             <tr>
-                            <td> <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
-                                class="rounded-circle" alt=""></td>
-                               
+                                <td>1</td>
+                                <td> <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
+                                        class="rounded-circle" alt=""></td>
+
                                 <td>
-                                  
+
                                     <h2>Zoe Butler</h2>
                                 </td>
                                 <td>SF-0001</td>
-                                
-                                <td >
+                                <td>cgftghjhjkkkthfghgh</td>
+                                <td>
                                     <div class="icon">
-                                    <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i> <i class="fa fa-trash-o m-r-5 icon2"></i>
+                                        <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
+                                        <i class="fa fa-trash-o m-r-5 icon2"></i>
 
                                     </div>
-                                   
+
                                 </td>
                             </tr>
                         </tbody>
@@ -147,16 +160,16 @@
 </div>
 
 <script>
-   document.addEventListener('DOMContentLoaded', function () {
-    const toggleBtn = document.getElementById('toggle_btn');
-    const sidebar = document.querySelector('.sidebar'); // Assuming the sidebar has this class
-    
-    toggleBtn.addEventListener('click', function () {
-        if (sidebar) {
-            sidebar.classList.toggle('mini-sidebar'); // This toggles the class on the sidebar
-        }
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.getElementById('toggle_btn');
+        const sidebar = document.querySelector('.sidebar'); // Assuming the sidebar has this class
+
+        toggleBtn.addEventListener('click', function () {
+            if (sidebar) {
+                sidebar.classList.toggle('mini-sidebar'); // This toggles the class on the sidebar
+            }
+        });
     });
-});
 
 </script>
 @endsection

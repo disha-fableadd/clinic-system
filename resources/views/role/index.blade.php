@@ -34,7 +34,8 @@
                                 <th>#</th>
                                 <th>Role Name</th>
                                 <th>Description</th>
-
+                                <th>Permissions</th>
+                                <th>Joining Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -44,6 +45,8 @@
                                 <td>1</td>
                                 <td>Dentists</td>
                                 <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
+                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
+                                <td>21/02/2025</td>
 
                                 <td>
                                     <div class="icon">
@@ -59,6 +62,9 @@
                                 <td>2</td>
                                 <td>Neurology</td>
                                 <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
+                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
+                                <td>21/02/2025</td>
+
                                 <td>
                                     <div class="icon">
                                         <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
@@ -73,6 +79,9 @@
                                 <td>3</td>
                                 <td>Opthalmology</td>
                                 <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
+                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
+                                <td>21/02/2025</td>
+
                                 <td>
                                     <div class="icon">
                                         <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
@@ -87,6 +96,8 @@
                                 <td>4</td>
                                 <td>Orthopedics</td>
                                 <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
+                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
+                                <td>21/02/2025</td>
                                 <td>
                                     <div class="icon">
                                         <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
@@ -101,6 +112,9 @@
                                 <td>5</td>
                                 <td>Cancer Department</td>
                                 <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
+                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
+                                <td>21/02/2025</td>
+
                                 <td>
                                     <div class="icon">
                                         <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>
@@ -115,6 +129,9 @@
                                 <td>6</td>
                                 <td>ENT Department</td>
                                 <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
+                                <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
+                                <td>21/02/2025</td>
+
                                 <td>
                                     <div class="icon">
                                         <i class="fa fa-eye m-r-5 icon3"></i> <i class="fa fa-pencil m-r-5 icon1"></i>

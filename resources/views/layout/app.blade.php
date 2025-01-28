@@ -38,67 +38,79 @@
 
 
 
-   <!-- jQuery Library -->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- jQuery Library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
     <style>
-    .form-container {
-        width: 100%;
+       
 
-        padding: 30px;
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin: 20px auto;
-    }
+        .icon-style {
+            background-color: white;
 
-    .offset-lg-2 {
-        margin: auto;
-        width: 80%;
-    }
+            color: rgb(157 195 179);
+            padding: 10px;
+            border-radius: 50%;
 
-    .icon {
-        font-size: 15px;
+        }
+      
 
-    }
+        .form-container {
+            width: 100%;
 
-    .icon .icon1 {
-        padding: 8px;
-        background-color: #f89884;
-        color: white;
-        border-radius: 10px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
 
-    }
+        .offset-lg-2 {
+            margin: auto;
+            width: 80%;
+        }
 
-    .icon .icon2 {
-        padding: 8px;
-        background-color: #f89884;
-        color: white;
-        border-radius: 10px;
-    }
+        .icon {
+            font-size: 15px;
 
-    .icon .icon3 {
-        padding: 8px;
-        background-color: #f89884;
-        color: white;
-        border-radius: 10px;
-    }
+        }
 
-    .table thead tr {
-        background-color: #f89884;
-        color: white;
-        text-align: center;
-    }
+        .icon .icon1 {
+            padding: 8px;
+            background-color: #f89884;
+            color: white;
+            border-radius: 10px;
 
-    .page-title {
-        color: #565656;
-        font-size: 35px;
-        font-weight: normal;
-        margin-bottom: 10px;
-        text-align: left;
-    }
+        }
+
+        .icon .icon2 {
+            padding: 8px;
+            background-color: #f89884;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .icon .icon3 {
+            padding: 8px;
+            background-color: #f89884;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .table thead tr {
+            background-color: #f89884;
+            color: white;
+            text-align: center;
+        }
+
+        .page-title {
+            color: #565656;
+            font-size: 35px;
+            font-weight: normal;
+            margin-bottom: 10px;
+            text-align: left;
+        }
     </style>
 </head>
 

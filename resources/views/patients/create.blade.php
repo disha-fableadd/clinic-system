@@ -1,50 +1,51 @@
 @extends('layout.app')
 
-
 @section('content')  
-
 
 <div class="page-wrapper">
     <div class="content">
         <div class="row">
-            <!-- <div class="col-lg-12 ">
-                <h4 class="page-title">Add Patients</h4>
-            </div> -->
             <div class="col-sm-6 col-5">
-                <h4 class="page-title" style="text-align:center; margin-right: 120px ;!important">Add Patients</h4>
+                <h4 class="page-title" style="text-align:center; margin-right: 120px;">Add Patients</h4>
             </div>
-            <div class="col-sm-6 col-7 text-center m-b-2 ">
-                <a href="{{ route('patients.index') }}" class="btn btn-primary  btn-rounded" style="margin-left: 200px;">
-                    <i class="fa fa-eye m-r-5 icon3"></i>
-                    All Patients</a>
+            <div class="col-sm-6 col-7 text-center m-b-2">
+                <a href="{{ route('patients.index') }}" class="btn btn-primary btn-rounded" style="margin-left: 200px;">
+                    <i class="fa fa-eye m-r-5 icon3 "></i>
+                    All Patients
+                </a>
             </div>
         </div>
         <div class="row">
-            <div class=" offset-lg-2">
+            <div class="offset-lg-2">
                 <form class="form-container">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>First Name <span class="text-danger">*</span></label>
+                                <label><i class="fas fa-user  icon-style"></i> Full Name <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Last Name</label>
-                                <input class="form-control" type="text">
+                                <label><i class="fas fa-stethoscope  icon-style"></i> Treatment</label>
+                                <select class="form-control select">
+                                    <option value="">Select Treatment</option>
+                                    <option value="Fever">Fever</option>
+                                    <option value="Cancer">Cancer</option>
+                                    <option value="Eye">Eye</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Email <span class="text-danger">*</span></label>
+                                <label><i class="fas fa-envelope  icon-style"></i> Email <span class="text-danger">*</span></label>
                                 <input class="form-control" type="email">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group gender-select">
-                                <label class="gen-label">Gender:</label>
+                                <label><i class="fas fa-genderless  icon-style"></i> Gender:</label>
                                 <div class="form-control">
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
@@ -67,33 +68,30 @@
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Date Of Birth</label>
+                                <label><i class="fas fa-birthday-cake  icon-style"></i> Date Of Birth</label>
                                 <div class="cal-icon">
                                     <input type="text" class="form-control datetimepicker">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
-
                             <div class="form-group">
-                                <label>Age</label>
-                                <input class="form-control" type="Number">
+                                <label><i class="fas fa-calendar-day  icon-style"></i> Age</label>
+                                <input class="form-control" type="number">
                             </div>
                         </div>
 
-
                         <div class="col-sm-12">
                             <div class="row">
-
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Address</label>
-                                        <input type="text" class="form-control ">
+                                        <label><i class="fas fa-home  icon-style"></i> Address</label>
+                                        <input type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-3">
                                     <div class="form-group">
-                                        <label>City</label>
+                                        <label><i class="fas fa-city  icon-style"></i> City</label>
                                         <select class="form-control select">
                                             <option value="">Select City</option>
                                             <option value="Surat">Surat</option>
@@ -107,28 +105,27 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-3">
                                     <div class="form-group">
-                                        <label>State</label>
+                                        <label><i class="fas fa-flag  icon-style"></i> State</label>
                                         <select class="form-control select">
                                             <option value="">Select State</option>
-                                            <option v>Gujarat</option>
+                                            <option value="Gujarat">Gujarat</option>
                                             <option value="Maharashtra">Maharashtra</option>
                                             <option value="Rajasthan">Rajasthan</option>
                                         </select>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Phone </label>
+                                <label><i class="fas fa-phone  icon-style"></i> Phone </label>
                                 <input class="form-control" type="text">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Avatar</label>
+                                <label><i class="fas fa-image  icon-style"></i> Image</label>
                                 <div class="profile-upload">
                                     <div class="upload-img">
                                         <img alt="" src="{{asset('admin/assets/img/user.jpg')}}">
@@ -141,7 +138,6 @@
                         </div>
                     </div>
 
-
                     <div class="m-t-20 text-center">
                         <button class="btn btn-primary submit-btn">Create Patient</button>
                     </div>
@@ -149,11 +145,7 @@
             </div>
         </div>
     </div>
-
 </div>
-
-
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

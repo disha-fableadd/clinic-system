@@ -33,6 +33,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Treatment Name</th>
+                                <th>Doctor Name</th>
                                 <th>Description</th>
 
                                 <th>Action</th>
@@ -43,6 +44,7 @@
 
                                 <td>1</td>
                                 <td>Dentists</td>
+                                <td>john doe</td>
                                 <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
 
                                 <td>
@@ -58,6 +60,7 @@
 
                                 <td>2</td>
                                 <td>Neurology</td>
+                                <td>john doe</td>
                                 <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
                                 <td>
                                     <div class="icon">
@@ -72,6 +75,7 @@
 
                                 <td>3</td>
                                 <td>Opthalmology</td>
+                                <td>john doe</td>
                                 <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
                                 <td>
                                     <div class="icon">
@@ -86,6 +90,7 @@
 
                                 <td>4</td>
                                 <td>Orthopedics</td>
+                                <td>john doe</td>
                                 <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
                                 <td>
                                     <div class="icon">
@@ -100,6 +105,7 @@
 
                                 <td>5</td>
                                 <td>Cancer Department</td>
+                                <td>john doe</td>
                                 <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
                                 <td>
                                     <div class="icon">
@@ -114,6 +120,7 @@
 
                                 <td>6</td>
                                 <td>ENT Department</td>
+                                <td>john doe</td>
                                 <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
                                 <td>
                                     <div class="icon">

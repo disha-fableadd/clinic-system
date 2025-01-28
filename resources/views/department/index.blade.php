@@ -32,6 +32,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Department Name</th>
+                                <th>Contact_no</th>
                                 <th>Status</th>
                                 <th >Action</th>
                             </tr>
@@ -41,6 +42,7 @@
 
                                 <td>1</td>
                                 <td>Dentists</td>
+                                <td>1236987452</td>
                                 <td><span class="custom-badge btn btn-primary  btn-rounded">Active</span></td>
                                 <td >
                                     <div class="icon">
@@ -55,6 +57,7 @@
 
                             <td>2</td>
                                         <td>Neurology</td>
+                                        <td>1236987452</td>
 										<td><span class="custom-badge btn btn-danger btn-rounded">Inactive</span></td>
                                 <td >
                                     <div class="icon">
@@ -69,6 +72,7 @@
 
                             <td>3</td>
                                         <td>Opthalmology</td>
+                                        <td>1236987452</td>
 										<td><span class="custom-badge btn btn-primary  btn-rounded">Active</span></td>
                                 <td >
                                     <div class="icon">
@@ -83,6 +87,7 @@
 
                             <td>4</td>
                                         <td>Orthopedics</td>
+                                        <td>1236987452</td>
 										<td><span class="custom-badge btn btn-danger btn-rounded">Inactive</span></td>
                                 <td >
                                     <div class="icon">
@@ -97,6 +102,7 @@
 
                             <td>5</td>
                                         <td>Cancer Department</td>
+                                        <td>1236987452</td>
 										<td><span class="custom-badge btn btn-primary  btn-rounded">Active</span></td>
                                 <td >
                                     <div class="icon">
@@ -111,6 +117,7 @@
 
                             <td>6</td>
                                         <td>ENT Department</td>
+                                        <td>1236987452</td>
 										<td><span class="custom-badge btn btn-primary  btn-rounded">Active</span></td>
                                 <td >
                                     <div class="icon">
