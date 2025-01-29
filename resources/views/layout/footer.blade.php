@@ -15,7 +15,11 @@
     <script src="{{asset('admin/assets/js/bootstrap-datetimepicker.min.js')}}"></script>
 
 
-  
+    <script src="{{asset('admin/calender/js/jquery.min.js')}}"></script>
+  <script src="{{asset('admin/calender/js/popper.js')}}"></script>
+  <script src="{{asset('admin/calender/js/bootstrap.min.js')}}"></script>
+  <script src="{{asset('admin/calender/js/main.js')}}"></script>
+
 
 
 </body>

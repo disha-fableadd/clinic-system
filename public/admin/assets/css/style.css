@@ -5,7 +5,7 @@ div.dt-container .dt-search input {
 	border-radius: 50px !important;
     box-shadow: none !important;
     padding: 0.469rem 0.75rem !important;
-    border-color: #87ceb0 !important;
+    border-color: #f89884 !important;
     font-size: 14px !important;
     min-height: 40px !important;
 	width:250px !important;
@@ -13,7 +13,7 @@ div.dt-container .dt-search input {
 }
 
 div.dt-container .dt-input {
-    border: 1px solid #87ceb0 !important;
+    border: 1px solid #f89884 !important;
 	border-radius: 10px !important;
     padding: 5px;
     background-color: transparent;
@@ -21,9 +21,9 @@ div.dt-container .dt-input {
 	margin-right: 5px !important;
 }
 div.dt-container .dt-paging .dt-paging-button.current, div.dt-container .dt-paging .dt-paging-button.current:hover {
-    color: inherit !important;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    background-color: #bff0db !important;
+    color: white !important;
+    border: 1px solid #f89884 !important;
+    background-color: #fed9cf !important;
    
 }
 
@@ -179,6 +179,13 @@ textarea.form-control {
 .table {
 	color: #000;
 	border: 1px solid #f0f0f0;
+	border-radius: 20px;
+}
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 20px;
 }
 .table.table-white {
 	background-color: #fff;
@@ -438,7 +445,7 @@ table.table td h2 span {
 .btn-primary {
 	border-color: transparent;
 	background-color: #cfece0;
-	color: #666666;
+	color: black;
 	border-radius: 20px;
 }
 .btn-primary:hover,
@@ -448,7 +455,7 @@ table.table td h2 span {
 .open > .dropdown-toggle.btn-primary {
 	background-color: #cfece0;
 	border: 1px solid #cfece0;
-	color: #666666;
+	color: black;
 }
 .btn-primary.active.focus,
 .btn-primary.active:focus,
@@ -713,10 +720,9 @@ textarea.form-control {
 .page-link:focus {
     box-shadow: unset;
 }
-table tr{
-	border-bottom-right-radius: 20px;
-	border-bottom-left-radius: 20px;
-}
+/* table tr{
+	.fc-button
+} */
 
 .card-footer:last-child {
 	border-bottom-right-radius: 20px;
@@ -884,7 +890,7 @@ table tr{
 }
 .sidebar-menu li.active a {
 	color: black;
-	background-color: #cfece0;
+	/* background-color: #cfece0; */
 	border-radius: 15px;
 	margin: 0 10px;
 }
@@ -975,12 +981,13 @@ table tr{
 .sidebar-menu ul ul a {
 	display: block;
 	font-size: 14px;
-	padding: 9px 10px 9px 50px;
+	padding: 10px;
 	position: relative;
 }
 .sidebar-menu ul ul {
-	background-color: #f3f3f3;
+	/* background-color: #f3f3f3; */
 	display: none;
+	margin: 0 10px;
 }
 .sidebar-menu ul ul ul a {
 	padding-left: 70px;
@@ -1245,6 +1252,7 @@ table tr{
 }
 .chart-title span {
 	color: #ff8e29;
+	padding: 10px;
 }
 .card-title > a.btn {
 	color: #fff;
@@ -1456,7 +1464,7 @@ ul.chat-user-total li i.old-users {
 }
 .member-panel .card-body {
 	overflow-y: auto;
-	height: 275px;
+	height: 300px;
 	-webkit-overflow-scrolling: touch;
 	padding: 0;
 }
@@ -2644,12 +2652,15 @@ a.fc-event:not([href]) {
 	z-index: 0;
 }
 .fc th.fc-widget-header {
-	background: #eeeeee;
+	background: #f89884;
 	font-size: 14px;
 	line-height: 20px;
 	padding: 10px 0;
 	text-transform: uppercase;
+	color: white;
 }
+
+/* fc-agendaWeek-button fc-button fc-state-default fc-state-active */
 .fc-unthemed th,
 .fc-unthemed td,
 .fc-unthemed thead,
@@ -2657,15 +2668,15 @@ a.fc-event:not([href]) {
 .fc-unthemed .fc-divider,
 .fc-unthemed .fc-row,
 .fc-unthemed .fc-popover {
-	border-color: #f3f3f3;
+	border-color: #fed9cf8c;
 }
 .fc-button {
-	background: #f1f1f1;
+	background: #fed9cf8c;
 	border: none;
 	color: #797979;
 	text-transform: capitalize;
 	box-shadow: none !important;
-	border-radius: 3px !important;
+	border-radius: 50px !important;
 	margin: 0 3px !important;
 	padding: 6px 12px !important;
 	height: auto !important;
@@ -2675,7 +2686,7 @@ a.fc-event:not([href]) {
 	font-size: 16px;
 }
 .fc-state-hover {
-	background: #f3f3f3;
+	background: #fed9cf8c;
 }
 .fc-state-highlight {
 	background: #f0f0f0;
@@ -2683,7 +2694,7 @@ a.fc-event:not([href]) {
 .fc-state-down,
 .fc-state-active,
 .fc-state-disabled {
-	background-color: #ff8e29;
+	background-color: #f89884;
 	color: #fff;
 	text-shadow: none;
 }
@@ -2694,13 +2705,26 @@ a.fc-event:not([href]) {
 	background: #fff;
 }
 .fc-event {
-	border-radius: 2px;
+	border-radius: 50px;
 	border: none;
 	cursor: move;
 	font-size: 13px;
 	margin: 1px 7px;
 	padding: 5px;
 	text-align: center;
+}
+a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
+    color: black;
+    text-decoration: none;
+}
+a.bg-success:focus, a.bg-success:hover, button.bg-success:focus, button.bg-success:hover {
+    background-color: #55ce63 !important;
+}
+a.bg-primary:focus, a.bg-primary:hover, button.bg-primary:focus, button.bg-primary:hover {
+    background-color: #ff8e29 !important;
+}
+.fc-unthemed td.fc-today {
+    background: #fed9cf8c;
 }
 .fc-basic-view td.fc-week-number span {
 	padding-right: 8px;

@@ -20,6 +20,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+
+
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{{asset('admin/calender/css/style.css')}}">
+
+
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
@@ -48,20 +59,48 @@
 
 
     <style>
+
+
+
+
+
+
+        table.dataTable thead>tr>th.dt-ordering-asc span.dt-column-order:before,
+        table.dataTable thead>tr>th.dt-ordering-desc span.dt-column-order:after,
+        table.dataTable thead>tr>td.dt-ordering-asc span.dt-column-order:before,
+        table.dataTable thead>tr>td.dt-ordering-desc span.dt-column-order:after {
+            opacity: 6 !important;
+        }
+
+        table.dataTable th.dt-type-numeric,
+        table.dataTable th.dt-type-date,
+        table.dataTable td.dt-type-numeric,
+        table.dataTable td.dt-type-date {
+            text-align: left !important;
+        }
+/* 
         .menu-link1.active {
             font-weight: bold;
             text-decoration-line: underline;
             text-decoration-style: double;
 
-        }
+        } */
 
 
-
+       
 
         .icon-style {
             background-color: white;
 
             color: rgb(157 195 179);
+            padding: 10px;
+            border-radius: 50%;
+
+        }
+        .icon-style1 {
+            background-color: white;
+            font-size: 25px;
+            color:rgb(157 195 179) ;
             padding: 10px;
             border-radius: 50%;
 
@@ -110,10 +149,23 @@
             border-radius: 10px;
         }
 
+        .icon .icon4 {
+            padding: 8px;
+            background-color: #f89884;
+            color: white;
+            border-radius: 10px;
+        }
+
         .table thead tr {
             background-color: #f89884;
             color: white;
             text-align: center;
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+        }
+        .table thead th{
+            text-align: center;
+            border-right: 1px solid #ffffff75;
         }
 
         .page-title {

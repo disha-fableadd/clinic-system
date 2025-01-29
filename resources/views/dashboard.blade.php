@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
                 <div class="dash-widget1">
-                    <span class="dash-widget-bg1"><i class="fa fa-user"></i></span>
+                    <span class="dash-widget-bg1"><i class="fa fa-user-md" aria-hidden="true"></i></span>
                     <div class="dash-widget-info text-right">
                         <span class="widget-title1">Total Users </span>
                         <h3>98</h3>
@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
                 <div class="dash-widget1">
-                    <span class="dash-widget-bg3"><i class="fa fa-user-md" aria-hidden="true"></i></span>
+                    <span class="dash-widget-bg3"><i class="fa fa-user"></i></span>
                     <div class="dash-widget-info text-right">
                         <span class="widget-title3"> Patients </span>
                         <h3>72</h3>
@@ -52,7 +52,7 @@
                     <div class="card-body" style="height:608px">
                         <div class="chart-title">
                             <div style="margin-top:20px">
-                                <h4>Doctors & Patients</h4>
+                                <h4><i class="fa fa-user-md icon-style1" aria-hidden="true"></i> Doctors & Patients</h4>
                                 <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> 15% Higher
                                     than
                                     Last Month</span>
@@ -83,45 +83,46 @@
             <div class="col-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a
-                            href="{{ route('appointment.index') }}" class="btn btn-primary float-right">View all</a>
+                        <h4 class="card-title d-inline-block"><i class="fa fa-stethoscope icon-style1" aria-hidden="true"></i>  Upcoming Appointments</h4> <a
+                            href="{{ route('appointment.index') }}" class="btn btn-primary btn-rounded float-right">View
+                            all  <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
-                    <div class="card-body p-0">
+                    <div class="card-body ">
                         <div class="table-responsive">
                             <table class="table  custom-table">
-                                <thead style="background-color:#ff8e29;" class="text-center">
+                                <thead style="background-color:rgb(233 152 136);" class="text-center">
                                     <tr>
-                                        <th>Appointment ID</th>
-                                        <th>Patient Name</th>
+                                        <th style="border-right: 1px solid #ffffff75;">Image</th>
+                                        <th style="border-right: 1px solid #ffffff75;">Patient Name</th>
 
-                                        <th>Doctor Name</th>
-                                        <th>Treatment</th>
-                                        <th>Appointment Date</th>
-
-
-
+                                        <th style="border-right: 1px solid #ffffff75;">Doctor Name</th>
+                                        <th style="border-right: 1px solid #ffffff75;">Treatment</th>
+                                        <th style="border-right: 1px solid #ffffff75;">Appointment Date</th>
+                                        <th style="border-right: 1px solid #ffffff75;">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
                                     <tr>
-                                        <td>1</td>
+
+                                        <td><img width="28" height="28" src="{{asset('admin/assets/img/user-03.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
                                         <td> Denise Stevens</td>
 
                                         <td>Henry Daniels</td>
                                         <td>Cardiology</td>
                                         <td>30 Dec 2018</td>
-
+                                        <td><span class="custom-badge btn btn-primary  btn-rounded">Active</span></td>
 
 
                                     </tr>
                                     <tr>
-                                        <td>2</td>
+                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-02.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
                                         <td> Denise Stevens</td>
-
                                         <td>Henry Daniels</td>
                                         <td>Cardiology</td>
                                         <td>30 Dec 2018</td>
-
+                                        <td><span class="custom-badge btn btn-danger  btn-rounded">InActive</span></td>
 
                                     </tr>
 
@@ -140,98 +141,102 @@
             <div class="col-12 col-md-6 col-lg-8 col-xl-8">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title d-inline-block">New Patients </h4> <a href="{{ route('patients.index') }}"
-                            class="btn btn-primary float-right">View all</a>
+                        <h4 class="card-title d-inline-block"><i class="fa fa-user icon-style1"></i> New Patients</h4>
+                        <a href="{{ route('patients.index') }}" class="btn btn-primary btn-rounded float-right">
+                            View all  <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+
                     </div>
-                    <div class="card-block">
+                    <div class="card-body">
                         <div class="table-responsive">
-                        <table class="table  custom-table">
-                        <thead style="background-color:#ff8e29;"> 
-                            <tr>
-                                <th>Id</th>
-                            <th >Image</th>
-                                <th >Name</th>
-                                <th>age</th>
-                                <th>Email</th>
-                                <th>Treatment</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-                            <tr>
-                                <td>1</td>
-                                <td>  <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
-                                class="rounded-circle" alt=""></td>
-                                <td>
-                                  
-                                    <h2>Albina Simonis</h2>
-                                </td>
-                                <td>25</td>
-                             
-                                <td>albinasimonis@example.com</td>
-                                <td>fddfg</td>
-                                
-                               
-                            </tr>
-                            <tr>
-                            <td>1</td>
-                                <td><img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
-                                class="rounded-circle" alt=""></td>
-                                <td>
-                                    
-                                    <h2>Cristina Groves</h2>
-                                </td>
-                                <td>25</td>
-                                <td>cristinagroves@example.com</td>
-                                <td>fdgsrtgh</td>
-                              
-                                
-                            </tr>
-                            <tr>
-                            <td>1</td>
-                                <td>    <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
-                                class="rounded-circle" alt=""></td>
-                                <td>
-                                
-                                    <h2>Mary Mericle</h2>
-                                </td>
-                                <td>25</td>
-                                <td>marymericle@example.com</td>
-                                <td>gfhfgh</td>
-                                
-                              
-                            </tr>
-                            <tr>
-                            <td>1</td>
-                                <td> <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
-                                class="rounded-circle" alt=""></td>
-                                <td>
-                                   
-                                    <h2>Haylie Feeney</h2>
-                                </td>
-                                <td>25</td>
-                                <td>hayliefeeney@example.com</td>
-                                <td>yhgjhhk</td>
-                              
-                               
-                            </tr>
-                            <tr>
-                            <td>1</td>
-                            <td> <img width="28" height="28" src="{{asset('admin/assets/img/user.jpg')}}"
-                                class="rounded-circle" alt=""></td>
-                               
-                                <td>
-                                  
-                                    <h2>Zoe Butler</h2>
-                                </td>
-                                <td>25</td>
-                                <td>zoebutler@example.com</td>
-                                <td>tghgfhg</td>
-                               
-                                
-                            </tr>
-                        </tbody>
-                    </table>
+                            <table class="table  custom-table">
+                                <thead style="background-color:#ff8e29;">
+                                    <tr>
+
+                                        <th style="border-right: 1px solid #ffffff75; ">Image</th>
+                                        <th style="border-right: 1px solid #ffffff75;">Name</th>
+                                        <th style="border-right: 1px solid #ffffff75;">Age
+                                        </th>
+                                        <th style="border-right: 1px solid #ffffff75;">Email</th>
+                                        <th style="border-right: 1px solid #ffffff75;">Treatment</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody class="text-center">
+                                    <tr>
+
+                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-02.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
+                                        <td>
+
+                                            <h2>Albina Simonis</h2>
+                                        </td>
+                                        <td>25</td>
+
+                                        <td>albinasimonis@example.com</td>
+                                        <td>fddfg</td>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <td><img width="28" height="28" src="{{asset('admin/assets/img/user-03.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
+                                        <td>
+
+                                            <h2>Cristina Groves</h2>
+                                        </td>
+                                        <td>25</td>
+                                        <td>cristinagroves@example.com</td>
+                                        <td>fdgsrtgh</td>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-04.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
+                                        <td>
+
+                                            <h2>Mary Mericle</h2>
+                                        </td>
+                                        <td>25</td>
+                                        <td>marymericle@example.com</td>
+                                        <td>gfhfgh</td>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-05.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
+                                        <td>
+
+                                            <h2>Haylie Feeney</h2>
+                                        </td>
+                                        <td>25</td>
+                                        <td>hayliefeeney@example.com</td>
+                                        <td>yhgjhhk</td>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-06.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
+
+                                        <td>
+
+                                            <h2>Zoe Butler</h2>
+                                        </td>
+                                        <td>25</td>
+                                        <td>zoebutler@example.com</td>
+                                        <td>tghgfhg</td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -240,7 +245,7 @@
             <div class="col-12 col-md-6 col-lg-4 col-xl-4">
                 <div class="card member-panel">
                     <div class="card-header ">
-                        <h4 class="card-title mb-0">Doctors</h4>
+                        <h4 class="card-title mb-0"><i class="fa fa-user-md icon-style1" aria-hidden="true"></i>Doctors</h4>
                     </div>
                     <div class="card-body">
                         <ul class="contact-list">
@@ -248,7 +253,7 @@
                                 <div class="contact-cont">
                                     <div class="float-left user-img m-r-10">
                                         <a href="profile.html" title="John Doe"><img
-                                                src="{{asset('admin/assets/img/user.jpg')}}" alt=""
+                                                src="{{asset('admin/assets/img/user-02.jpg')}}" alt=""
                                                 class="w-40 rounded-circle"><span class="status online"></span></a>
                                     </div>
                                     <div class="contact-info">
@@ -261,7 +266,7 @@
                                 <div class="contact-cont">
                                     <div class="float-left user-img m-r-10">
                                         <a href="profile.html" title="Richard Miles"><img
-                                                src="{{asset('admin/assets/img/user.jpg')}}" alt=""
+                                                src="{{asset('admin/assets/img/user-03.jpg')}}" alt=""
                                                 class="w-40 rounded-circle"><span class="status offline"></span></a>
                                     </div>
                                     <div class="contact-info">
@@ -274,7 +279,7 @@
                                 <div class="contact-cont">
                                     <div class="float-left user-img m-r-10">
                                         <a href="profile.html" title="John Doe"><img
-                                                src="{{asset('admin/assets/img/user.jpg')}}" alt=""
+                                                src="{{asset('admin/assets/img/user-04.jpg')}}" alt=""
                                                 class="w-40 rounded-circle"><span class="status away"></span></a>
                                     </div>
                                     <div class="contact-info">
@@ -287,7 +292,7 @@
                                 <div class="contact-cont">
                                     <div class="float-left user-img m-r-10">
                                         <a href="profile.html" title="Richard Miles"><img
-                                                src="{{asset('admin/assets/img/user.jpg')}}" alt=""
+                                                src="{{asset('admin/assets/img/user-05.jpg')}}" alt=""
                                                 class="w-40 rounded-circle"><span class="status online"></span></a>
                                     </div>
                                     <div class="contact-info">
@@ -300,7 +305,7 @@
                                 <div class="contact-cont">
                                     <div class="float-left user-img m-r-10">
                                         <a href="profile.html" title="John Doe"><img
-                                                src="{{asset('admin/assets/img/user.jpg')}}" alt=""
+                                                src="{{asset('admin/assets/img/user-06.jpg')}}" alt=""
                                                 class="w-40 rounded-circle"><span class="status offline"></span></a>
                                     </div>
                                     <div class="contact-info">
@@ -313,7 +318,7 @@
                                 <div class="contact-cont">
                                     <div class="float-left user-img m-r-10">
                                         <a href="profile.html" title="Richard Miles"><img
-                                                src="{{asset('admin/assets/img/user.jpg')}}" alt=""
+                                                src="{{asset('admin/assets/img/user-02.jpg')}}" alt=""
                                                 class="w-40 rounded-circle"><span class="status away"></span></a>
                                     </div>
                                     <div class="contact-info">
@@ -380,8 +385,8 @@
         margin: 0;
         padding: 10px;
         background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     }
 </style>
 
