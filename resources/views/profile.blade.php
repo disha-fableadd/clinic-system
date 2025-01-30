@@ -1,363 +1,237 @@
 @extends('layout.app')
-@section('content') 
-        <div class="page-wrapper">
-            <div class="content">
-                <div class="row">
-                    <div class="col-sm-7 col-6">
-                        <h4 class="page-title">My Profile</h4>
-                    </div>
 
-                    <div class="col-sm-5 col-6 text-right m-b-30">
-                        <a href="edit-profile.html" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Edit Profile</a>
-                    </div>
-                </div>
-                <div class="card-box profile-header">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="profile-view">
-                                <div class="profile-img-wrap">
-                                    <div class="profile-img">
-                                        <a href="#"><img class="avatar" src="{{asset('admin/assets/img/doctor-03.jpg')}}" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="profile-basic">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="profile-info-left mt-5">
-                                                <h3 class="user-name m-t-0 mb-0">Cristina Groves</h3>
-                                                <small class="text-muted">Gynecologist</small>
-                                                <div class="staff-id">Employee ID : DR-0001</div>
-                                              
-                                            </div>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <ul class="personal-info">
-                                                <li>
-                                                    <span class="title">Phone:</span>
-                                                    <span class="text"><a href="#">770-889-6484</a></span>
-                                                </li>
-                                                <li>
-                                                    <span class="title">Email:</span>
-                                                    <span class="text"><a href="#">cristinagroves@example.com</a></span>
-                                                </li>
-                                                <li>
-                                                    <span class="title">Birthday:</span>
-                                                    <span class="text">3rd March</span>
-                                                </li>
-                                                <li>
-                                                    <span class="title">Address:</span>
-                                                    <span class="text">714 Burwell Heights Road, Bridge City, TX, 77611</span>
-                                                </li>
-                                                <li>
-                                                    <span class="title">Gender:</span>
-                                                    <span class="text">Female</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>                        
-                        </div>
-                    </div>
-                </div>
-				<div class="profile-tabs">
-				
-
-					<div class="tab-content">
-						<div class="tab-pane show active" id="about-cont">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card-box">
-                            <h3 class="card-title">Education Informations</h3>
-                            <div class="experience-box">
-                                <ul class="experience-list">
-                                    <li>
-                                        <div class="experience-user">
-                                            <div class="before-circle"></div>
-                                        </div>
-                                        <div class="experience-content">
-                                            <div class="timeline-content">
-                                                <a href="#/" class="name">International College of Medical Science (UG)</a>
-                                                <div>MBBS</div>
-                                                <span class="time">2001 - 2003</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="experience-user">
-                                            <div class="before-circle"></div>
-                                        </div>
-                                        <div class="experience-content">
-                                            <div class="timeline-content">
-                                                <a href="#/" class="name">International College of Medical Science (PG)</a>
-                                                <div>MD - Obstetrics & Gynaecology</div>
-                                                <span class="time">1997 - 2001</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-box mb-0">
-                            <h3 class="card-title">Experience</h3>
-                            <div class="experience-box">
-                                <ul class="experience-list">
-                                    <li>
-                                        <div class="experience-user">
-                                            <div class="before-circle"></div>
-                                        </div>
-                                        <div class="experience-content">
-                                            <div class="timeline-content">
-                                                <a href="#/" class="name">Consultant Gynecologist</a>
-                                                <span class="time">Jan 2014 - Present (4 years 8 months)</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="experience-user">
-                                            <div class="before-circle"></div>
-                                        </div>
-                                        <div class="experience-content">
-                                            <div class="timeline-content">
-                                                <a href="#/" class="name">Consultant Gynecologist</a>
-                                                <span class="time">Jan 2009 - Present (6 years 1 month)</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="experience-user">
-                                            <div class="before-circle"></div>
-                                        </div>
-                                        <div class="experience-content">
-                                            <div class="timeline-content">
-                                                <a href="#/" class="name">Consultant Gynecologist</a>
-                                                <span class="time">Jan 2004 - Present (5 years 2 months)</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-						</div>
-						<div class="tab-pane" id="bottom-tab2">
-							Tab content 2
-						</div>
-						<div class="tab-pane" id="bottom-tab3">
-							Tab content 3
-						</div>
-					</div>
-				</div>
+@section('content')
+<div class="page-wrapper">
+    <div class="content" style="height:100vh">
+        <div class="row">
+            <div class="col-sm-4 col-3">
+                <h4 class="page-title" style="text-align:left;">
+                    <i class="fa fa-user"></i> Profile Details
+                </h4>
             </div>
-            <div class="notification-box">
-                <div class="msg-sidebar notifications msg-noti">
-                    <div class="topnav-dropdown-header">
-                        <span>Messages</span>
+            <div class="col-sm-8 col-9 text-right m-b-2">
+                <a href="{{ route('dashboard') }}" class="btn btn-primary btn-rounded">
+                    <i class="fa fa-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-footer text-right" style="background-color:#87ceb0">
+                        <h3 style="float:left" class="text-dark"><i class="fa fa-info-circle icon-style2"></i> John
+                            Doe's Profile</h3>
+                        <a href="" class="btn btn-primary btn-rounded" style="color:black">
+                            <i class="fa fa-pencil-alt "></i> Edit Profile
+                        </a>
                     </div>
-                    <div class="drop-scroll msg-list-scroll" id="msg_list">
-                        <ul class="list-box">
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item">
-                                        <div class="list-left">
-                                            <span class="avatar">R</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author">Richard Miles </span>
-                                            <span class="message-time">12:28 AM</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 text-center mt-4">
+                                <img class="avatar" src="{{ asset('admin/assets/img/user-02.jpg') }}"
+                                    alt="Profile Image"
+                                    style="width: 180px; height: 180px; border-radius: 50%; border: 3px solid #4caf50;">
+                            </div>
+                            <div class="col-md-9 mt-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p class="text-dark"><strong><i class="fa fa-user icon-style1"></i>
+                                                Name:</strong> John Doe</p>
+                                        <hr>
+                                        <p class="text-dark"><strong><i class="fa fa-envelope icon-style1"></i>
+                                                Email:</strong> johndoe@example.com</p>
+                                        <hr>
+                                        <p class="text-dark"><strong><i class="fa fa-phone icon-style1"></i>
+                                                Phone:</strong> 123-456-7890</p>
+                                        <hr>
+                                        <p class="text-dark"><strong><i class="fa fa-birthday-cake icon-style1"></i>
+                                                Birthday:</strong> 01/01/1990</p>
+                                        <hr>
                                     </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item new-message">
-                                        <div class="list-left">
-                                            <span class="avatar">J</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author">John Doe</span>
-                                            <span class="message-time">1 Aug</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
+                                    <div class="col-md-6">
+                                        <p class="text-dark"><strong><i class="fa fa-map-marker icon-style1"></i>
+                                                Address:</strong> 123 Main Street, City, Country</p>
+                                        <hr>
+                                        <p class="text-dark"><strong><i class="fa fa-venus-mars icon-style1"></i>
+                                                Gender:</strong> Male</p>
+                                        <hr>
+                                        <p class="text-dark"><strong><i class="fa fa-calendar-plus icon-style1"></i>
+                                                Joining Date:</strong> 01/01/2020</p>
+                                        <hr>
+                                        <p class="text-dark"><strong><i class="fa fa-calendar-check icon-style1"></i>
+                                                Last Updated:</strong> 01/01/2025</p>
                                     </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item">
-                                        <div class="list-left">
-                                            <span class="avatar">T</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author"> Tarah Shropshire </span>
-                                            <span class="message-time">12:28 AM</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item">
-                                        <div class="list-left">
-                                            <span class="avatar">M</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author">Mike Litorus</span>
-                                            <span class="message-time">12:28 AM</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item">
-                                        <div class="list-left">
-                                            <span class="avatar">C</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author"> Catherine Manseau </span>
-                                            <span class="message-time">12:28 AM</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item">
-                                        <div class="list-left">
-                                            <span class="avatar">D</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author"> Domenic Houston </span>
-                                            <span class="message-time">12:28 AM</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item">
-                                        <div class="list-left">
-                                            <span class="avatar">B</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author"> Buster Wigton </span>
-                                            <span class="message-time">12:28 AM</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item">
-                                        <div class="list-left">
-                                            <span class="avatar">R</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author"> Rolland Webber </span>
-                                            <span class="message-time">12:28 AM</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item">
-                                        <div class="list-left">
-                                            <span class="avatar">C</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author"> Claire Mapes </span>
-                                            <span class="message-time">12:28 AM</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item">
-                                        <div class="list-left">
-                                            <span class="avatar">M</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author">Melita Faucher</span>
-                                            <span class="message-time">12:28 AM</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item">
-                                        <div class="list-left">
-                                            <span class="avatar">J</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author">Jeffery Lalor</span>
-                                            <span class="message-time">12:28 AM</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item">
-                                        <div class="list-left">
-                                            <span class="avatar">L</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author">Loren Gatlin</span>
-                                            <span class="message-time">12:28 AM</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item">
-                                        <div class="list-left">
-                                            <span class="avatar">T</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author">Tarah Shropshire</span>
-                                            <span class="message-time">12:28 AM</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="topnav-dropdown-footer">
-                        <a href="chat.html">See all messages</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        @endsection
+
+        <!-- Education and Experience Sections -->
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-footer text-left" style="background-color:#87ceb0">
+                        <h3 class="text-dark"><i class="fa fa-graduation-cap icon-style2"></i> Education</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-12 mt-3">
+                            <ul class="experience-list">
+                                <li>
+                                    <div class="experience-user">
+                                        <div class="before-circle"></div>
+                                    </div>
+                                    <div class="experience-content">
+                                        <div class="timeline-content">
+                                            <a href="#/" class="name">International College of Medical Science (UG)</a>
+                                            <div>MBBS</div>
+                                            <span class="time">2001 - 2003</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="experience-user">
+                                        <div class="before-circle"></div>
+                                    </div>
+                                    <div class="experience-content">
+                                        <div class="timeline-content">
+                                            <a href="#/" class="name">International College of Medical Science (PG)</a>
+                                            <div>MD - Obstetrics & Gynaecology</div>
+                                            <span class="time">1997 - 2001</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-footer text-left" style="background-color:#87ceb0">
+                        <h3 class="text-dark"><i class="fa fa-briefcase icon-style2"></i> Experience</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-12 mt-3">
+                            <ul class="experience-list">
+                                <li>
+                                    <div class="experience-user">
+                                        <div class="before-circle"></div>
+                                    </div>
+                                    <div class="experience-content">
+                                        <div class="timeline-content">
+                                            <a href="#/" class="name">Consultant Gynecologist</a>
+                                            <span class="time">Jan 2014 - Present (4 years 8 months)</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="experience-user">
+                                        <div class="before-circle"></div>
+                                    </div>
+                                    <div class="experience-content">
+                                        <div class="timeline-content">
+                                            <a href="#/" class="name">Consultant Gynecologist</a>
+                                            <span class="time">Jan 2009 - Present (6 years 1 month)</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="experience-user">
+                                        <div class="before-circle"></div>
+                                    </div>
+                                    <div class="experience-content">
+                                        <div class="timeline-content">
+                                            <a href="#/" class="name">Consultant Gynecologist</a>
+                                            <span class="time">Jan 2004 - Present (5 years 2 months)</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+   .icon-style1 {
+    background-color: white;
+    color: rgb(157 195 179);
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+.icon-style2 {
+    color: white;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+.experience-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.experience-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.experience-user .before-circle {
+    width: 12px; /* Increased size of the dot */
+    height: 12px; /* Increased size of the dot */
+    background-color: #4caf50;
+    border-radius: 50%;
+    position: absolute;
+    left: 0; /* No margin to the left */
+    top: 50%; /* Align the dot vertically */
+    transform: translateY(-50%); /* Ensure it's centered vertically */
+}
+
+.experience-content {
+    flex: 1;
+    padding-left: 20px; /* Space for the line to go through the dot */
+    position: relative;
+}
+
+.experience-content::before {
+    content: "";
+    position: absolute;
+    left: -5px; /* Align with the dot */
+    top: 50%;
+    width: 1px; /* Line thickness */
+    height: 100%; /* Full height of the item */
+    background-color: #4caf50; /* Green line color */
+    transform: translateY(-50%); /* Center the line vertically */
+}
+
+.timeline-content a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.timeline-content .time {
+    display: block;
+    font-size: 14px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+</style>
+@endsection

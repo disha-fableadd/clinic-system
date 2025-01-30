@@ -23,9 +23,15 @@ class Userr extends Model
         'state', 
         'phone', 
         'image', 
-        'joining_date'
+        'joining_date',  
+        'education',
+        'experience',
     ];
 
+    protected $casts = [
+        'education' => 'array',
+        'experience' => 'array',
+    ];
     protected $hidden = [
         'password',
     ];

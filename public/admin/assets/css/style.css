@@ -1,6 +1,14 @@
 
 
 
+
+.montserrat {
+	font-family: "Montserrat", serif;
+	font-optical-sizing: auto;
+	font-weight: 600;
+	font-style: normal;
+  }
+
 div.dt-container .dt-search input {
 	border-radius: 50px !important;
     box-shadow: none !important;
@@ -29,11 +37,21 @@ div.dt-container .dt-paging .dt-paging-button.current, div.dt-container .dt-pagi
 
 .card-body1 {
     flex: 1 1 auto;
-    padding: 1.25rem;
+    padding:0 20px !important;
     height: 370px;
 }
-
-
+.card-body {
+    flex: 1 1 auto;
+    padding:0 20px !important;
+    /* height: 370px; */
+}
+.card-footer {
+    padding: .75rem 1.25rem;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+    background-color: rgba(0, 0, 0, .03);
+    border-top: 1px solid rgba(0, 0, 0, .125);
+}
 
 
 
@@ -64,7 +82,7 @@ html {
 	height: 100%;
 }
 body {
-	font-family: 'Rubik', sans-serif;
+	font-family: "Montserrat", serif;
 	font-size: 0.875rem;
 	color: #666;
 	background-color: #fafafa;
@@ -701,8 +719,13 @@ textarea.form-control {
 	font-weight: 400;
 	line-height: 20px;
 	margin: 0;
-	padding: 5px 0;
+	/* padding: 5px 0; */
 	color: #666666;
+}
+.card .card-header .button{
+	/* padding: 10px; */
+	margin-top: 5px;
+	margin-right: 10px;
 }
 .table h5 {
 	font-size: 14px;
@@ -734,14 +757,14 @@ textarea.form-control {
 -----------------------*/
 
 .header {
-	background-color: #f89884;
+	background-color: #fff;
 	left: 0;
 	position: fixed;
 	right: 0;
 	top: 0;
 	z-index: 1039;
-	height: 50px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	height: 65px;
+	box-shadow:none;
 }
 .header .header-left {
 	float: left;
@@ -753,6 +776,12 @@ textarea.form-control {
 	z-index: 1;
 }
 .logo {
+	align-items: center;
+	display: flex;
+	height: 50px;
+	/* justify-content: center; */
+}
+.logo1 {
 	align-items: center;
 	display: flex;
 	height: 50px;
@@ -796,22 +825,23 @@ textarea.form-control {
 	z-index: 99;
 }
 .user-menu.nav > li > a {
-	color: #fff;
-	font-size: 16px;
+	color: #888;
+	font-size: 17px;
 	line-height: 50px;
-	padding: 0 15px;
+	padding: 0 25px 0 0 ;
 	height: 50px;
 }
-.user-menu.nav > li > a:hover,
+/* .user-menu.nav > li > a:hover,
 .user-menu.nav > li > a:focus {
 	background-color: rgba(0, 0, 0, 0.2);
-}
+} */
 .user-img {
 	display: inline-block;
 	position: relative;
 }
 .header .user-img img {
-	width: 24px;
+	/* width: 24px; */
+	width: 41px;
 }
 .user-img .status {
 	border: 2px solid #fff;
@@ -826,7 +856,20 @@ textarea.form-control {
 }
 .user-menu .dropdown-menu {
 	min-width: 136px;
+	border-radius: 20px;
+	background-color: white;
 }
+
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #cfece0;
+	border-radius: 10px;
+	/* padding: 0 3px; */
+}
+
+
+
 .user-menu .bg-primary {
 	background-color: #ff8e29 !important;
 }
@@ -852,8 +895,8 @@ textarea.form-control {
 -----------------------*/
 
 .sidebar {
-	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-	top: 50px;
+	box-shadow: none;
+	top: 65px;
 	width: 230px;
 	z-index: 1039;
 	background-color: #fff;
@@ -885,6 +928,7 @@ textarea.form-control {
 	height: auto;
 	padding: 0 20px;
 }
+
 .sidebar-menu li a:hover {
 	color:#95cab4;
 }
@@ -893,6 +937,27 @@ textarea.form-control {
 	/* background-color: #cfece0; */
 	border-radius: 15px;
 	margin: 0 10px;
+	padding: 12px 1px;
+}
+.sidebar-menu .menu-link1{
+	/* padding-left: 10px; */
+}
+.sidebar-menu .menu-link1.active {
+	padding-left: 0;
+}
+.sidebar-menu .menu-link1.active a {
+	color: black;
+	/* background-color: #cfece0; */
+	border-radius: 15px;
+	margin: 0 10px;
+	padding: 12px 1px ;
+}
+.sidebar-menu .menu-link1 a {
+	color: black;
+	/* background-color: #cfece0; */
+	border-radius: 15px;
+	margin: 0 10px;
+	padding: 12px 1px;
 }
 .menu-title {
 	color: #333;
@@ -1050,7 +1115,7 @@ textarea.form-control {
 	align-items: center;
 	display: inline-flex;
 	font-size: 18px;
-	min-height: 24px;
+	/* min-height: 24px; */
 	line-height: 18px;
 	width: 20px;
 	transition: all 0.2s ease-in-out 0s;
@@ -1464,7 +1529,7 @@ ul.chat-user-total li i.old-users {
 }
 .member-panel .card-body {
 	overflow-y: auto;
-	height: 300px;
+	height: 260px;
 	-webkit-overflow-scrolling: touch;
 	padding: 0;
 }
@@ -2623,7 +2688,7 @@ ul.chat-user-total li i.old-users {
 	margin-bottom: 0;
 }
 .fc-view {
-	margin-top: 30px;
+	margin-top: 10px;
 }
 a.fc-event:not([href]) {
     color: #fff;
@@ -4503,6 +4568,14 @@ blockquote p {
 	}
 	.mini-sidebar .page-wrapper {
 		margin-left: 60px;
+	}
+	.mini-sidebar .menu-link1 a span {
+		display: none;
+	}
+	
+	
+	.mini-sidebar .menu-link1 a i {
+		margin-right: 0;
 	}
 }
 @media only screen and (min-width: 768px) {

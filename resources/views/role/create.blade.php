@@ -202,8 +202,11 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         const toggleBtn = document.getElementById('toggle_btn');
+        const sidebar = document.querySelector('.sidebar');
         toggleBtn.addEventListener('click', function () {
-            document.body.classList.toggle('mini-sidebar');
+            if (sidebar) {
+                sidebar.classList.toggle('mini-sidebar');
+            }
         });
     });
 

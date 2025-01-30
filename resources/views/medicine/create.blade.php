@@ -95,6 +95,16 @@
             document.body.classList.toggle('mini-sidebar');
         });
     });
+
+    $(document).ready(function () {
+        $('.datetimepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true
+        });
+    });
+
+
 </script>
 
 

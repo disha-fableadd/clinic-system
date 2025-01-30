@@ -7,7 +7,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('admin/assets/img/favicon.ico')}}">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="{{asset('admin/assets/img/favicon.ico')}}"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('admin/assets/img/cliniclogohalf.png')}}">
     <title>clinic system</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/bootstrap.min.css')}}">
@@ -22,13 +23,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="{{asset('admin/calender/css/style.css')}}">
 
 
     <!-- DataTables CSS -->
@@ -46,6 +46,12 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!-- Add jQuery and Bootstrap Datepicker -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
 
 
@@ -59,8 +65,9 @@
 
 
     <style>
-
-
+        .fc-toolbar.fc-header-toolbar {
+            margin-bottom: 0 !important;
+        }
 
 
 
@@ -78,7 +85,8 @@
         table.dataTable td.dt-type-date {
             text-align: left !important;
         }
-/* 
+
+        /* 
         .menu-link1.active {
             font-weight: bold;
             text-decoration-line: underline;
@@ -87,7 +95,7 @@
         } */
 
 
-       
+
 
         .icon-style {
             background-color: white;
@@ -97,10 +105,11 @@
             border-radius: 50%;
 
         }
+
         .icon-style1 {
             background-color: white;
             font-size: 25px;
-            color:rgb(157 195 179) ;
+            color: rgb(157 195 179);
             padding: 10px;
             border-radius: 50%;
 
@@ -163,17 +172,19 @@
             border-top-right-radius: 20px;
             border-top-left-radius: 20px;
         }
-        .table thead th{
+
+        .table thead th {
             text-align: center;
             border-right: 1px solid #ffffff75;
         }
 
         .page-title {
             color: #565656;
-            font-size: 35px;
+            font-size: 25px;
             font-weight: normal;
             margin-bottom: 10px;
             text-align: left;
+            padding-left: 12px;
         }
     </style>
 </head>
@@ -188,6 +199,7 @@
 
         @include('layout.footer')
         <script>
+
             new DataTable('#example');
             function eventFired(type) {
                 let n = document.querySelector('#demo_info');

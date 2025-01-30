@@ -49,18 +49,23 @@
         <div class="row">
             <div class="col-12 col-md-6 col-lg-6 col-xl-6">
                 <div class="card">
-                    <div class="card-body" style="height:608px">
+                    <div class="card-body">
                         <div class="chart-title">
-                            <div style="margin-top:20px">
+                            <div>
                                 <h4><i class="fa fa-user-md icon-style1" aria-hidden="true"></i> Doctors & Patients</h4>
                                 <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> 15% Higher
                                     than
                                     Last Month</span>
-                                <canvas id="linegraph" class="mt-5" style="
+                                <canvas id="bargraph" style="
+                                    display: block;
+                                    width: 475px;
+                                    height: 370px;  "></canvas>
+
+                                <!-- <canvas id="linegraph" class="mt-5" style="
                                     display: block;
                                     width: 475px;
                                     height: 370px;  margin-top:80px">
-                                </canvas>
+                                </canvas> -->
 
                             </div>
 
@@ -83,9 +88,11 @@
             <div class="col-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title d-inline-block"><i class="fa fa-stethoscope icon-style1" aria-hidden="true"></i>  Upcoming Appointments</h4> <a
-                            href="{{ route('appointment.index') }}" class="btn btn-primary btn-rounded float-right">View
-                            all  <i class="fas fa-arrow-right ml-1"></i></a>
+                        <h4 class="card-title d-inline-block"><i class="fa fa-stethoscope icon-style1"
+                                aria-hidden="true"></i> Upcoming Appointments</h4>
+                        <a href="{{ route('appointment.index') }}"
+                            class="btn btn-primary btn-rounded float-right button">View
+                            all <i class="fas fa-arrow-right ml-1"></i></a>
                     </div>
                     <div class="card-body ">
                         <div class="table-responsive">
@@ -142,8 +149,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title d-inline-block"><i class="fa fa-user icon-style1"></i> New Patients</h4>
-                        <a href="{{ route('patients.index') }}" class="btn btn-primary btn-rounded float-right">
-                            View all  <i class="fas fa-arrow-right ml-1"></i>
+                        <a href="{{ route('patients.index') }}" class="btn btn-primary btn-rounded float-right button">
+                            View all <i class="fas fa-arrow-right ml-1"></i>
                         </a>
 
                     </div>
@@ -245,7 +252,8 @@
             <div class="col-12 col-md-6 col-lg-4 col-xl-4">
                 <div class="card member-panel">
                     <div class="card-header ">
-                        <h4 class="card-title mb-0"><i class="fa fa-user-md icon-style1" aria-hidden="true"></i>Doctors</h4>
+                        <h4 class="card-title mb-0"><i class="fa fa-user-md icon-style1" aria-hidden="true"></i>Doctors
+                        </h4>
                     </div>
                     <div class="card-body">
                         <ul class="contact-list">
@@ -341,11 +349,23 @@
 
 
 <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.getElementById('toggle_btn');
+        const sidebar = document.querySelector('.sidebar'); // Assuming the sidebar has this class
+
+        toggleBtn.addEventListener('click', function () {
+            if (sidebar) {
+                sidebar.classList.toggle('mini-sidebar'); // This toggles the class on the sidebar
+            }
+        });
+    });
+
     document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth', // Default view
+            initialView: 'dayGridMonth',
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
@@ -373,6 +393,8 @@
             eventClick: function (info) {
                 alert('Event: ' + info.event.title + '\nDescription: ' + info.event.extendedProps.description);
             }
+
+
         });
 
         calendar.render();
@@ -383,10 +405,18 @@
     #calendar {
         max-width: 100%;
         margin: 0;
-        padding: 10px;
+        padding: 14px;
         background-color: #fff;
         border-radius: 20px;
         /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    }
+
+    .fc-scroller.fc-day-grid-container {
+        height: 350px !important;
+    }
+
+    .fc-row.fc-week.fc-widget-content.fc-rigid {
+        height: 58px !important;
     }
 </style>
 

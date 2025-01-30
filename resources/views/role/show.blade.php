@@ -38,7 +38,7 @@
                         </form>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body mt-3">
                         <p class="text-dark"><strong><i class="fa fa-id-badge icon-style1"></i> Role Name:</strong>
                             {{ $role->name }}</p>
                         <hr>

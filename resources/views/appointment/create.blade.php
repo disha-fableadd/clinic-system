@@ -105,11 +105,11 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.getElementById('toggle_btn');
-    const sidebar = document.querySelector('.sidebar'); // Assuming the sidebar has this class
+    const sidebar = document.querySelector('.sidebar'); 
     
     toggleBtn.addEventListener('click', function () {
         if (sidebar) {
-            sidebar.classList.toggle('mini-sidebar'); // This toggles the class on the sidebar
+            sidebar.classList.toggle('mini-sidebar'); 
         }
     });
 });
