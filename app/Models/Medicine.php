@@ -8,22 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Medicine extends Model
 {
     use HasFactory;
-
-    protected $table = 'medicine';
-
-   
     protected $fillable = [
-        'name',
         'category_id',
-        'price',
-        'image',
+        'name',
+        'description',
+        'unit',
+        'status',
+        'quantity',
         'manufacture_date',
         'expiry_date',
-        'description',
+        'image',
     ];
 
+    // Relationship with Category
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class);
     }
 }

@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('department', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); 
-            $table->string('contact_no'); 
-            $table->text('description'); 
-            $table->enum('status', ['active', 'inactive'])->default('active'); 
+            $table->unsignedBigInteger('user_id');
+            $table->text('notification_message');
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('department');
+        Schema::dropIfExists('notifications');
     }
 };

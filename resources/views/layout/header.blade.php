@@ -111,8 +111,10 @@
     </div>
     <ul class="nav user-menu float-right d-flex align-items-center h-100">
 
-        <li class="nav-item dropdown has-arrow">
-            <button class="btn custom-btn"><i class="fa-solid fa-plus"></i> Create Schedule</button>
+        <li class="nav-item dropdown has-arrow" >
+            <a href="{{ route('appointment.create') }}" style="padding-right:0">
+            <button class="btn custom-btn"><i class="fa-solid fa-plus"></i> Create Appointment</button>
+            </a>
         </li>
         <li class="nav-item dropdown has-arrow">
             <button class="btn custom-btn1 mx-2">
@@ -130,11 +132,6 @@
             </a>
 
         </li> -->
-
-
-
-
-
 
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">

@@ -11,20 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('medicine', function (Blueprint $table) {
+        Schema::create('medicines', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->unsignedBigInteger('category_id');
-            $table->decimal('price', 8, 2);
-            $table->string('image');
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->string('unit');
+            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->integer('quantity')->default(0);
             $table->date('manufacture_date');
             $table->date('expiry_date');
-            $table->text('description');
+            $table->text('image')->nullable();
             $table->timestamps();
-
-
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-
         });
     }
 
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('medicine');
+        Schema::dropIfExists('medicines');
     }
 };
