@@ -3,21 +3,21 @@
 @section('content')  
 
 <div class="page-wrapper">
-    <div class="content" style="height:100vh;">
+    <div class="content" >
         <div class="row">
             <div class="col-sm-6 col-5">
-                <h4 class="page-title" style="text-align:center; margin-right: 80px;">Add Treatment</h4>
+                <h4 class="page-title text-center" style="padding-left: 95px;">Add Treatment</h4>
             </div>
-            <div class="col-sm-6 col-7 text-center m-b-2">
-                <a href="{{ route('treatment.index') }}" class="btn btn-primary btn-rounded" style="margin-left: 200px;">
+            <div class="col-sm-6 col-7 text-center m-b-2" style="padding-right: 65px;">
+                <a href="{{ route('treatment.index') }}" class="btn btn-primary btn-rounded" >
                     <i class="fa fa-eye m-r-5 icon3  "></i>
                     All Treatment
                 </a>
             </div>
         </div>
         <div class="row">
-            <div class="offset-lg-2">
-                <form class="form-container">
+            <div class="col-12">
+                <form class="form-container"  style="width:60% ;padding-bottom: 60px;">
 
                     <div class="form-group">
                         <label><i class="fas fa-cogs  icon-style"></i> Treatment Name</label>

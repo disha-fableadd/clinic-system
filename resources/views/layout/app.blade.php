@@ -62,8 +62,13 @@
     <script src=" https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css"
+        rel="stylesheet">
 
-
+    <!-- Include jQuery and Timepicker JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
     <style>
         .fc-toolbar.fc-header-toolbar {
             margin-bottom: 0 !important;

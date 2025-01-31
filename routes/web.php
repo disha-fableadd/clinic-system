@@ -10,7 +10,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\TreatmentController;
 use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\MedicineController;
@@ -51,8 +51,11 @@ Route::get('/appointment/create', [AppointmentController::class, 'create'])->nam
 Route::get('/treatment', [TreatmentController::class, 'index'])->name('treatment.index');
 Route::get('/treatment/create', [TreatmentController::class, 'create'])->name('treatment.create');
 
-Route::get('/department', [DepartmentController::class, 'index'])->name('department.index');
-Route::get('/department/create', [DepartmentController::class, 'create'])->name('department.create');
+// Route::get('/department', [DepartmentController::class, 'index'])->name('department.index');
+// Route::get('/department/create', [DepartmentController::class, 'create'])->name('department.create');
+
+Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
+Route::get('/service/create', [ServiceController::class, 'create'])->name( 'service.create');
 
 Route::get('/calender', [CalenderController::class, 'index'])->name('calender.index');
 
