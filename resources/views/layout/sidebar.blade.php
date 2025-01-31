@@ -180,29 +180,16 @@
                 <li class="menu-link {{ request()->routeIs('chart') ? 'active' : '' }}">
                     <a href="{{ route('chart') }}"> <i class="fas fa-chart-line"></i> <span>Chart</span></a>
                 </li>
-                <li class="submenu {{ request()->routeIs('labtest.*') ? 'active' : '' }}">
-                    <a href="#"><i class="fa fa-flask"></i> <span>LabTest</span><span class="menu-arrow"></span></a>
-                    <ul style="{{ request()->routeIs('labtest.*') ? 'display: block;' : 'display: none;' }}">
-                        <li class="menu-link1 {{ request()->routeIs('labtest.index') ? 'active' : '' }} mt-1">
-                            <a href=""><i class="fa fa-flask icons"></i><span>All
-                                    LabTest</span></a>
-                        </li>
-                        <li class="menu-link1 {{ request()->routeIs('labtest.create') ? 'active' : '' }} mt-1">
-                            <a href=""><i class="fa fa-plus-circle icons"></i><span>Add
-                                    LabTest</span></a>
-                        </li>
-                    </ul>
-                </li>
-
+                
                 <li class="submenu {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
                     <a href="#"><i class="fa fa-cogs"></i> <span>Inventory</span><span class="menu-arrow"></span></a>
                     <ul style="{{ request()->routeIs('inventory.*') ? 'display: block;' : 'display: none;' }}">
                         <li class="menu-link1 {{ request()->routeIs('inventory.index') ? 'active' : '' }} mt-1">
-                            <a href=""><i class="fa fa-cogs icons"></i><span>All
+                            <a href="{{ route('inventory.index') }}"><i class="fa fa-cogs icons"></i><span>All
                                     Inventory</span></a>
                         </li>
                         <li class="menu-link1 {{ request()->routeIs('inventory.create') ? 'active' : '' }} mt-1">
-                            <a href=""><i class="fa fa-plus-circle icons"></i><span>Add
+                            <a href="{{ route('inventory.create') }}"><i class="fa fa-plus-circle icons"></i><span>Add
                                     Inventory</span></a>
                         </li>
                     </ul>
@@ -218,21 +205,6 @@
                         <li class="menu-link1 {{ request()->routeIs('supplier.create') ? 'active' : '' }} mt-1">
                             <a href=""><i class="fa fa-plus-circle icons"></i><span>Add
                                     Supplier</span></a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="submenu {{ request()->routeIs('prescription.*') ? 'active' : '' }}">
-                    <a href="#"><i class="fa fa-prescription-bottle-alt"></i> <span>Prescriptions</span><span
-                            class="menu-arrow"></span></a>
-                    <ul style="{{ request()->routeIs('prescription.*') ? 'display: block;' : 'display: none;' }}">
-                        <li class="menu-link1 {{ request()->routeIs('prescription.index') ? 'active' : '' }} mt-1">
-                            <a href=""><i
-                                    class="fa fa-prescription-bottle-alt icons"></i><span>All Prescriptions</span></a>
-                        </li>
-                        <li class="menu-link1 {{ request()->routeIs('prescription.create') ? 'active' : '' }} mt-1">
-                            <a href=""><i
-                                    class="fa fa-plus-circle icons"></i><span>Add Prescription</span></a>
                         </li>
                     </ul>
                 </li>

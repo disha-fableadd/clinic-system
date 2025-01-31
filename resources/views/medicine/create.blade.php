@@ -18,15 +18,16 @@
         <div class="row">
             <div class="col-12">
                 <form class="form-container" id="multiStepForm" method="POST" action=""
-                style="width:60% ;padding-bottom: 60px;">
+                    style="width:60% ;padding-bottom: 60px;">
                     @csrf
-                    
+
                     <!-- Step 1 -->
-                    <div class="form-step" id="step-1"  >
+                    <div class="form-step" id="step-1">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label><i class="fas fa-boxes icon-style"></i> Category <span class="text-danger">*</span></label>
+                                    <label><i class="fas fa-boxes icon-style"></i> Category <span
+                                            class="text-danger">*</span></label>
                                     <select class="form-control" name="category" required>
                                         <option value="">Select Category</option>
                                         <option value="Antibiotic">Antibiotic</option>
@@ -38,14 +39,16 @@
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label><i class="fas fa-pills icon-style"></i> Medicine Name <span class="text-danger">*</span></label>
+                                    <label><i class="fas fa-pills icon-style"></i> Medicine Name <span
+                                            class="text-danger">*</span></label>
                                     <input class="form-control" type="text" name="medicine_name" required>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label><i class="fas fa-align-left icon-style"></i> Description</label>
-                                    <textarea class="form-control" rows="3" name="description" style="border-radius:10px"></textarea>
+                                    <textarea class="form-control" rows="3" name="description"
+                                        style="border-radius:10px"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-12">
@@ -73,35 +76,42 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label><i class="fas fa-weight icon-style"></i> Unit <span class="text-danger">*</span></label>
+                                    <label><i class="fas fa-weight icon-style"></i> Unit <span
+                                            class="text-danger">*</span></label>
                                     <input class="form-control" type="text" name="unit" required>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label><i class="fas fa-sort-numeric-up icon-style"></i> Quantity <span class="text-danger">*</span></label>
+                                    <label><i class="fas fa-sort-numeric-up icon-style"></i> Quantity <span
+                                            class="text-danger">*</span></label>
                                     <input class="form-control" type="number" name="quantity" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label><i class="fas fa-calendar-alt icon-style"></i> Manufacture Date <span class="text-danger">*</span></label>
+                                    <label><i class="fas fa-calendar-alt icon-style"></i> Manufacture Date <span
+                                            class="text-danger">*</span></label>
                                     <div class="cal-icon">
-                                        <input type="text" class="form-control datetimepicker" name="manufacture_date" required>
+                                        <input type="text" class="form-control datetimepicker" name="manufacture_date"
+                                            required>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label><i class="fas fa-calendar-times icon-style"></i> Expiry Date <span class="text-danger">*</span></label>
+                                    <label><i class="fas fa-calendar-times icon-style"></i> Expiry Date <span
+                                            class="text-danger">*</span></label>
                                     <div class="cal-icon">
-                                        <input type="text" class="form-control datetimepicker" name="expiry_date" required>
+                                        <input type="text" class="form-control datetimepicker" name="expiry_date"
+                                            required>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label><i class="fas fa-toggle-on icon-style"></i> Status <span class="text-danger">*</span></label>
+                                    <label><i class="fas fa-toggle-on icon-style"></i> Status <span
+                                            class="text-danger">*</span></label>
                                     <select class="form-control" name="status" required>
                                         <option value="Available">Available</option>
                                         <option value="Out of Stock">Out of Stock</option>

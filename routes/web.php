@@ -14,7 +14,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\MedicineController;
-
+use App\Http\Controllers\InventoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,11 +57,13 @@ Route::get('/prescription/create', [PrescriptionController::class, 'create'])->n
 Route::get('/treatment', [TreatmentController::class, 'index'])->name('treatment.index');
 Route::get('/treatment/create', [TreatmentController::class, 'create'])->name('treatment.create');
 
-// Route::get('/department', [DepartmentController::class, 'index'])->name('department.index');
-// Route::get('/department/create', [DepartmentController::class, 'create'])->name('department.create');
-
 Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
 Route::get('/service/create', [ServiceController::class, 'create'])->name( 'service.create');
+
+Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
+Route::get('/inventory/create', [InventoryController::class, 'create'])->name( 'inventory.create');
+
+
 
 Route::get('/calender', [CalenderController::class, 'index'])->name('calender.index');
 
