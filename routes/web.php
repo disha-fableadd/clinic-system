@@ -15,20 +15,25 @@ use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\MedicalReportController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-
+// dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+// login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('login', [LoginController::class, 'loginSubmit'])->name('login.submit');
 
+// profile
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
+// user
 Route::get('/user', [EmployeeController::class, 'index'])->name('user.index');
 Route::get('/user/create', [EmployeeController::class, 'create'])->name('user.create');
 
@@ -46,13 +51,6 @@ Route::get('/medicine/create', [MedicineController::class, 'create'])->name('med
 Route::get('/appointment', [AppointmentController::class, 'index'])->name('appointment.index');
 Route::get('/appointment/create', [AppointmentController::class, 'create'])->name('appointment.create');
 
-// prescription ==============
-
-Route::get('/prescriptions', [PrescriptionController::class, 'index'])->name('prescription.index');
-Route::get('/prescription/create', [PrescriptionController::class, 'create'])->name('prescription.create');
-
-// prescription end ==============
-
 
 Route::get('/treatment', [TreatmentController::class, 'index'])->name('treatment.index');
 Route::get('/treatment/create', [TreatmentController::class, 'create'])->name('treatment.create');
@@ -63,7 +61,11 @@ Route::get('/service/create', [ServiceController::class, 'create'])->name( 'serv
 Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
 Route::get('/inventory/create', [InventoryController::class, 'create'])->name( 'inventory.create');
 
+Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier.index');
+Route::get('/supplier/create', [SupplierController::class, 'create'])->name( 'supplier.create');
 
+Route::get('/report', [MedicalReportController::class, 'index'])->name('report.index');
+Route::get('/report/create', [MedicalReportController::class, 'create'])->name( 'report.create');
 
 Route::get('/calender', [CalenderController::class, 'index'])->name('calender.index');
 

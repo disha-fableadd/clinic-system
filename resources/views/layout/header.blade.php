@@ -147,8 +147,8 @@
                 <a class="dropdown-item" href="{{ route('profile') }}" style="font-size: 16px;"><i
                         class="fa fa-user"></i> My Profile</a>
 
-                <a class="dropdown-item" href="settings.html" style="font-size: 16px;"><i class="fa-solid fa-file"></i>
-                    User Log</a>
+                <!-- <a class="dropdown-item" href="settings.html" style="font-size: 16px;"><i class="fa-solid fa-file"></i>
+                    User Log</a> -->
                 <a class="dropdown-item" href="login.html" style="font-size: 16px;"><i class="fa fa-sign-out-alt"></i>
                     Logout</a>
             </div>

@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-header " style="background-color:#f89884;">
                         <h2 class="card-title d-inline-block text-white">
-                        <i class="fas fa-user-tag  px-2" style="font-size:20px"></i> All Role
+                            <i class="fas fa-user-tag  px-2" style="font-size:20px"></i> All Role
                         </h2>
                         <a href="{{ route('role.create') }}" class="btn btn-rounded float-right"
                             style="background-color: #fed9cf; padding: 6px 12px;">
@@ -42,40 +42,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if ($roles->isEmpty())
-                                        <tr>
-                                            <td colspan="6">No records found.</td>
-                                        </tr>
-                                    @else
-                                        @foreach ($roles as $key => $role)
-                                            <tr>
-                                                <td class="text-left">{{ $key + 1 }}</td>
-                                                <td>{{ $role->name }}</td>
-                                                <td>{{ $role->description }}</td>
+                                    <tr>
 
-                                                <td>{{ $role->created_at->format('d/m/Y') }}</td>
-                                                <td>
-                                                    <div class="icon">
-                                                        <a href="{{ route('role.show', $role->id) }}" class="m-r-5">
-                                                            <i class="fa fa-eye icon3"></i>
-                                                        </a>
-                                                        <a href="{{ route('role.edit', $role->id) }}" class="m-r-5">
-                                                            <i class="fa fa-pencil icon1"></i>
-                                                        </a>
-                                                        <form action="{{ route('role.destroy', $role->id) }}" method="POST"
-                                                            style="display:inline-block;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" style="border: none; background: none;"
-                                                                class="m-r-5">
-                                                                <i class="fa fa-trash-o icon2"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
+                                        <td>1</td>
+                                        <td>Dentists</td>
+                                        <td>ddfdfdgfhgfghgfhdfggg</td>
+                                        <td>01-12-2024</td>
+                                        <td>
+                                            <div class="icon">
+                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
+                                                    class="fa fa-pencil m-r-5 icon1"></i>
+                                                <i class="fa fa-trash-o m-r-5 icon2"></i>
+
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <td>2</td>
+                                        <td>Dentists</td>
+                                        <td>ddfdfdgfhgfghgfhdfggg</td>
+                                        <td>01-12-2024</td>
+                                        <td>
+                                            <div class="icon">
+                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
+                                                    class="fa fa-pencil m-r-5 icon1"></i>
+                                                <i class="fa fa-trash-o m-r-5 icon2"></i>
+
+                                            </div>
+
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
 
