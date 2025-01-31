@@ -40,75 +40,95 @@
 
                             <div class="col-12">
                                 <div class="row">
-
-
-
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label><i class="fas fa-user icon-style"></i> First Name <span
+                                            <label><i class="fas fa-user icon-style"></i> User Name <span
                                                     class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" name="first_name"
-                                                placeholder="Enter First Name" required>
+                                            <input class="form-control" type="text" name="username"
+                                                placeholder="Enter Username" required>
                                         </div>
                                     </div>
-
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label><i class="fas fa-user icon-style"></i> Last Name</label>
-                                            <input class="form-control" type="text" name="last_name"
-                                                placeholder="Enter Last Name">
+                                            <label><i class="fas fa-user icon-style"></i> Full Name</label>
+                                            <input class="form-control" type="text" name="fullname"
+                                                placeholder="Enter Full Name" required>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label><i class="fas fa-envelope icon-style"></i> Email <span
-                                            class="text-danger">*</span></label>
-                                    <input class="form-control" type="email" name="email" placeholder="Enter Email"
-                                        required>
-                                </div>
-                            </div>
+
+
 
                             <div class="col-12">
-                                <div class="form-group">
-                                    <label><i class="fas fa-phone icon-style"></i> Phone</label>
-                                    <input class="form-control" type="text" name="phone" placeholder="Enter Phone">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label><i class="fas fa-envelope icon-style"></i> Email <span
+                                                    class="text-danger">*</span></label>
+                                            <input class="form-control" type="email" name="email"
+                                                placeholder="Enter Email" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label><i class="fas fa-phone icon-style"></i> Phone</label>
+                                            <input class="form-control" type="text" name="phone"
+                                                placeholder="Enter Phone">
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
+
+
 
                             <div class="col-12">
                                 <div class="form-group">
                                     <label><i class="fas fa-venus-mars icon-style"></i> Gender</label>
                                     <div class="form-control">
                                         <div class="form-check-inline">
-                                            <input type="radio" name="gender" class="form-check-input" required> Male
+                                            <input type="radio" name="gender" class="form-check-input" required>
+                                            Male
                                         </div>
                                         <div class="form-check-inline">
-                                            <input type="radio" name="gender" class="form-check-input" required> Female
+                                            <input type="radio" name="gender" class="form-check-input" required>
+                                            Female
                                         </div>
                                         <div class="form-check-inline">
-                                            <input type="radio" name="gender" class="form-check-input" required> Other
+                                            <input type="radio" name="gender" class="form-check-input" required>
+                                            Other
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label><i class="fas fa-image icon-style"></i> Profile Picture</label>
+                                            <input type="file" class="form-control" name="profile">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label><i class="fas fa-cake-candles icon-style"></i> Birthdate</label>
+                                            <input type="date" class="form-control" name="birthdate">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+
                         <button type="button" class="btn btn-primary text-center d-flex" onclick="nextStep()"
                             style="padding:8px 50px ;float:right">Next</button>
                     </div>
 
-                    <!-- Step 2: Image, Password, Address -->
+                    <!-- Step 2: Profile & Address -->
                     <div class="form-step" id="step-2" style="display:none;">
                         <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label><i class="fas fa-image icon-style"></i> Image</label>
-                                    <input type="file" class="form-control" name="image">
-                                </div>
-                            </div>
-
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-6">
@@ -118,7 +138,6 @@
                                                 placeholder="Enter Password">
                                         </div>
                                     </div>
-
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label><i class="fas fa-lock icon-style"></i> Confirm Password</label>
@@ -126,7 +145,6 @@
                                                 placeholder="Confirm Password">
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -138,72 +156,124 @@
                             </div>
 
                             <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label><i class="fas fa-city icon-style"></i> City</label>
+                                            <select class="form-control" name="city">
+                                                <option value="">Select City</option>
+                                                <option value="Surat">Surat</option>
+                                                <option value="Ahemdabad">Ahemdabad</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label><i class="fas fa-flag icon-style"></i> State</label>
+                                            <select class="form-control" name="state">
+                                                <option value="">Select State</option>
+                                                <option value="Gujarat">Gujarat</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Shift Field -->
+                            <div class="col-12">
                                 <div class="form-group">
-                                    <label><i class="fas fa-city icon-style"></i> City</label>
-                                    <select class="form-control" name="city">
-                                        <option value="">Select City</option>
-                                        <option value="Surat">Surat</option>
-                                        <option value="Ahemdabad">Ahemdabad</option>
+                                    <label><i class="fas fa-clock icon-style"></i> Shift</label>
+                                    <select class="form-control" name="shift">
+                                        <option value="">Select Shift</option>
+                                        <option value="Morning">Morning</option>
+                                        <option value="Afternoon">Afternoon</option>
+                                        <option value="Night">Night</option>
                                     </select>
                                 </div>
                             </div>
 
+                            <!-- Salary Field -->
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label><i class="fas fa-flag icon-style"></i> State</label>
-                                    <select class="form-control" name="state">
-                                        <option value="">Select State</option>
-                                        <option value="Gujarat">Gujarat</option>
-                                    </select>
+                                    <label><i class="fas fa-dollar-sign icon-style"></i> Salary</label>
+                                    <input type="number" class="form-control" name="salary" placeholder="Enter Salary">
                                 </div>
                             </div>
+
                         </div>
 
                         <button type="button" class="btn btn-danger"
-                            style="padding:8px 50px;border-radius:50px;float:left; "
-                            onclick="prevStep()">Previous</button>
+                            style="padding:8px 50px;border-radius:50px;float:left;" onclick="prevStep()">
+                            Previous
+                        </button>
                         <button type="button" class="btn btn-primary"
-                            style="margin-left:5px;padding:8px 50px;float:right " onclick="nextStep()">Next</button>
-
-
+                            style="margin-left:5px;padding:8px 50px;float:right;" onclick="nextStep()">
+                            Next
+                        </button>
                     </div>
 
                     <!-- Step 3: Education and Experience -->
                     <div class="form-step" id="step-3" style="display:none;">
                         <div id="educationFields" class="mb-3">
                             <!-- Education Fields will be added here -->
-                            <legend>Education:</legend>
-                            <label>Degree:</label>
+                            <legend><i class="fas fa-graduation-cap icon-style"></i> Education:</legend>
+                            <label><i class="fas fa-book icon-style"></i> Degree:</label>
                             <input type="text" name="education[${index}][degree]" class="form-control" required>
-                            <label>Institution:</label>
-                            <input type="text" name="education[${index}][institution]" class="form-control" required>
-                            <label>Year:</label>
-                            <input type="text" name="education[${index}][year]" class="form-control" required>
-                            <button type="button" class="btn btn-primary mt-3" onclick="addEducation()">Add
-                                Education</button>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label><i class="fas fa-university icon-style"></i> Institution:</label>
+                                    <input type="text" name="education[${index}][institution]" class="form-control"
+                                        required>
+                                </div>
+                                <div class="col-6">
+                                    <label><i class="fas fa-hourglass-half icon-style"></i> Year:</label>
+                                    <input type="text" name="education[${index}][year]" class="form-control" required>
+                                </div>
+                            </div>
+
+
+
+
+                            <button type="button" class="btn btn-primary mt-3" onclick="addEducation()">
+                                Add Education
+                            </button>
                         </div>
 
                         <div id="experienceFields" class="mb-3">
                             <!-- Experience Fields will be added here -->
-                            <legend>Experience:</legend>
-                            <label>Company:</label>
+                            <legend><i class="fas fa-briefcase  icon-style"></i> Experience:</legend>
+                            <label><i class="fas fa-building icon-style"></i> Company:</label>
                             <input type="text" name="experience[${index}][company]" class="form-control" required>
-                            <label>Role:</label>
-                            <input type="text" name="experience[${index}][role]" class="form-control" required>
-                            <label>Years:</label>
-                            <input type="text" name="experience[${index}][years]" class="form-control" required>
-                            <button type="button" class="btn btn-primary mt-3"  onclick="addExperience()">Add
-                                Experience</button>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label><i class="fas fa-user-tie icon-style"></i> Role:</label>
+                                    <input type="text" name="experience[${index}][role]" class="form-control" required>
+
+                                </div>
+                                <div class="col-6">
+
+                                    <label><i class="fas fa-hourglass-half icon-style"></i> Years:</label>
+                                    <input type="text" name="experience[${index}][years]" class="form-control" required>
+
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-primary mt-3" onclick="addExperience()">
+                                Add Experience
+                            </button>
                         </div>
 
                         <button type="button" class="btn btn-danger"
-                            style="padding:8px 50px;border-radius:50px; float:left"
-                            onclick="prevStep()">Previous</button>
-
+                            style="padding:8px 50px;border-radius:50px; float:left" onclick="prevStep()">
+                            Previous
+                        </button>
 
                         <button type="submit" class="btn btn-primary"
-                            style="padding:8px 50px;border-radius:50px ;float:right">Submit</button>
+                            style="padding:8px 50px;border-radius:50px; float:right">
+                            Submit
+                        </button>
                     </div>
+
 
                 </form>
             </div>
@@ -231,13 +301,21 @@
         const index = educationFields.children.length;
         const fieldset = document.createElement('fieldset');
         fieldset.innerHTML = `
-            <legend>Education ${index + 1}</legend>
-            <label>Degree:</label>
-            <input type="text" name="education[${index}][degree]" class="form-control" required>
-            <label>Institution:</label>
-            <input type="text" name="education[${index}][institution]" class="form-control" required>
-            <label>Year:</label>
-            <input type="text" name="education[${index}][year]" class="form-control" required>
+           <legend><i class="fas fa-graduation-cap icon-style"></i> Education:</legend>
+                            <label><i class="fas fa-book icon-style"></i> Degree:</label>
+                            <input type="text" name="education[${index}][degree]" class="form-control" required>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <label><i class="fas fa-university icon-style"></i> Institution:</label>
+                                    <input type="text" name="education[${index}][institution]" class="form-control"
+                                        required>
+                                </div>
+                                <div class="col-6">
+                                    <label><i class="fas fa-hourglass-half icon-style"></i> Year:</label>
+                                    <input type="text" name="education[${index}][year]" class="form-control" required>
+                                </div>
+                            </div>
         `;
         educationFields.appendChild(fieldset);
     }
@@ -247,13 +325,24 @@
         const index = experienceFields.children.length;
         const fieldset = document.createElement('fieldset');
         fieldset.innerHTML = `
-            <legend>Experience ${index + 1}</legend>
-            <label>Company:</label>
-            <input type="text" name="experience[${index}][company]" class="form-control" required>
-            <label>Role:</label>
-            <input type="text" name="experience[${index}][role]" class="form-control" required>
-            <label>Years:</label>
-            <input type="text" name="experience[${index}][years]" class="form-control" required>
+            <legend><i class="fas fa-briefcase  icon-style"></i> Experience:</legend>
+                            <label><i class="fas fa-building icon-style"></i> Company:</label>
+                            <input type="text" name="experience[${index}][company]" class="form-control" required>
+
+                           <div class="row">
+                                <div class="col-6">
+                                    <label><i class="fas fa-user-tie icon-style"></i> Role:</label>
+                                    <input type="text" name="experience[${index}][role]" class="form-control" required>
+
+                                </div>
+                                <div class="col-6">
+
+                                    <label><i class="fas fa-hourglass-half icon-style"></i> Years:</label>
+                                    <input type="text" name="experience[${index}][years]" class="form-control" required>
+
+                                </div>
+                            </div>
+
         `;
         experienceFields.appendChild(fieldset);
     }

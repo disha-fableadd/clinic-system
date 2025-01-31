@@ -130,15 +130,15 @@
                     </ul>
                 </li>
 
-                <li class="submenu {{ request()->routeIs('department.*') ? 'active' : '' }}">
+                <li class="submenu {{ request()->routeIs('service.*') ? 'active' : '' }}">
                     <a href="#"><i class="fa fa-hospital-o"></i>
-                        <span>Departments</span><span class="menu-arrow"></span></a>
-                    <ul style="{{ request()->routeIs('department.*') ? 'display: block;' : 'display: none;' }}">
-                    <li class="menu-link1 {{ request()->routeIs('department.index') ? 'active' : '' }} mt-1">
-                            <a href="{{ route('department.index') }}"><i class="fa fa-hospital icons"></i><span> All Departments</a></span>
+                        <span>Services</span><span class="menu-arrow"></span></a>
+                    <ul style="{{ request()->routeIs('service.*') ? 'display: block;' : 'display: none;' }}">
+                    <li class="menu-link1 {{ request()->routeIs('service.index') ? 'active' : '' }} mt-1">
+                            <a href="{{ route('service.index') }}"><i class="fa fa-hospital icons"></i><span> All Services</a></span>
                         </li>
-                        <li class="menu-link1 {{ request()->routeIs('department.create') ? 'active' : '' }} mt-1">
-                            <a href="{{ route('department.create') }}"><i class="fa fa-building icons"></i><span>Add Department</span> </a>
+                        <li class="menu-link1 {{ request()->routeIs('service.create') ? 'active' : '' }} mt-1">
+                            <a href="{{ route('service.create') }}"><i class="fa fa-building icons"></i><span>Add Services</span> </a>
                         </li>
                        
                     </ul>

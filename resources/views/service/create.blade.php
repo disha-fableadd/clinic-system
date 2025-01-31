@@ -12,7 +12,7 @@
                 <h4 class="page-title" style="text-align:center; margin-right: 80px;">Add Department</h4>
             </div>
             <div class="col-sm-6 col-7 text-center m-b-2">
-                <a href="{{ route('department.index') }}" class="btn btn-primary btn-rounded"
+                <a href="{{ route('service.index') }}" class="btn btn-primary btn-rounded"
                     style="margin-left: 200px;">
                     <i class="fa fa-eye m-r-5 icon3  "></i>
                     All Department

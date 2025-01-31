@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('treatment', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); 
-            $table->unsignedBigInteger('doctor_id'); 
+            $table->string('name');
             $table->text('description')->nullable();
+            $table->enum('type', ['x-ray', 'blood-test', 'consultation', 'surgery', 'therapy', 'other']);
+            $table->decimal('price', 10, 2);
+            $table->enum('status', ['active', 'inactive', 'discontinued'])->default('active');
             $table->timestamps();
-
-            // Foreign key constraint
-            $table->foreign('doctor_id')
-                ->references('id')
-                ->on('userr')
-                ->onDelete('cascade');
         });
     }
 
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('treatment');
+        Schema::dropIfExists('services');
     }
 };

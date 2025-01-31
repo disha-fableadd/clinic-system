@@ -4,7 +4,7 @@
     <div class="content" style="height:100vh">
         <div class="row">
             <div class="col-sm-8 col-8">
-                <h4 class="page-title" style="text-align:left; !important">All Department Details</h4>
+                <h4 class="page-title" style="text-align:left; !important">All Services Details</h4>
             </div>
             <!-- <div class="col-sm-4 col-4 text-right  ">
             <a href="{{ route('dashboard') }}" class="btn  btn-rounded" style="background-color:#fed9cf;">
@@ -18,9 +18,9 @@
                 <div class="card" >
                     <div class="card-header"
                         style="background-color:#f89884;">
-                        <h3 class="card-title d-inline-block text-white"><i class="fa fa-hospital-o px-2" style="font-size:20px"></i>All Department </h3>
-                        <a href="{{ route('department.create') }}" class="btn  btn-rounded float-right"
-                            style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Department
+                        <h3 class="card-title d-inline-block text-white"><i class="fa fa-hospital-o px-2" style="font-size:20px"></i>All Services </h3>
+                        <a href="{{ route('service.create') }}" class="btn  btn-rounded float-right"
+                            style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Services
                         </a>
                     </div>
                     <div class="card-body ">
@@ -30,7 +30,7 @@
                                 <thead style="background-color:#ff8e29;" class="text-center">
                                     <tr>
                                         <th>#</th>
-                                        <th>Department Name</th>
+                                        <th>Services Name</th>
                                         <th>Contact_no</th>
                                         <th>Status</th>
                                         <th>Action</th>
