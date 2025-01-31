@@ -1,14 +1,77 @@
 @extends('layout.app')
+<style>
+    .container {
+        width: 60%;
+        margin: auto;
+    }
 
+    .header1 {
+        background: #cfece0;
+        color: black;
+        padding: 10px 15px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 50px;
+        border-radius: 15px;
+    }
+
+    .card-body {
+      
+        height: 200px;
+    }
+    .card{
+        margin: 0;
+    }
+
+    table {
+
+        margin-top: 10px;
+        border-radius: 10px;
+        border: 2px solid #cfece0;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table thead tr th {
+        background-color: #cfece0 !important;
+    }
+
+    /* th,
+    td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    } */
+
+
+    th,
+    td {
+        padding: 10px;
+        text-align: center;
+    }
+
+    thead,
+    tr {
+        border-bottom: 2px solid #cfece0;
+    }
+
+    th {
+        background: #f4f4f4;
+    }
+
+    .select-all {
+        margin: 10px 5px;
+    }
+</style>
 @section('content')
 
 <div class="page-wrapper">
     <div class="content">
         <div class="row">
             <div class="col-6">
-                <h4 class="page-title" style="text-align:center;">Add User</h4>
+                <h4 class="page-title" style="text-align:center;padding-right:200px">Add User</h4>
             </div>
-            <div class="col-6 text-center m-b-2">
+            <div class="col-6 text-center m-b-2" style="padding-left:220px">
                 <a href="{{ route('user.index') }}" class="btn btn-primary btn-rounded">
                     <i class="fa fa-eye m-r-5"></i>
                     All Users
@@ -19,7 +82,7 @@
         <div class="row">
             <div class="col-12">
                 <form class="form-container" id="multiStepForm" method="POST" action=""
-                    style="width:60% ;padding-bottom: 60px;">
+                    style="width:80% ;padding-bottom: 60px;">
                     @csrf
 
                     <!-- Step 1: Personal Information -->
@@ -274,14 +337,90 @@
                         </button>
                     </div>
 
+                    <br><br>
+
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-footer text-right" style="background-color:#87ceb0">
+                                    <h3 style="float:left" class="text-dark"><i
+                                            class="fa fa-info-circle icon-style2"></i> permissions</h3>
+                                    <a href="" class="btn btn-primary btn-rounded" style="color:black">
+                                        <input type="checkbox" id="selectAll"> Select All Modules
+                                    </a>
+                                </div>
+
+                                <div class="card-body">
+                                    <table>
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th>Module Name</th>
+                                                <th>View</th>
+                                                <th>Insert</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+                                                <th>All</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Customers</td>
+                                                <td><input type="checkbox" class="view"></td>
+                                                <td><input type="checkbox" class="insert"></td>
+                                                <td><input type="checkbox" class="edit"></td>
+                                                <td><input type="checkbox" class="delete"></td>
+                                                <td><input type="checkbox" class="all"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Followup</td>
+                                                <td><input type="checkbox" class="view"></td>
+                                                <td><input type="checkbox" class="insert"></td>
+                                                <td><input type="checkbox" class="edit"></td>
+                                                <td><input type="checkbox" class="delete"></td>
+                                                <td><input type="checkbox" class="all"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Leads</td>
+                                                <td><input type="checkbox" class="view"></td>
+                                                <td><input type="checkbox" class="insert"></td>
+                                                <td><input type="checkbox" class="edit"></td>
+                                                <td><input type="checkbox" class="delete"></td>
+                                                <td><input type="checkbox" class="all"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
 
                 </form>
+
+
             </div>
         </div>
     </div>
 </div>
 
 <script>
+
+
+    document.getElementById("selectAll").addEventListener("change", function () {
+        let checkboxes = document.querySelectorAll("tbody input[type='checkbox']");
+        checkboxes.forEach(cb => cb.checked = this.checked);
+    });
+
+    // "All" Checkbox selects row-wise permissions
+    document.querySelectorAll(".all").forEach(allCheckbox => {
+        allCheckbox.addEventListener("change", function () {
+            let row = this.closest("tr");
+            let checkboxes = row.querySelectorAll("input[type='checkbox']:not(.all)");
+            checkboxes.forEach(cb => cb.checked = this.checked);
+        });
+    });
+
     let currentStep = 1;
 
     function nextStep() {

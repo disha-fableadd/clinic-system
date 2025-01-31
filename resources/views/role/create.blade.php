@@ -5,18 +5,19 @@
 <div class="page-wrapper">
     <div class="content">
         <div class="row">
-            <div class="col-sm-4 col-3">
-                <h4 class="page-title" style="text-align:center; !important">Add Role</h4>
+            <div class="col-6">
+                <h4 class="page-title" style="padding-left: 140px;text-align:center; !important">Add Role</h4>
             </div>
-            <div class="col-sm-8 col-9 text-center m-b-2 ">
-                <a href="{{ route('role.index') }}" class="btn btn-primary  btn-rounded" style="margin-left: 430px;">
+            <div class="col-6 text-center m-b-2 " style="padding-right:150px">
+                <a href="{{ route('role.index') }}" class="btn btn-primary  btn-rounded">
                     <i class="fa fa-eye m-r-5 icon3  "></i>
                     All Role</a>
             </div>
         </div>
         <div class="row">
             <div class="offset-lg-2">
-                <form action="{{ route('role.store') }}" method="POST" class="form-container">
+                <form class="form-container" id="multiStepForm" method="POST" action=""
+                    style="width:60% ;padding-bottom: 60px;">
                     @csrf
                     <div class="row">
                         <div class="col-sm-12">
@@ -33,7 +34,7 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-12">
+                        <!-- <div class="col-sm-12">
                             <label> <i class="fas fa-key  icon-style"></i> Permissions</label>
                             <div class="row m-0">
                                 <div class="form-control">
@@ -175,7 +176,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
 

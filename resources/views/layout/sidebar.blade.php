@@ -177,9 +177,7 @@
                 </li>
 
 
-                <li class="menu-link {{ request()->routeIs('chart') ? 'active' : '' }}">
-                    <a href="{{ route('chart') }}"> <i class="fas fa-chart-line"></i> <span>Chart</span></a>
-                </li>
+             
                 
                 <li class="submenu {{ request()->routeIs('inventory.*') ? 'active' : '' }}">
                     <a href="#"><i class="fa fa-cogs"></i> <span>Inventory</span><span class="menu-arrow"></span></a>
@@ -199,32 +197,34 @@
                     <a href="#"><i class="fa fa-truck"></i> <span>Supplier</span><span class="menu-arrow"></span></a>
                     <ul style="{{ request()->routeIs('supplier.*') ? 'display: block;' : 'display: none;' }}">
                         <li class="menu-link1 {{ request()->routeIs('supplier.index') ? 'active' : '' }} mt-1">
-                            <a href=""><i class="fa fa-truck icons"></i><span>All
+                            <a href="{{ route('supplier.index') }}"><i class="fa fa-truck icons"></i><span>All
                                     Suppliers</span></a>
                         </li>
                         <li class="menu-link1 {{ request()->routeIs('supplier.create') ? 'active' : '' }} mt-1">
-                            <a href=""><i class="fa fa-plus-circle icons"></i><span>Add
+                            <a href="{{ route('supplier.create') }}"><i class="fa fa-plus-circle icons"></i><span>Add
                                     Supplier</span></a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="submenu {{ request()->routeIs('medicalreport.*') ? 'active' : '' }}">
+                <li class="submenu {{ request()->routeIs('report.*') ? 'active' : '' }}">
                     <a href="#"><i class="fa fa-file-medical"></i> <span>Medical Report</span><span
                             class="menu-arrow"></span></a>
-                    <ul style="{{ request()->routeIs('medicalreport.*') ? 'display: block;' : 'display: none;' }}">
+                    <ul style="{{ request()->routeIs('report.*') ? 'display: block;' : 'display: none;' }}">
                         <li class="menu-link1 {{ request()->routeIs('medicalreport.index') ? 'active' : '' }} mt-1">
-                            <a href=""><i
+                            <a href="{{ route('report.index') }}"><i
                                     class="fa fa-file-medical icons"></i><span>All Medical Reports</span></a>
                         </li>
-                        <li class="menu-link1 {{ request()->routeIs('medicalreport.create') ? 'active' : '' }} mt-1">
-                            <a href=""><i
+                        <li class="menu-link1 {{ request()->routeIs('report.create') ? 'active' : '' }} mt-1">
+                            <a href="{{ route('report.create') }}"><i
                                     class="fa fa-plus-circle icons"></i><span>Add Medical Report</span></a>
                         </li>
                     </ul>
                 </li>
 
-
+                <li class="menu-link {{ request()->routeIs('chart') ? 'active' : '' }}">
+                    <a href="{{ route('chart') }}"> <i class="fas fa-chart-line"></i> <span>Chart</span></a>
+                </li>
                 <!-- <li class="menu-link {{ request()->routeIs('profile') ? 'active' : '' }}">
                     <a href="{{ route('profile') }}"><i class="fa fa-user"></i> <span>Profile</span></a>
                 </li>

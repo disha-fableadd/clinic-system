@@ -6,12 +6,12 @@
     <div class="content">
         <div class="row">
             <div class="col-6">
-                <h4 class="page-title text-center" style="padding-left: 90px;">Add Inventory</h4>
+                <h4 class="page-title text-center" style="padding-left: 90px;">Add Medical Report</h4>
             </div>
             <div class="col-6 text-center m-b-2" style="padding-right: 55px;">
-                <a href="{{ route('inventory.index') }}" class="btn btn-primary btn-rounded">
+                <a href="{{ route('report.index') }}" class="btn btn-primary btn-rounded">
                     <i class="fa fa-eye m-r-5 icon3  "></i>
-                    All Inventory
+                    All Medical report
                 </a>
             </div>
         </div>
@@ -24,7 +24,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label><i class="fas fa-cogs icon-style"></i> Item Name</label>
+                                    <label><i class="fas fa-user icon-style"></i>Patient Name</label>
                                     <select class="form-control" name="item_name">
                                         <option>Select</option>
                                         <option>Item 1</option>
@@ -38,7 +38,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label><i class="fas fa-box icon-style"></i> Category</label>
+                                    <label><i class="fa fa-user-md icon-style" ></i> Doctor Name</label>
                                     <select class="form-control" name="category">
                                         <option>Select</option>
                                         <option>Category 1</option>
@@ -50,9 +50,20 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label><i class="fas fa-truck icon-style"></i> Supplier Name</label>
+                                    <label><i class="fas fa-cogs icon-style"></i> Service Name</label>
+                                    <select class="form-control" name="supplier_name">
+                                        <option>Select</option>
+                                        <option>Supplier 1</option>
+                                        <option>Supplier 2</option>
+                                        <option>Supplier 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label><i class="fa fa-calendar-check-o icon-style"></i> Treatment Name</label>
                                     <select class="form-control" name="supplier_name">
                                         <option>Select</option>
                                         <option>Supplier 1</option>
@@ -63,41 +74,36 @@
                             </div>
                         </div>
 
+
                         <div class="row">
-                            <div class="col-lg-6">
+
+
+                            <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label><i class="fas fa-calendar-alt icon-style"></i> Purchase Date</label>
-                                    <input type="date" class="form-control" name="purchase_date">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label><i class="fas fa-calendar-times icon-style"></i> Expiry Date</label>
-                                    <input type="date" class="form-control" name="expiry_date">
+                                    <label><i class="fas fa-align-left icon-style"></i> Description</label>
+                                    <textarea class="form-control" rows="3" name="description"
+                                        style="border-radius:10px"></textarea>
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label><i class="fas fa-toggle-on icon-style"></i> Status</label>
-                                    <select class="form-control" name="status">
-                                        <option>Select</option>
-                                        <option>Active</option>
-                                        <option>Inactive</option>
-                                        <option>Expired</option>
-                                    </select>
+                                    <label><i class="fas fa-file-upload icon-style"></i> File Path</label>
+                                    <input type="file" class="form-control" name="file_path">
                                 </div>
                             </div>
                         </div>
 
+
+
+
                         <div class="m-t-20 text-center">
-                        <button class="btn btn-primary submit-btn"> Create Inventory</button>
-                    </div>
+                            <button class="btn btn-primary submit-btn"> Create Report</button>
+                        </div>
                     </div>
 
-                    
+
                 </form>
 
 
