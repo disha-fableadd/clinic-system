@@ -21,8 +21,6 @@ Route::get('/', function () {
 });
 
 
-
-
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -47,6 +45,14 @@ Route::get('/medicine/create', [MedicineController::class, 'create'])->name('med
 
 Route::get('/appointment', [AppointmentController::class, 'index'])->name('appointment.index');
 Route::get('/appointment/create', [AppointmentController::class, 'create'])->name('appointment.create');
+
+// prescription ==============
+
+Route::get('/prescriptions', [PrescriptionController::class, 'index'])->name('prescription.index');
+Route::get('/prescription/create', [PrescriptionController::class, 'create'])->name('prescription.create');
+
+// prescription end ==============
+
 
 Route::get('/treatment', [TreatmentController::class, 'index'])->name('treatment.index');
 Route::get('/treatment/create', [TreatmentController::class, 'create'])->name('treatment.create');
