@@ -16,7 +16,7 @@
         </div>
         <div class="row">
             <div class="offset-lg-2">
-                <form class="form-container" id="multiStepForm" method="POST" action=""
+                <form id="roleForm" class="form-container" method="POST" action="{{ url('api/rolee') }}"
                     style="width:60% ;padding-bottom: 60px;">
                     @csrf
                     <div class="row">
@@ -32,207 +32,52 @@
                                 <textarea cols="30" rows="4" class="form-control" style="border-radius:10px !important"
                                     name="description"></textarea>
                             </div>
-
                         </div>
-                        <!-- <div class="col-sm-12">
-                            <label> <i class="fas fa-key  icon-style"></i> Permissions</label>
-                            <div class="row m-0">
-                                <div class="form-control">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="add_user" value="add_user">
-                                                <label class="form-check-label" for="add_user">Add User</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="show_user" value="show_user">
-                                                <label class="form-check-label" for="show_user">Show User</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="add_medicine" value="add_medicine">
-                                                <label class="form-check-label" for="add_medicine">Add Medicine</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="show_medicine" value="show_medicine">
-                                                <label class="form-check-label" for="show_medicine">Show
-                                                    Medicine</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-control mt-3">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="add_patients" value="add_patients">
-                                                <label class="form-check-label" for="add_patients">Add Patients</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="show_patients" value="show_patients">
-                                                <label class="form-check-label" for="show_patients">Show
-                                                    Patients</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="add_appointment" value="add_appointment">
-                                                <label class="form-check-label" for="add_appointment">Add
-                                                    Appointment</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="show_appointment" value="show_appointment">
-                                                <label class="form-check-label" for="show_appointment">Show
-                                                    Appointment</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-control mt-3">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="add_treatment" value="add_treatment">
-                                                <label class="form-check-label" for="add_treatment">Add
-                                                    Treatment</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="show_treatment" value="show_treatment">
-                                                <label class="form-check-label" for="show_treatment">Show
-                                                    Treatment</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="add_department" value="add_department">
-                                                <label class="form-check-label" for="add_department">Add
-                                                    Department</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="show_department" value="show_department">
-                                                <label class="form-check-label" for="show_department">Show
-                                                    Department</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-control mt-3">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="add_discharge" value="add_discharge">
-                                                <label class="form-check-label" for="add_discharge">Add
-                                                    Discharge</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="show_discharge" value="show_discharge">
-                                                <label class="form-check-label" for="show_discharge">Show
-                                                    Discharge</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="show_chart" value="show_chart">
-                                                <label class="form-check-label" for="show_chart">Show Chart</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="permissions[]"
-                                                    id="all" value="all">
-                                                <label class="form-check-label" for="all">All</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
                     </div>
-
-
 
                     <div class="m-t-20 text-center">
-                        <button class="btn btn-primary submit-btn"> Create Role</button>
+                        <button type="submit" class="btn btn-primary submit-btn">Create Role</button>
                     </div>
-            </div>
-            </form>
+                </form>
 
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+                <div id="successMessage" class="alert alert-success" style="display:none;"></div>
+                <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
+            </div>
         </div>
     </div>
 </div>
 
-</div>
-
 <script>
+    $(document).ready(function () {
+        $('#roleForm').on('submit', function (e) {
+            e.preventDefault();
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const toggleBtn = document.getElementById('toggle_btn');
-        const sidebar = document.querySelector('.sidebar');
-        toggleBtn.addEventListener('click', function () {
-            if (sidebar) {
-                sidebar.classList.toggle('mini-sidebar');
-            }
-        });
-    });
+            let formData = new FormData(this);
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const allCheckbox = document.getElementById('all');
-        const permissionCheckboxes = document.querySelectorAll('input[name="permissions[]"]:not(#all)');
+            $.ajax({
+                url: "{{ url('api/rolee') }}",  // Correct URL to call the API route
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    $('#successMessage').text(response.message || 'Role created successfully').show();
+                    $('#roleForm')[0].reset();
 
-        allCheckbox.addEventListener('change', function () {
-            permissionCheckboxes.forEach((checkbox) => {
-                checkbox.checked = allCheckbox.checked;
-            });
-        });
-
-        permissionCheckboxes.forEach((checkbox) => {
-            checkbox.addEventListener('change', function () {
-                if (!checkbox.checked) {
-                    allCheckbox.checked = false;
-                } else {
-                    const allChecked = Array.from(permissionCheckboxes).every(cb => cb.checked);
-                    allCheckbox.checked = allChecked;
+                    // Optionally, you can redirect here if needed
+                    setTimeout(function () {
+                        window.location.href = "{{ route('role.index') }}"; // Redirect to index page if needed
+                    }, 1500);
+                },
+                error: function (xhr) {
+                    let errorMessage = xhr.responseJSON.message || 'Something went wrong.';
+                    $('#errorMessage').text(errorMessage).show();
                 }
             });
         });
     });
 </script>
+
 
 
 @endsection

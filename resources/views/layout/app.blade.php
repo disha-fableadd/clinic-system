@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/select2.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/bootstrap-datetimepicker.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/style.css')}}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -32,13 +32,13 @@
 
 
     <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
-    <!-- jQuery -->
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+   
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> -->
     <!-- FullCalendar CSS -->
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
 
@@ -47,26 +47,31 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Add jQuery and Bootstrap Datepicker -->
-    <link rel="stylesheet"
+    <!-- <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-
-
+ -->
 
     <!-- jQuery Library -->
+
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css"
+        rel="stylesheet"> -->
+
+    <!-- Include jQuery and Timepicker JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css">
     <script src=" https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+    <!-- <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script> -->
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css"
-        rel="stylesheet">
 
-    <!-- Include jQuery and Timepicker JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
     <style>
@@ -201,19 +206,19 @@
 
         @yield('content')
         @yield('scripts')
-
-        @include('layout.footer')
         <script>
 
             new DataTable('#example');
-            function eventFired(type) {
-                let n = document.querySelector('#demo_info');
+            // function eventFired(type) {
+            //     let n = document.querySelector('#demo_info');
 
-                n.scrollTop = n.scrollHeight;
-            }
+            //     n.scrollTop = n.scrollHeight;
+            // }
 
-            new DataTable('#example')
-                .on('order.dt', () => eventFired('Order'))
-                .on('search.dt', () => eventFired('Search'))
-                .on('page.dt', () => eventFired('Page'));
+            // new DataTable('#example')
+            //     .on('order.dt', () => eventFired('Order'))
+            //     .on('search.dt', () => eventFired('Search'))
+            //     .on('page.dt', () => eventFired('Page'));
         </script>
+        @include('layout.footer')
+      
