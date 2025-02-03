@@ -19,21 +19,18 @@ class MedicalReport extends Model
         'file_path',
     ];
 
-    // Relationship with Patient
     public function patient()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(Patients::class);
     }
 
-    // Relationship with Doctor (assuming Doctor is a user with a specific role)
     public function doctor()
     {
         return $this->belongsTo(User::class, 'doctor_id');
     }
 
-    // Relationship with Service
     public function service()
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsTo(Services::class);
     }
 }

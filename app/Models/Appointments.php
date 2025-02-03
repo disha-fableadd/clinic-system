@@ -27,13 +27,13 @@ class Appointments extends Model
     // Relationship with Patient
     public function patient()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(Patients::class);
     }
 
     // Relationship with Doctor
     public function doctor()
     {
-        return $this->belongsTo(Doctor::class);
+        return $this->belongsTo(User::class);
     }
 
     // Relationship with Treatment

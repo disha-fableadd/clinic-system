@@ -37,38 +37,39 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/user', [EmployeeController::class, 'index'])->name('user.index');
 Route::get('/user/create', [EmployeeController::class, 'create'])->name('user.create');
 
+// role
 Route::resource('role', RoleController::class);
-
+// discharge
 Route::get('/discharge', [DischargeController::class, 'index'])->name('discharge.index');
 Route::get('/discharge/create', [DischargeController::class, 'create'])->name('discharge.create');
-
+//patirents
 Route::get('/patients', [PatientController::class, 'index'])->name('patients.index');
 Route::get('/patients/create', [PatientController::class, 'create'])->name('patients.create');
-
+//medicine
 Route::get('/medicine', [MedicineController::class, 'index'])->name('medicine.index');
 Route::get('/medicine/create', [MedicineController::class, 'create'])->name('medicine.create');
-
+//appointment
 Route::get('/appointment', [AppointmentController::class, 'index'])->name('appointment.index');
 Route::get('/appointment/create', [AppointmentController::class, 'create'])->name('appointment.create');
-
+//treatment
 
 Route::get('/treatment', [TreatmentController::class, 'index'])->name('treatment.index');
 Route::get('/treatment/create', [TreatmentController::class, 'create'])->name('treatment.create');
-
+//services
 Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
 Route::get('/service/create', [ServiceController::class, 'create'])->name( 'service.create');
-
+//inventory
 Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
 Route::get('/inventory/create', [InventoryController::class, 'create'])->name( 'inventory.create');
-
+//suplier
 Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier.index');
 Route::get('/supplier/create', [SupplierController::class, 'create'])->name( 'supplier.create');
-
+//report
 Route::get('/report', [MedicalReportController::class, 'index'])->name('report.index');
 Route::get('/report/create', [MedicalReportController::class, 'create'])->name( 'report.create');
-
+//calender
 Route::get('/calender', [CalenderController::class, 'index'])->name('calender.index');
-
+//chart
 Route::get('/chart', [ChartController::class, 'index'])->name('chart');
 
 

@@ -16,10 +16,11 @@
     }
 
     .card-body {
-      
+
         height: 200px;
     }
-    .card{
+
+    .card {
         margin: 0;
     }
 
@@ -341,7 +342,7 @@
 
                     <div class="row mt-3">
                         <div class="col-md-12">
-                            <div class="card">
+                            <div class="card" style="border: 1px solid #87ceb0;">
                                 <div class="card-footer text-right" style="background-color:#87ceb0">
                                     <h3 style="float:left" class="text-dark"><i
                                             class="fa fa-info-circle icon-style2"></i> permissions</h3>

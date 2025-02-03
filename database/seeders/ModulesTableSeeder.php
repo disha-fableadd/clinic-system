@@ -16,7 +16,7 @@ class ModulesTableSeeder extends Seeder
         $modules = [
             'User', 'Medicines', 'Patients', 'Appointments', 'Treatments', 
             'Services', 'Calender', 'Discharge', 'Inventory', 'Supplier', 
-            'Medical Report', 'Chart'
+            'Medical Report', 'Chart','Role'
         ];
 
         foreach ($modules as $module) {
