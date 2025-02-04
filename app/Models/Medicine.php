@@ -23,6 +23,6 @@ class Medicine extends Model
     // Relationship with Category
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Categories::class);
     }
 }

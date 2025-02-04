@@ -79,19 +79,23 @@
             dataType: 'json',
             success: function (data) {
                 var roles = data;
+                var table = $('#example').DataTable();
+                if ($.fn.DataTable.isDataTable("#example")) {
+                    table.destroy();
+                }
                 var tableBody = $('#rolesTableBody');
                 tableBody.empty();
                 roles.forEach(function (role, index) {
-                    var row = '<tr>';
+                    var row = '<tr >';
                     row += '<td>' + (index + 1) + '</td>';
                     row += '<td>' + role.name + '</td>';
                     row += '<td>' + role.description + '</td>';
                     row += '<td>' + role.created_at.split(' ')[0] + '</td>';
                     row += '<td>';
-                    row += '<div class="icon">';
-                    row += '<i class="fa fa-eye m-r-5 icon3"></i>';
-                    row += '<i class="fa fa-pencil m-r-5 icon1"></i>';
-                    row += '<i class="fa fa-trash-o m-r-5 icon2"></i>';
+                    row += '<div class="icon" style="cursor:pointer">';
+                    row += '<i class="fa fa-eye m-r-5 icon3 view-role" data-id="' + role.id + '"></i>';
+                    row += '<i class="fa fa-pencil m-r-5 icon1 edit-role" data-id="' + role.id + '"></i>';
+                    row += '<i class="fa fa-trash-o m-r-5 icon2 delete-role" data-id="' + role.id + '"></i>';
                     row += '</div>';
                     row += '</td>';
                     row += '</tr>';
@@ -99,12 +103,44 @@
                     tableBody.append(row);
                 });
 
-                // Initialize DataTable after the rows are added
-                $('#example').DataTable();
+
+                $('#example').DataTable({
+                    "paging": true,
+                    "searching": true,
+                    "ordering": true,
+                    "destroy": true
+                });
             },
         });
 
 
+    });
+
+    $(document).on('click', '.view-role', function () {
+        var roleId = $(this).data('id');
+        window.location.href = '/role/show/' + roleId;
+    });
+
+    $(document).on('click', '.edit-role', function () {
+        var roleId = $(this).data('id');
+        window.location.href = '/role/edit/' + roleId;
+    });
+
+    $(document).on('click', '.delete-role', function () {
+        var roleId = $(this).data('id');
+        if (confirm('Are you sure you want to delete this role?')) {
+            $.ajax({
+                url: '/api/rolee/' + roleId,
+                type: 'DELETE',
+                success: function () {
+                   
+                    location.reload(); 
+                },
+                error: function () {
+                    alert('Failed to delete role.');
+                }
+            });
+        }
     });
 
 
