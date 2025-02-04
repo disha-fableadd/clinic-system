@@ -21,66 +21,171 @@
                 <div class="card">
                     <div class="card-footer text-right" style="background-color:#87ceb0">
 
-                        <h3 style="float:left" class="text-dark"><i class="fa fa-info-circle icon-style2"></i> {{ $role->name }} Details
+                        <h3 style="float:left" class="text-dark"><i class="fa fa-info-circle icon-style2"></i> <span
+                                class="role_name"></span> Details
                         </h3>
 
-                        <a href="{{ route('role.edit', $role->id) }}" class="btn btn-primary btn-rounded"
-                            style="color:black">
-                            <i class="fa fa-pencil-alt "></i> Edit Role
-                        </a>
-                        <form action="{{ route('role.destroy', $role->id) }}" method="POST"
-                            style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-rounded">
-                                <i class="fa fa-trash"></i> Delete Role
-                            </button>
-                        </form>
+
                     </div>
 
                     <div class="card-body mt-3">
-                        <p class="text-dark"><strong><i class="fa fa-id-badge icon-style1"></i> Role Name:</strong>
-                            {{ $role->name }}</p>
-                        <hr>
-                        <p class="text-dark"><strong><i class="fa fa-align-left icon-style1"></i> Description:</strong>
-                            {{ $role->description }}</p>
-                        <hr>
-                        <p class="text-dark"><strong><i class="fa fa-key icon-style1"></i> Permissions:</strong></p>
 
-                        @if (is_array($role->permissions) && count($role->permissions) > 0)
-                            <div class="row">
-                                @foreach ($role->permissions as $index => $permission)
-                                    <div class="col-md-3 col-sm-6 mb-2"> 
-                                        <span class="btn btn-primary btn-rounded p-2 w-100 ">
-                                            <i class="fa fa-check-circle" style="float:left"></i> {{ $permission }}
-                                        </span>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @elseif (is_string($role->permissions))
-                            <span class="badge badge-pill badge-warning p-2"><i class="fa fa-exclamation-circle"></i>
-                                {{ $role->permissions }}</span>
-                        @else
-                            <span class="badge badge-pill badge-secondary p-2"><i class="fa fa-ban"></i> No
-                                Permissions</span>
-                        @endif
-
+                        <p class="text-dark"><strong><i class="fa fa-id-badge icon-style1"></i> Role Name : </strong>
+                            <span class="role_name"></span>
+                        </p>
 
 
                         <hr>
+                        <p class="text-dark"><strong><i class="fa fa-align-left icon-style1"></i> Description :
+                            </strong>
+                            <span id="role_description"></span>
+                        </p>
+                        <hr>
+
                         <p class="text-dark"><strong><i class="fa fa-calendar-plus icon-style1"></i> Joining
-                                Date:</strong>
-                            {{ $role->created_at->format('d/m/Y') }}</p>
+                                Date : </strong>
+                            <span id="role_created_at"></span>
+                        </p>
                         <hr>
                         <p class="text-dark"><strong><i class="fa fa-calendar-check icon-style1"></i> Last
-                                Updated:</strong>
-                            {{ $role->updated_at->format('d/m/Y') }}</p>
+                                Updated :
+                            </strong>
+                            <span id="role_updated_at"></span>
+                        </p>
+
+                        <div class="button mb-4" style="display: flex; justify-content: end; margin: 0 5px;">
+
+                            <a href="#" class="btn btn-primary btn-rounded edit-role-btn"
+                                style="color:black; margin-right:10px">
+                                <i class="fa fa-pencil-alt"></i> Edit Role
+                            </a>
+
+
+
+                            <button type="button" class="btn btn-danger btn-rounded delete-role"
+                                data-id="{{ $role_id }}">
+                                <i class="fa fa-trash"></i> Delete Role
+                            </button>
+
+
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id="successMessage" class="alert alert-success" style="display:none;"></div>
+
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function () {
+        var roleId = "{{ $role_id }}";
+
+        $.ajax({
+            url: '/api/rolee/' + roleId,
+            type: 'GET',
+            dataType: 'json',
+            success: function (role) {
+
+                $('.role_name').text(role.name);
+                // console.log(role.name);
+
+                $('#role_description').text(role.description);
+                $('#role_created_at').text(role.created_at);
+                $('#role_updated_at').text(role.updated_at);
+            },
+            error: function () {
+                alert('Failed to fetch role details.');
+            }
+        });
+    });
+
+
+
+    $(document).on('click', '.delete-role', function () {
+        var roleId = $(this).data('id');
+        console.log("Deleting Role ID:", roleId);
+        if (!roleId) {
+            alert('Role ID is missing!');
+            return;
+        }
+
+        if (confirm('Are you sure you want to delete this role?')) {
+            $.ajax({
+                url: '/api/rolee/' + roleId,
+                type: 'DELETE',
+
+                success: function (response) {
+                    // alert('Role deleted successfully!');
+
+
+                    $('button[data-id="' + roleId + '"]').closest('tr').remove();
+
+
+                    $("#successMessage").text("Role delete successfully!").fadeIn().delay(3000).fadeOut();
+                    setTimeout(function () {
+                        window.location.href = "{{ route('role.index') }}";
+                    }, 2000);
+                },
+
+            });
+        }
+    });
+
+
+
+    $(document).ready(function () {
+        var pathParts = window.location.pathname.split('/');
+        var roleId = pathParts[pathParts.length - 1];
+
+        console.log("Extracted Role ID from URL:", roleId);
+
+        if (!roleId || isNaN(roleId)) {
+            alert("Error: Role ID is missing or invalid.");
+            return;
+        }
+
+        $("#roleId").val(roleId);
+
+
+        $.ajax({
+            url: "/api/rolee/" + roleId,
+            type: "GET",
+            success: function (role) {
+                $("#roleName").val(role.name);
+                $("#roleDescription").val(role.description);
+                $(".edit-role-btn").attr("href", "/role/edit/" + role.id);
+            },
+            error: function () {
+                alert("Failed to fetch role details.");
+            }
+        });
+
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style>
     /* .card-footer {

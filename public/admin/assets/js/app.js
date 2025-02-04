@@ -141,7 +141,7 @@ $(document).ready(function($) {
 		$pageWrapper.css('min-height', prHeight);
 	});
 	
-	// Datetimepicker
+	Datetimepicker
 	if($('.datetimepicker').length > 0) {
 		$('.datetimepicker').datetimepicker({
 			format: 'DD/MM/YYYY'

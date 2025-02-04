@@ -6,21 +6,20 @@
     <div class="content">
         <div class="row">
             <div class=" col-6">
-                <h4 class="page-title text-center" style="padding-left: 70px;">Add Medicine</h4>
+                <h4 class="page-title" style="padding-left: 140px;text-align:center; !important">Edit Medicine</h4>
             </div>
-            <div class=" col-6 text-center m-b-2" style="padding-right: 60px;">
-                <a href="{{ route('medicine.index') }}" class="btn btn-primary btn-rounded">
-                    <i class="fa fa-eye m-r-5"></i> All Medicines
-                </a>
+            <div class="col-6 text-center m-b-2 " style="padding-right:150px">
+                <a href="{{ route('medicine.index') }}" class="btn btn-primary  btn-rounded">
+                    <i class="fa fa-eye m-r-5 icon3  "></i>
+                    All Medicine</a>
             </div>
         </div>
-
         <div class="row">
             <div class="col-12">
                 <form class="form-container" id="medicineForm" method="POST" action="javascript:void(0);"
                     enctype="multipart/form-data" style="width:60% ;padding-bottom: 60px;">
                     @csrf
-
+                    <input type="hidden" id="medicineId">
                     <!-- Step 1 -->
                     <div class="form-step" id="step-1">
                         <div class="row">
@@ -31,32 +30,39 @@
                                     <select class="form-control" name="category_id" id="categoryDropdown" required>
                                         <option value="">Select Category</option>
                                     </select>
-
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label><i class="fas fa-pills icon-style"></i> Medicine Name <span
                                             class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" name="name" required>
+                                    <input class="form-control" type="text" name="name" id="name" required>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label><i class="fas fa-align-left icon-style"></i> Description</label>
-                                    <textarea class="form-control" rows="3" name="description"
+                                    <textarea class="form-control" rows="3" name="description" id="description"
                                         style="border-radius:10px"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
+                                    <div id="imagePreviewContainer">
+                                        <img id="imagePreview" src="" alt="Medicine Image"
+                                            style="max-width: 200px; display: none;">
+                                    </div>
+
+                                    <!-- Image Input -->
+
                                     <label><i class="fas fa-image icon-style"></i> Upload Image</label>
                                     <div class="profile-upload">
                                         <div class="upload-img">
                                             <img alt="" src="{{ asset('admin/assets/img/medicine.jpg') }}">
                                         </div>
                                         <div class="upload-input">
-                                            <input type="file" class="form-control" name="image">
+                                            <!-- <input type="file" class="form-control" name="image" id="image"> -->
+                                            <input type="file" id="imageInput" name="image" accept="image/*">
                                         </div>
                                     </div>
                                 </div>
@@ -75,14 +81,14 @@
                                 <div class="form-group">
                                     <label><i class="fas fa-weight icon-style"></i> Unit <span
                                             class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" name="unit" required>
+                                    <input class="form-control" type="text" name="unit" id="unit" required>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label><i class="fas fa-sort-numeric-up icon-style"></i> Quantity <span
                                             class="text-danger">*</span></label>
-                                    <input class="form-control" type="number" name="quantity" required>
+                                    <input class="form-control" type="number" name="quantity" id="quantity" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -90,8 +96,8 @@
                                     <label><i class="fas fa-calendar-alt icon-style"></i> Manufacture Date <span
                                             class="text-danger">*</span></label>
                                     <div class="cal-icon">
-                                        <input type="text" class="form-control datetimepicker" id="manufacture_date"
-                                            name="manufacture_date" required>
+                                        <input type="text" class="form-control datetimepicker" name="manufacture_date"
+                                            id="manufacture_date" required>
                                     </div>
                                 </div>
                             </div>
@@ -100,8 +106,9 @@
                                     <label><i class="fas fa-calendar-times icon-style"></i> Expiry Date <span
                                             class="text-danger">*</span></label>
                                     <div class="cal-icon">
-                                        <input type="text" class="form-control datetimepicker" id="expiry_date"
-                                            name="expiry_date" required>
+                                        <input type="text" class="form-control datetimepicker" name="expiry_date"
+                                            id="expiry_date" required>
+
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +116,7 @@
                                 <div class="form-group">
                                     <label><i class="fas fa-toggle-on icon-style"></i> Status <span
                                             class="text-danger">*</span></label>
-                                    <select class="form-control" name="status" required>
+                                    <select class="form-control" name="status" id="status" required>
                                         <option value="active">active</option>
                                         <option value="inactive">inactive</option>
                                     </select>
@@ -133,9 +140,19 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.getElementById('toggle_btn');
+        toggleBtn.addEventListener('click', function () {
+            document.body.classList.toggle('mini-sidebar');
+        });
+    });
+
+
     function nextStep() {
         document.getElementById('step-1').style.display = 'none';
         document.getElementById('step-2').style.display = 'block';
@@ -180,62 +197,104 @@
 
 
     $(document).ready(function () {
-        $('#medicineForm').on('submit', function (e) {
+        var pathParts = window.location.pathname.split('/');
+        var medicineId = pathParts[pathParts.length - 1];
+
+        $("#medicineId").val(medicineId);
+        $.ajax({
+            url: '/api/medicines/' + medicineId,
+            type: 'GET',
+
+            success: function (data) {
+                $('#categoryDropdown').val(data.category_id);
+                $('#name').val(data.name);
+                $('#description').val(data.description);
+                $('#unit').val(data.unit);
+                $('#quantity').val(data.quantity);
+
+                $('#status').val(data.status);
+
+                if (data.manufacture_date) {
+                    var manufactureParts = data.manufacture_date.split('-'); // Split "dd-mm-yyyy"
+                    var formattedManufactureDate = manufactureParts[2] + '-' + manufactureParts[1] + '-' + manufactureParts[0]; // Convert to "yyyy-mm-dd"
+                    $('#manufacture_date').val(formattedManufactureDate);
+                }
+
+                if (data.expiry_date) {
+                    var expiryParts = data.expiry_date.split('-');
+                    var formattedExpiryDate = expiryParts[2] + '-' + expiryParts[1] + '-' + expiryParts[0];
+                    $('#expiry_date').val(formattedExpiryDate);
+                }
+
+
+                if (data.image) {
+                    $('#imagePreview').attr('src', '/storage/' + data.image).show();
+                    $('#imagePreviewContainer').show();
+                }
+            },
+            error: function () {
+                alert('Failed to fetch medicine details.');
+            }
+        });
+
+
+        $("#medicineForm").submit(function (e) {
             e.preventDefault();
 
-            var manufactureDate = $('#manufacture_date').val();
-            if (manufactureDate) {
-                var manufactureParts = manufactureDate.split('-'); // "dd-mm-yyyy"
-                manufactureDate = manufactureParts[2] + '-' + manufactureParts[1] + '-' + manufactureParts[0]; // Convert to "yyyy-mm-dd"
-                $('#manufacture_date').val(manufactureDate);
-            }
+            // Convert all datetime fields from dd-mm-yyyy to yyyy-mm-dd
+            $(".datetimepicker").each(function () {
+                var dateValue = $(this).val();
+                if (dateValue) {
+                    var dateParts = dateValue.split('-'); // Expecting dd-mm-yyyy format
+                    if (dateParts.length === 3) {
+                        var formattedDate = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0]; // yyyy-mm-dd
+                        $(this).val(formattedDate);
+                    }
+                }
+            });
 
-            // Convert expiry_date from dd-mm-yyyy to yyyy-mm-dd
-            var expiryDate = $('#expiry_date').val();
-            if (expiryDate) {
-                var expiryParts = expiryDate.split('-'); // "dd-mm-yyyy"
-                expiryDate = expiryParts[2] + '-' + expiryParts[1] + '-' + expiryParts[0]; // Convert to "yyyy-mm-dd"
-                $('#expiry_date').val(expiryDate);
-            }
+            // Validate manufacture and expiry dates before submission
+            var manufactureDate = new Date($('#manufacture_date').val());
+            var expiryDate = new Date($('#expiry_date').val());
 
+            if (expiryDate <= manufactureDate) {
+                alert("Expiry date must be after manufacture date.");
+                return;
+            }
 
             var formData = new FormData(this);
+            formData.append('_method', 'PUT');
 
-            console.log(formData);
             $.ajax({
-                url: "{{ url('api/medicines') }}",
+                url: '/api/medicines/' + medicineId,
                 type: 'POST',
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    $('#successMessage').text(response.message || 'Medicine created successfully').show();
+                    $('#successMessage').text(response.message || 'Medicine updated successfully').show();
                     $('#medicineForm')[0].reset();
-
-
                     setTimeout(function () {
                         window.location.href = "{{ route('medicine.index') }}";
                     }, 1500);
                 },
                 error: function (xhr) {
-
-                    var errors = xhr.responseJSON.errors;
-                    console.log(errors);
-
-
-
+                    if (xhr.responseJSON && xhr.responseJSON.errors) {
+                        let errorMessages = Object.values(xhr.responseJSON.errors).flat().join("\n");
+                        alert(errorMessages);
+                    } else {
+                        alert('Failed to update medicine.');
+                    }
                 }
             });
         });
+
+
     });
 
 
 
-
-
-
-
-
 </script>
+
 
 @endsection

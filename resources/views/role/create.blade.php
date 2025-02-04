@@ -23,7 +23,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label><i class="fas fa-user-tag  icon-style"></i> Role Name</label>
-                                <input class="form-control" type="text" name="name" required>
+                                <input class="form-control" type="text" name="name" >
                             </div>
                         </div>
                         <div class="col-sm-12">

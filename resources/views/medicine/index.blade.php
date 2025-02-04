@@ -15,9 +15,9 @@
         <div class="row mt-2">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"
-                        style="background-color:#f89884;">
-                        <h3 class="card-title d-inline-block text-white"> <i class="fas fa-pills px-2"  style="font-size:20px"></i>All Medicines </h3>
+                    <div class="card-header" style="background-color:#f89884;">
+                        <h3 class="card-title d-inline-block text-white"> <i class="fas fa-pills px-2"
+                                style="font-size:20px"></i>All Medicines </h3>
                         <a href="{{ route('medicine.create') }}" class="btn  btn-rounded float-right"
                             style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Medicines
                         </a>
@@ -36,109 +36,8 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody >
-                                    <tr>
-                                        <td>1</td>
-                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-02.jpg')}}"
-                                                class="rounded-circle" alt=""></td>
-                                        <td>
+                                <tbody>
 
-                                            <h2>Albina Simonis</h2>
-                                        </td>
-                                        <td>NS-0001</td>
-                                        <td>cgftghjhjkkkthfghgh</td>
-                                        <td>
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i>
-                                                <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><img width="28" height="28" src="{{asset('admin/assets/img/user-03.jpg')}}"
-                                                class="rounded-circle" alt=""></td>
-                                        <td>
-
-                                            <h2>Cristina Groves</h2>
-                                        </td>
-                                        <td>DR-0001</td>
-                                        <td>cgftghjhjkkkthfghgh</td>
-                                        <td>
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i>
-                                                <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-04.jpg')}}"
-                                                class="rounded-circle" alt=""></td>
-                                        <td>
-
-                                            <h2>Mary Mericle</h2>
-                                        </td>
-                                        <td>SF-0003</td>
-                                        <td>cgftghjhjkkkthfghgh</td>
-                                        <td>
-
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i>
-                                                <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-05.jpg')}}"
-                                                class="rounded-circle" alt=""></td>
-                                        <td>
-
-                                            <h2>Haylie Feeney</h2>
-                                        </td>
-                                        <td>SF-0002</td>
-                                        <td>cgftghjhjkkkthfghgh</td>
-                                        <td>
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i>
-                                                <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-06.jpg')}}"
-                                                class="rounded-circle" alt=""></td>
-
-                                        <td>
-
-                                            <h2>Zoe Butler</h2>
-                                        </td>
-                                        <td>SF-0001</td>
-                                        <td>cgftghjhjkkkthfghgh</td>
-                                        <td>
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i>
-                                                <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -149,19 +48,7 @@
     </div>
 
 </div>
-<div id="delete_employee" class="modal fade delete-modal" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <img src="{{asset('admin/assets/img/sent.png')}}" alt="" width="50" height="46">
-                <h3>Are you sure want to delete this User?</h3>
-                <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -185,5 +72,95 @@
         .on('order.dt', () => eventFired('Order'))
         .on('search.dt', () => eventFired('Search'))
         .on('page.dt', () => eventFired('Page'));
+
+
+
+
+
+
+    $(document).ready(function () {
+
+        $.ajax({
+            url: '{{ url("/api/medicines") }}',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+
+                var table = $('#example').DataTable();
+                if ($.fn.DataTable.isDataTable("#example")) {
+                    table.destroy();
+                }
+
+                let tableBody = $(' tbody');
+                tableBody.empty();
+
+
+                data.forEach(function (medicine,index) {
+                    tableBody.append(`
+                        <tr>
+                             <td>${index + 1}</td>
+                            <td><img width="50" height="50" src="${medicine.image}" class="rounded-circle" alt=""></td>
+                            <td><h2>${medicine.name}</h2></td>
+                              <td>${medicine.category_name}</td>
+                            <td>${medicine.description}</td>
+                            <td>
+                                <div class="icon" style="cursor:pointer">
+                                    <i class="fa fa-eye m-r-5 icon3 view-medicine" data-id="${medicine.id}"></i>
+                                    <i class="fa fa-pencil m-r-5 icon1 edit-medicine" data-id="${medicine.id}"></i>
+                                    <i class="fa fa-trash-o m-r-5 icon2 delete-medicine" data-id="${medicine.id}"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    `);
+                });
+
+                $('#example').DataTable({
+                    "paging": true,
+                    "searching": true,
+                    "ordering": true,
+                    "destroy": true
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching data: " + error);
+            }
+        });
+    });
+
+    $(document).on('click', '.view-medicine', function () {
+        var medicineId = $(this).data('id');
+        window.location.href = '/medicine/show/' + medicineId;
+    });
+
+    $(document).on('click', '.edit-medicine', function () {
+        var medicineId = $(this).data('id');
+        window.location.href = '/medicine/edit/' + medicineId;
+    });
+
+    $(document).on('click', '.delete-medicine', function () {
+        var medicineId = $(this).data('id');
+
+        if (!medicineId) {
+            alert('Medicine ID not found!');
+            return;
+        }
+
+        if (confirm('Are you sure you want to delete this medicine?')) {
+            $.ajax({
+                url: '/api/medicines/' + medicineId, // Ensure this matches your route
+                type: 'DELETE',
+                success: function (response) {
+                
+                    location.reload(); // Reload the page to update the list
+                },
+                error: function (xhr) {
+                    console.log(xhr.responseText); // Log error response
+                    alert('Failed to delete medicine.');
+                }
+            });
+        }
+    });
+
+
 </script>
 @endsection

@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->text('description');
             $table->string('unit');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->integer('quantity')->default(0);
             $table->date('manufacture_date');
             $table->date('expiry_date');
-            $table->text('image')->nullable();
+            $table->text('image');
             $table->timestamps();
         });
     }
