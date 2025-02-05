@@ -18,14 +18,12 @@ class UserDetails extends Model
         'city',
         'gender',
         'birth_date',
-        'education',
-        'experience',
         'shift',
         'salary',
     ];
-
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
 }

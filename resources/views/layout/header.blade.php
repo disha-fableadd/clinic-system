@@ -149,10 +149,39 @@
 
                 <!-- <a class="dropdown-item" href="settings.html" style="font-size: 16px;"><i class="fa-solid fa-file"></i>
                     User Log</a> -->
-                <a class="dropdown-item" href="login.html" style="font-size: 16px;"><i class="fa fa-sign-out-alt"></i>
+                <a class="dropdown-item" href="" style="font-size: 16px;" id="logout"><i class="fa fa-sign-out-alt"></i>
                     Logout</a>
             </div>
         </li>
     </ul>
 
 </div>
+<script>
+
+if (!localStorage.getItem('token')) {
+      
+        window.location.href = "{{ route('login') }}";
+    }
+
+
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    $('#logout').click(function() {
+        $.ajax({
+            url: "{{ url('/api/logout') }}",  
+            type: "POST",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token'),
+                "X-CSRF-TOKEN": csrfToken 
+            },
+            success: function(response) {
+                localStorage.removeItem('token');  
+                window.location.href = "{{ route('login') }}";  
+            },
+            error: function(xhr, status, error) {
+                console.error('Logout failed: ', error);
+                alert('Error during logout!');
+            }
+        });
+    });
+</script>

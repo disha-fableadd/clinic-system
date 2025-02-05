@@ -56,10 +56,12 @@
                                 <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> 15% Higher
                                     than
                                     Last Month</span>
-                                <canvas id="bargraph" style="
+                                <div class="chart-container">
+                                    <canvas id="bargraph" style="
                                     display: block;
-                                    width: 475px;
-                                    height: 370px;  "></canvas>
+                                    width: 512px;
+                                    height: 430px;"></canvas>
+                                </div>
 
                                 <!-- <canvas id="linegraph" class="mt-5" style="
                                     display: block;
@@ -399,6 +401,37 @@
 
         calendar.render();
     });
+
+
+
+
+    $(document).ready(function () {
+        let token = localStorage.getItem('token');
+
+         else {
+            $.ajax({
+                url: "{{ url('/api/user') }}",
+                type: "GET",
+                headers: { "Authorization": "Bearer " + token },
+                success: function (response) {
+                    console.log("User Data:", response);
+                },
+
+            });
+        }
+
+
+    });
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <style>

@@ -11,9 +11,27 @@ use Exception;
 
 class UserPermissionController extends Controller
 {
-    /**
-     * Get all permissions
-     */
+
+
+    public function getPermissions($userId)
+    {
+        // Fetch permissions for the user
+        $permissions = UserPermission::where('user_id', $userId)
+            ->with('module')  // Assuming you have a relationship with the modules table
+            ->get();
+
+        return response()->json($permissions);
+    }
+
+
+
+
+
+
+
+
+
+
     public function index(): JsonResponse
     {
         try {
