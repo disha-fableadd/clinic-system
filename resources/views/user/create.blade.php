@@ -17,7 +17,8 @@
 
     .card-body {
 
-        height: 200px;
+        height: auto;
+        padding: 20px !important;
     }
 
     .card {
@@ -31,18 +32,12 @@
         border: 2px solid #cfece0;
         border-collapse: collapse;
         width: 100%;
+
     }
 
     table thead tr th {
         background-color: #cfece0 !important;
     }
-
-    /* th,
-    td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: center;
-    } */
 
 
     th,
@@ -79,11 +74,13 @@
                 </a>
             </div>
         </div>
+        <div id="successMessage" class="alert alert-success" style="display:none;"></div>
+                <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
 
         <div class="row">
             <div class="col-12">
                 <form class="form-container" id="multiStepForm" method="POST" action=""
-                    style="width:80% ;padding-bottom: 60px;">
+                    style="width:80% ;padding-bottom: 30px;">
                     @csrf
 
                     <!-- Step 1: Personal Information -->
@@ -92,14 +89,12 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label><i class="fas fa-user-tag icon-style"></i> Role</label>
-                                    <select class="form-control" name="role" required>
+                                    <select class="form-control" name="role_id" id="role-select" required>
                                         <option value="">Select Role</option>
-                                        <option value="Admin">Admin</option>
-                                        <option value="Doctor">Doctor</option>
-                                        <option value="Nurse">Nurse</option>
-                                        <option value="Receptionist">Receptionist</option>
                                     </select>
+
                                 </div>
+
                             </div>
 
                             <div class="col-12">
@@ -152,16 +147,16 @@
                                     <label><i class="fas fa-venus-mars icon-style"></i> Gender</label>
                                     <div class="form-control">
                                         <div class="form-check-inline">
-                                            <input type="radio" name="gender" class="form-check-input" required>
-                                            Male
+                                            <input type="radio" name="gender" class="form-check-input" value="Male"
+                                                required> Male
                                         </div>
                                         <div class="form-check-inline">
-                                            <input type="radio" name="gender" class="form-check-input" required>
-                                            Female
+                                            <input type="radio" name="gender" class="form-check-input" value="Female"
+                                                required> Female
                                         </div>
                                         <div class="form-check-inline">
-                                            <input type="radio" name="gender" class="form-check-input" required>
-                                            Other
+                                            <input type="radio" name="gender" class="form-check-input" value="Other"
+                                                required> Other
                                         </div>
                                     </div>
                                 </div>
@@ -178,7 +173,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label><i class="fas fa-cake-candles icon-style"></i> Birthdate</label>
-                                            <input type="date" class="form-control" name="birthdate">
+                                            <input type="date" class="form-control" name="birth_date">
                                         </div>
                                     </div>
                                 </div>
@@ -267,67 +262,6 @@
                         </div>
 
                         <button type="button" class="btn btn-danger"
-                            style="padding:8px 50px;border-radius:50px;float:left;" onclick="prevStep()">
-                            Previous
-                        </button>
-                        <button type="button" class="btn btn-primary"
-                            style="margin-left:5px;padding:8px 50px;float:right;" onclick="nextStep()">
-                            Next
-                        </button>
-                    </div>
-
-                    <!-- Step 3: Education and Experience -->
-                    <div class="form-step" id="step-3" style="display:none;">
-                        <div id="educationFields" class="mb-3">
-                            <!-- Education Fields will be added here -->
-                            <legend><i class="fas fa-graduation-cap icon-style"></i> Education:</legend>
-                            <label><i class="fas fa-book icon-style"></i> Degree:</label>
-                            <input type="text" name="education[${index}][degree]" class="form-control" required>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label><i class="fas fa-university icon-style"></i> Institution:</label>
-                                    <input type="text" name="education[${index}][institution]" class="form-control"
-                                        required>
-                                </div>
-                                <div class="col-6">
-                                    <label><i class="fas fa-hourglass-half icon-style"></i> Year:</label>
-                                    <input type="text" name="education[${index}][year]" class="form-control" required>
-                                </div>
-                            </div>
-
-
-
-
-                            <button type="button" class="btn btn-primary mt-3" onclick="addEducation()">
-                                Add Education
-                            </button>
-                        </div>
-
-                        <div id="experienceFields" class="mb-3">
-                            <!-- Experience Fields will be added here -->
-                            <legend><i class="fas fa-briefcase  icon-style"></i> Experience:</legend>
-                            <label><i class="fas fa-building icon-style"></i> Company:</label>
-                            <input type="text" name="experience[${index}][company]" class="form-control" required>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label><i class="fas fa-user-tie icon-style"></i> Role:</label>
-                                    <input type="text" name="experience[${index}][role]" class="form-control" required>
-
-                                </div>
-                                <div class="col-6">
-
-                                    <label><i class="fas fa-hourglass-half icon-style"></i> Years:</label>
-                                    <input type="text" name="experience[${index}][years]" class="form-control" required>
-
-                                </div>
-                            </div>
-
-                            <button type="button" class="btn btn-primary mt-3" onclick="addExperience()">
-                                Add Experience
-                            </button>
-                        </div>
-
-                        <button type="button" class="btn btn-danger"
                             style="padding:8px 50px;border-radius:50px; float:left" onclick="prevStep()">
                             Previous
                         </button>
@@ -338,6 +272,7 @@
                         </button>
                     </div>
 
+
                     <br><br>
 
                     <div class="row mt-3">
@@ -345,14 +280,14 @@
                             <div class="card" style="border: 1px solid #87ceb0;">
                                 <div class="card-footer text-right" style="background-color:#87ceb0">
                                     <h3 style="float:left" class="text-dark"><i
-                                            class="fa fa-info-circle icon-style2"></i> permissions</h3>
+                                            class="fa fa-info-circle icon-style2"></i> Permissions</h3>
                                     <a href="" class="btn btn-primary btn-rounded" style="color:black">
                                         <input type="checkbox" id="selectAll"> Select All Modules
                                     </a>
                                 </div>
 
                                 <div class="card-body">
-                                    <table>
+                                    <table class="pb-5">
                                         <thead class="text-center">
                                             <tr>
                                                 <th>Module Name</th>
@@ -364,30 +299,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Customers</td>
-                                                <td><input type="checkbox" class="view"></td>
-                                                <td><input type="checkbox" class="insert"></td>
-                                                <td><input type="checkbox" class="edit"></td>
-                                                <td><input type="checkbox" class="delete"></td>
-                                                <td><input type="checkbox" class="all"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Followup</td>
-                                                <td><input type="checkbox" class="view"></td>
-                                                <td><input type="checkbox" class="insert"></td>
-                                                <td><input type="checkbox" class="edit"></td>
-                                                <td><input type="checkbox" class="delete"></td>
-                                                <td><input type="checkbox" class="all"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Leads</td>
-                                                <td><input type="checkbox" class="view"></td>
-                                                <td><input type="checkbox" class="insert"></td>
-                                                <td><input type="checkbox" class="edit"></td>
-                                                <td><input type="checkbox" class="delete"></td>
-                                                <td><input type="checkbox" class="all"></td>
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -413,14 +325,7 @@
         checkboxes.forEach(cb => cb.checked = this.checked);
     });
 
-    // "All" Checkbox selects row-wise permissions
-    document.querySelectorAll(".all").forEach(allCheckbox => {
-        allCheckbox.addEventListener("change", function () {
-            let row = this.closest("tr");
-            let checkboxes = row.querySelectorAll("input[type='checkbox']:not(.all)");
-            checkboxes.forEach(cb => cb.checked = this.checked);
-        });
-    });
+
 
     let currentStep = 1;
 
@@ -436,56 +341,101 @@
         document.getElementById(`step-${currentStep}`).style.display = 'block';
     }
 
-    function addEducation() {
-        const educationFields = document.getElementById('educationFields');
-        const index = educationFields.children.length;
-        const fieldset = document.createElement('fieldset');
-        fieldset.innerHTML = `
-           <legend><i class="fas fa-graduation-cap icon-style"></i> Education:</legend>
-                            <label><i class="fas fa-book icon-style"></i> Degree:</label>
-                            <input type="text" name="education[${index}][degree]" class="form-control" required>
+    $(document).ready(function () {
+        $.ajax({
+            url: '/api/rolee',
+            method: 'GET',
+            success: function (response) {
+                const roleSelect = $('#role-select');
 
-                            <div class="row">
-                                <div class="col-6">
-                                    <label><i class="fas fa-university icon-style"></i> Institution:</label>
-                                    <input type="text" name="education[${index}][institution]" class="form-control"
-                                        required>
-                                </div>
-                                <div class="col-6">
-                                    <label><i class="fas fa-hourglass-half icon-style"></i> Year:</label>
-                                    <input type="text" name="education[${index}][year]" class="form-control" required>
-                                </div>
-                            </div>
-        `;
-        educationFields.appendChild(fieldset);
-    }
+                response.forEach(role => {
+                    const option = $('<option>').val(role.id).text(role.name);
+                    roleSelect.append(option);
+                });
+            },
+            error: function (error) {
+                console.log('Error fetching roles:', error);
+            }
+        });
+    });
 
-    function addExperience() {
-        const experienceFields = document.getElementById('experienceFields');
-        const index = experienceFields.children.length;
-        const fieldset = document.createElement('fieldset');
-        fieldset.innerHTML = `
-            <legend><i class="fas fa-briefcase  icon-style"></i> Experience:</legend>
-                            <label><i class="fas fa-building icon-style"></i> Company:</label>
-                            <input type="text" name="experience[${index}][company]" class="form-control" required>
 
-                           <div class="row">
-                                <div class="col-6">
-                                    <label><i class="fas fa-user-tie icon-style"></i> Role:</label>
-                                    <input type="text" name="experience[${index}][role]" class="form-control" required>
 
-                                </div>
-                                <div class="col-6">
+    $(document).ready(function () {
 
-                                    <label><i class="fas fa-hourglass-half icon-style"></i> Years:</label>
-                                    <input type="text" name="experience[${index}][years]" class="form-control" required>
+        $('#multiStepForm').submit(function (e) {
+            e.preventDefault();
 
-                                </div>
-                            </div>
+            var formData = new FormData(this);
 
-        `;
-        experienceFields.appendChild(fieldset);
-    }
+            // Capture selected permissions
+            var permissions = [];
+            $('tbody tr').each(function () {
+                var moduleId = $(this).data('module-id');
+                var modulePermissions = {
+                    module_id: moduleId,
+                    create: $(this).find('.insert').prop('checked'),
+                    view: $(this).find('.view').prop('checked'),
+                    update: $(this).find('.edit').prop('checked'),
+                    delete: $(this).find('.delete').prop('checked'),
+                };
+                permissions.push(modulePermissions);
+            });
+
+   
+            formData.append('permissions', JSON.stringify(permissions));
+
+        
+            $.ajax({
+                url: '/api/users',
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    $('#successMessage').text(response.message ).show();
+                    $('#multiStepForm')[0].reset();
+                    setTimeout(function () {
+                        window.location.href = "{{ route('user.index') }}";
+                    }, 1500);
+                },
+                error: function (response) {
+                    alert('Error adding user');
+                    console.log(response);
+                }
+            });
+        });
+
+        
+        fetch('/api/modules')
+            .then(response => response.json())
+            .then(modules => {
+                const tbody = $('tbody');
+                modules.forEach(module => {
+                    const row = $('<tr>').attr('data-module-id', module.id);
+                 
+                    row.append(`<td>${module.name}</td>`);
+
+                    const permissions = ['view', 'insert', 'edit', 'delete', 'all'];
+
+                    permissions.forEach(permission => {
+                        const checkbox = $('<input>', { type: 'checkbox', class: permission });
+                        const td = $('<td>').append(checkbox);
+                        row.append(td);
+
+                        if (permission === 'all') {
+                            checkbox.change(function () {
+                                row.find('input[type=checkbox]').prop('checked', checkbox.prop('checked'));
+                            });
+                        }
+                    });
+
+                    tbody.append(row);
+                });
+            });
+    });
+
+
 </script>
 
 @endsection

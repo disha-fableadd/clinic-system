@@ -74,6 +74,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 
 
@@ -109,7 +110,10 @@
         } */
 
 
-
+        .chart-container {
+    width: 512px;
+    height: 430px; /* Adjust as needed */
+}
 
         .icon-style {
             background-color: white;

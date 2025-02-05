@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Modules;
 class ModuleController extends Controller
 {
-    public function getModules()
+    
+
+    public function index()
     {
-        $modules = Modules::all(); // Assuming you have a Module model
-        return response()->json($modules);
+        $modules = Modules::all(); 
+        return response()->json($modules);  
     }
+    
     
 }

@@ -14,10 +14,10 @@
 
         <div class="row mt-2">
             <div class="col-md-12">
-                <div class="card" >
-                    <div class="card-header"
-                        style="background-color:#f89884;">
-                        <h3 class="card-title d-inline-block text-white"><i class="fas fa-user  px-2" style="font-size:20px"></i>All User </h3>
+                <div class="card">
+                    <div class="card-header" style="background-color:#f89884;">
+                        <h3 class="card-title d-inline-block text-white"><i class="fas fa-user  px-2"
+                                style="font-size:20px"></i>All User </h3>
                         <a href="{{ route('user.create') }}" class="btn  btn-rounded float-right"
                             style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add User
                         </a>
@@ -37,128 +37,8 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-02.jpg')}}"
-                                                class="rounded-circle" alt=""></td>
-                                        <td>
+                                <tbody id="userbody">
 
-                                            <h2>Albina Simonis</h2>
-                                        </td>
-
-                                        <td>albinasimonis@example.com</td>
-                                        <td>828-634-2744</td>
-                                        <td>7 May 2015</td>
-                                        <td>
-                                            Nurse
-                                        </td>
-                                        <td     >
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i>
-                                                <i class="fa fa-pencil m-r-5 icon1"></i> <i
-                                                    class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img width="28" height="28" src="{{asset('admin/assets/img/user-03.jpg')}}"
-                                                class="rounded-circle" alt=""></td>
-                                        <td>
-
-                                            <h2>Cristina Groves</h2>
-                                        </td>
-
-                                        <td>cristinagroves@example.com</td>
-                                        <td>928-344-5176</td>
-                                        <td>1 Jan 2013</td>
-                                        <td>
-                                            Doctor
-                                        </td>
-                                        <td     >
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i> <i
-                                                    class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-04.jpg')}}"
-                                                class="rounded-circle" alt=""></td>
-                                        <td>
-
-                                            <h2>Mary Mericle</h2>
-                                        </td>
-
-                                        <td>marymericle@example.com</td>
-                                        <td>603-831-4983</td>
-                                        <td>27 Dec 2017</td>
-                                        <td>
-                                            Accountant
-                                        </td>
-                                        <td     >
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i> <i
-                                                    class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-05.jpg')}}"
-                                                class="rounded-circle" alt=""></td>
-                                        <td>
-
-                                            <h2>Haylie Feeney</h2>
-                                        </td>
-
-                                        <td>hayliefeeney@example.com</td>
-                                        <td>616-774-4962</td>
-                                        <td>21 Apr 2017</td>
-                                        <td>
-                                            Laboratorist
-                                        </td>
-                                        <td     >
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i> <i
-                                                    class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-06.jpg')}}"
-                                                class="rounded-circle" alt=""></td>
-
-                                        <td>
-
-                                            <h2>Zoe Butler</h2>
-                                        </td>
-
-                                        <td>zoebutler@example.com</td>
-                                        <td>444-555-9999</td>
-                                        <td>19 May 2012</td>
-                                        <td>
-                                            Pharmacist
-                                        </td>
-                                        <td     >
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i> <i
-                                                    class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -189,5 +69,78 @@
         .on('order.dt', () => eventFired('Order'))
         .on('search.dt', () => eventFired('Search'))
         .on('page.dt', () => eventFired('Page'));
+
+
+
+
+
+
+
+    $(document).ready(function () {
+        function loadUsers() {
+            $.ajax({
+                url: '{{ url("api/users") }}',
+
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var users = data;
+                    var table = $('#example').DataTable();
+
+                    if ($.fn.DataTable.isDataTable("#example")) {
+                        table.destroy();
+                    }
+
+                    var tableBody = $('#userbody');
+                    tableBody.empty();
+
+                    users.forEach(function (user) {
+                        let joinDate = new Date(user.created_at).toLocaleDateString('en-GB');
+
+                        var row = `<tr>
+                        <td><img src="${user.profile || '/default-avatar.png'}" class="rounded-circle" width="50" height="50"></td>
+                        <td>${user.fullname}</td>
+                        <td>${user.email}</td>
+                        <td>${user.phone}</td>
+                        <td>${joinDate}</td> 
+                        <td>${user.roleName}</td> 
+                        <td>
+                           <div class="icon" style="cursor:pointer">
+                                    <i class="fa fa-eye m-r-5 icon3 view-user" data-id="${user.id}"></i>
+                                    <i class="fa fa-pencil m-r-5 icon1 edit-user" data-id="${user.id}"></i>
+                                    <i class="fa fa-trash-o m-r-5 icon2 delete-user" data-id="${user.id}"></i>
+                                </div>
+                        </td>
+                    </tr>`;
+
+                        tableBody.append(row);
+                    });
+
+                    $('#example').DataTable({
+                        paging: true,
+                        searching: true,
+                        ordering: true,
+                        destroy: true
+                    });
+                },
+                error: function () {
+                    $('#example tbody').append('<tr><td colspan="7" class="text-center">No data available</td></tr>');
+                }
+            });
+        }
+
+        loadUsers(); // Call function to load data
+    });
+    $(document).on('click', '.view-user', function () {
+        var userId = $(this).data('id');
+        window.location.href = '/user/show/' + userId;
+    });
+
+    $(document).on('click', '.edit-user', function () {
+        var userId = $(this).data('id');
+        window.location.href = '/user/edit/' + userId;
+    });
+
+
 </script>
 @endsection

@@ -17,22 +17,23 @@ use App\Http\Controllers\Api\MedicalReportController;
 use App\Http\Controllers\Api\UserPermissionController;
 use App\Http\Controllers\api\ModuleController;
 use App\Models\Categories;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\DashboardController;
+
+Route::post('/login', [AuthController::class, 'login'])->withoutMiddleware('auth:sanctum');
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
+Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'user']);
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('add-user', [UserController::class, 'store']);
 
 
 
-// Route::apiResource('modules', ModuleController::class);
-Route::get('/get-modules', [ModuleController::class, 'getModules']);
 
-Route::get('/categories', function () {
-    return response()->json(Categories::all());
-});
+Route::get('/user_permissions/{userId}', [UserPermissionController::class, 'getPermissions']);
 
-Route::apiResource( 'rolee', RoleController::class);
+
+Route::apiResource('rolee', RoleController::class);
 
 Route::apiResource('medicines', MedicineController::class);
 
@@ -56,4 +57,14 @@ Route::apiResource('inventoryy', InventoryController::class);
 
 Route::apiResource('medical-reports', MedicalReportController::class);
 
-Route::apiResource( 'permissions', UserPermissionController::class);
+Route::apiResource('permissions', UserPermissionController::class);
+
+
+
+Route::get('modules', [ModuleController::class, 'index']);
+
+
+Route::get('/categories', function () {
+    return response()->json(Categories::all());
+});
+

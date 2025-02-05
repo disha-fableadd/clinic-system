@@ -27,7 +27,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 // login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('login', [LoginController::class, 'loginSubmit'])->name('login.submit');
+// Route::post('login', [LoginController::class, 'loginSubmit'])->name('login.submit');
 
 // profile
 
@@ -37,6 +37,13 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/user', [EmployeeController::class, 'index'])->name('user.index');
 Route::get('/user/create', [EmployeeController::class, 'create'])->name('user.create');
 
+Route::get('/user/show/{id}', function ($id) {
+    return view('user.show', ['user_id' => $id]);
+})->name('user.show');
+
+Route::get('/user/edit/{id}', function ($id) {
+    return view('user.edit', ['user_id' => $id]);
+})->name('user.edit');
 
 
 
@@ -89,6 +96,14 @@ Route::get('/treatment/create', [TreatmentController::class, 'create'])->name('t
 //services
 Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
 Route::get('/service/create', [ServiceController::class, 'create'])->name('service.create');
+
+Route::get('/service/show/{id}', function ($id) {
+    return view('service.show', ['service_id' => $id]);
+})->name('service.show');
+
+Route::get('/service/edit/{id}', function ($id) {
+    return view('service.edit', ['service_id' => $id]);
+})->name('service.edit');
 //inventory
 Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
 Route::get('/inventory/create', [InventoryController::class, 'create'])->name('inventory.create');

@@ -83,6 +83,7 @@
                 if ($.fn.DataTable.isDataTable("#example")) {
                     table.destroy();
                 }
+                
                 var tableBody = $('#rolesTableBody');
                 tableBody.empty();
                 roles.forEach(function (role, index) {

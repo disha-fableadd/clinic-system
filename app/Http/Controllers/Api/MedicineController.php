@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Medicine;
+use Illuminate\Support\Facades\Log;
+
 class MedicineController extends Controller
 {
     public function index()
@@ -38,6 +40,9 @@ class MedicineController extends Controller
     }
     
 
+
+
+    
     public function store(Request $request)
     {
         try {
@@ -57,8 +62,13 @@ class MedicineController extends Controller
             // Handle image upload
             $imagePath = null;
             if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('medicines', 'public');
+                $image = $request->file('image');
+            
+                
+                $imagePath = $image->store('medicines', 'public');
+                // dd($imagePath);
             }
+            
     
             // Create new medicine entry
             $medicine = Medicine::create([

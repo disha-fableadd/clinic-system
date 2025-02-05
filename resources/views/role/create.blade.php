@@ -23,7 +23,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label><i class="fas fa-user-tag  icon-style"></i> Role Name</label>
-                                <input class="form-control" type="text" name="name" >
+                                <input class="form-control" type="text" name="name">
                             </div>
                         </div>
                         <div class="col-sm-12">
@@ -55,18 +55,17 @@
             let formData = new FormData(this);
 
             $.ajax({
-                url: "{{ url('api/rolee') }}",  // Correct URL to call the API route
+                url: "{{ url('api/rolee') }}",
                 type: 'POST',
                 data: formData,
                 processData: false,
                 contentType: false,
+               
                 success: function (response) {
                     $('#successMessage').text(response.message || 'Role created successfully').show();
                     $('#roleForm')[0].reset();
-
-                    // Optionally, you can redirect here if needed
                     setTimeout(function () {
-                        window.location.href = "{{ route('role.index') }}"; // Redirect to index page if needed
+                        window.location.href = "{{ route('role.index') }}";
                     }, 1500);
                 },
                 error: function (xhr) {
@@ -74,6 +73,7 @@
                     $('#errorMessage').text(errorMessage).show();
                 }
             });
+
         });
     });
 </script>

@@ -42,7 +42,7 @@ div.dt-container .dt-paging .dt-paging-button.current, div.dt-container .dt-pagi
 }
 .card-body {
     flex: 1 1 auto;
-    padding:0 20px !important;
+    padding:0 20px ;
     /* height: 370px; */
 }
 .card-footer {
