@@ -161,9 +161,7 @@
                                     <div class="card-footer text-right" style="background-color:#87ceb0">
                                         <h3 style="float:left" class="text-dark"><i
                                                 class="fa fa-info-circle icon-style2"></i> Permissions</h3>
-                                        <a href="" class="btn btn-primary btn-rounded" style="color:black">
-                                            <input type="checkbox" id="selectAll"> Select All Modules
-                                        </a>
+
                                     </div>
 
                                     <div class="card-body">
@@ -175,7 +173,7 @@
                                                     <th>Insert</th>
                                                     <th>Edit</th>
                                                     <th>Delete</th>
-                                                    <th>All</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody id="modules">
@@ -188,12 +186,12 @@
                         </div>
 
                         <div class="button mb-4" style="display: flex; justify-content: end; margin: 0 5px;">
-                            <a href="#" class="btn btn-primary btn-rounded edit-medicine-btn"
+                            <a href="#" class="btn btn-primary btn-rounded edit-user-btn"
                                 style="color:black; margin-right:10px">
                                 <i class="fa fa-pencil-alt"></i> Edit User
                             </a>
 
-                            <button type="button" class="btn btn-danger btn-rounded delete-medicine"
+                            <button type="button" class="btn btn-danger btn-rounded delete-user"
                                 data-id="{{ $user_id }}">
                                 <i class="fa fa-trash"></i> Delete User
                             </button>
@@ -214,64 +212,60 @@
 </div>
 
 <script>
-    document.getElementById("selectAll").addEventListener("change", function () {
-        let checkboxes = document.querySelectorAll("tbody input[type='checkbox']");
-        checkboxes.forEach(cb => cb.checked = this.checked);
-    });
-
 
     $(document).ready(function () {
+        let token = localStorage.getItem('token');
+
+        if (!token) {
+            // Redirect to login if no token is found
+            window.location.href = "{{ route('login') }}";
+        }
+
         var userId = "{{ $user_id }}";
         fetch('/api/modules')
             .then(response => response.json())
             .then(modules => {
+
+
+
                 const tbody = $('tbody');
                 modules.forEach(module => {
                     const row = $('<tr>').attr('data-module-id', module.id);
 
                     row.append(`<td>${module.name}</td>`);
 
-                    const permissions = ['view', 'insert', 'edit', 'delete', 'all'];
+                    const permissions = ['view', 'create', 'update', 'delete'];
 
                     permissions.forEach(permission => {
                         const checkbox = $('<input>', { type: 'checkbox', class: permission });
                         const td = $('<td>').append(checkbox);
                         row.append(td);
-
-                        if (permission === 'all') {
-                            checkbox.change(function () {
-                                row.find('input[type=checkbox]').prop('checked', checkbox.prop('checked'));
-                            });
-                        }
                     });
 
                     tbody.append(row);
                 });
             });
+
         $.ajax({
             url: '/api/users/' + userId,
             type: 'GET',
             dataType: 'json',
+            headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
             success: function (data) {
-
+                console.log(data);
+                // return;
                 data.permissions.forEach(permission => {
-                    var modules = $('#modules');
-                    var moduleRow = modules.find('tr[data-module-id="' + permission.module_id + '"]');
                     var moduleRow = $('tr[data-module-id="' + permission.module_id + '"]');
-                    
-                    console.log(moduleRow,permission.module_id);
-                    
-                    ['insert', 'view', 'edit', 'delete'].forEach(function (permissionType) {
+
+                    ['view', 'create', 'update', 'delete'].forEach(function (permissionType) {
                         var checkbox = moduleRow.find('.' + permissionType);
                         if (checkbox.length) {
-                            var permissionTmp = false;
-                            if (permission[permissionType] === 1) {
-                                permissionTmp = true;
+                            if (permission[permissionType] == 1) {
+                                checkbox.prop('checked', true);
                             }
-                            checkbox.prop('checked', permissionTmp);
                         }
-                    })
 
+                    });
                 });
 
                 // Set the user details on the page
@@ -298,12 +292,87 @@
 
 
 
-        
+        if (userId) {
+            $.ajax({
+                url: '/api/users/' + userId,
+                method: 'GET',
+                headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+                success: function (data) {
+
+
+                    data.permissions.forEach(permission => {
+                        var moduleRow = $('tr[data-module-id="' + permission.module_id + '"]');
+
+                        ['view', 'create', 'update', 'delete'].forEach(function (permissionType) {
+                            var checkbox = moduleRow.find('.' + permissionType);
+                            if (checkbox.length) {
+                                if (permission[permissionType] == 1) {
+                                    checkbox.prop('checked', true);
+                                }
+                            }
+
+
+                        });
+                    });
 
 
 
+                    // Populate the form fields with the user data
+                    $('input[name="username"]').val(data.username);
+                    $('input[name="fullname"]').val(data.fullname);
+                    $('input[name="email"]').val(data.email);
+                    $('input[name="phone"]').val(data.phone);
+                    $('input[name="gender"][value="' + data.gender + '"]').prop('checked', true);
+                    $('input[name="birth_date"]').val(data.birth_date);
+                    $('input[name="address"]').val(data.address);
+                    $('select[name="city"]').val(data.city);
+                    $('select[name="state"]').val(data.state);
+                    $('select[name="shift"]').val(data.shift);
+                    $('input[name="salary"]').val(data.salary);
+                    $('#role-select').val(data.role_id); // Set selected role
+                    $(".edit-user-btn").attr("href", "/user/edit/" + userId); 
+                },
+                error: function (error) {
+                    console.log('Error fetching user data:', error);
+                }
+            });
+        }
+    
+        $(document).on('click', '.delete-user', function () {
+        var userId = $(this).data('id');
+
+        if (!userId) {
+            alert('Medicine ID not found!');
+            return;
+        }
+
+        if (confirm('Are you sure you want to delete this medicine?')) {
+            $.ajax({
+                url: '/api/users/' + userId,
+                type: 'DELETE',
+                
+                headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+                success: function (response) {
 
 
+                    $('button[data-id="' + userId + '"]').closest('tr').remove();
+
+
+                    $("#successMessage").text("user delete successfully!").fadeIn().delay(3000).fadeOut();
+                    setTimeout(function () {
+                        window.location.href = "{{ route('user.index') }}";
+                    }, 2000);
+                },
+
+            });
+        }
+    });
+    
+    
+    
+    
+    
+    
     });
 
 </script>

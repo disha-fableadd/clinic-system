@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('admin/assets/img/cliniclogohalf.png')}}">
     <title>Clinic System</title>
+
     <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/css/style.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -119,45 +120,105 @@
 </body>
 
 <script>
+
+
+
     $(document).ready(function () {
         // Check if the user is already logged in
-        if (localStorage.getItem('token')) {
-            window.location.href = "{{ route('dashboard') }}";  // Redirect to dashboard if logged in
+        let token = localStorage.getItem('token');
+        if (token) {
+            console.log("Token:", token);
+            window.location.href = "{{ route('dashboard') }}";
         }
 
-        // Login form submission
-        $(document).ready(function () {
-            $('#login-form').on('submit', function (e) {
-                e.preventDefault();
+        $('#login-form').on('submit', function (e) {
+            e.preventDefault();
 
-                var email = $('#email').val().trim();
-                var password = $('#password').val().trim();
+            var email = $('#email').val().trim();
+            var password = $('#password').val().trim();
 
-                $.ajax({
-                    url: "http://127.0.0.1:8000/api/login", // Explicit API URL
-                    method: "POST",
-                    contentType: "application/json",
-                    data: JSON.stringify({
-                        email: email,
-                        password: password
-                    }),
-                    success: function (response) {
-                        console.log(response);
+            $.ajax({
+                url: "http://127.0.0.1:8000/api/login",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    email: email,
+                    password: password
+                }),
+                success: function (response) {
+                    console.log("Login successful:", response);
+                    // if (response.access_token) {
+                    //     localStorage.setItem('token', response.access_token);
+                    //     console.log("Token stored:", response.access_token);
+                    //     window.location.href = "{{ route('dashboard') }}";
+                    // } else {
+                    //     console.error("No access token in response:", response);
+                    //     alert("Login failed: No access token received.");
+                    // }
+
+                    if (response.access_token) {
                         localStorage.setItem('token', response.access_token);
-                        window.location.href = "{{ route('dashboard') }}";
-                    },
-                    error: function (xhr) {
-                        console.log(xhr.responseText); // Debug response
-                        alert(xhr.responseJSON?.message || "Login failed");
+                        localStorage.setItem('role', response.user.role);
+
+
+                        if (response.user.role === 'Admin') {
+                            localStorage.setItem('token', response.access_token);
+                            console.log("Token stored:", response.access_token);
+                            window.location.href = "/dashboard";
+                        } 
+                        
+                        else if (response.user.role === 'Doctor') {
+                            localStorage.setItem('token', response.access_token);
+                            console.log("Token stored:", response.access_token);
+                            window.location.href = "/dashboard";
+                        }
+
+
+                        else if (response.user.role === 'Receptionist') {
+                            localStorage.setItem('token', response.access_token);
+                            console.log("Token stored:", response.access_token);
+                            window.location.href = "/dashboard";
+                        } 
+                        
+                        else {
+                            window.location.href = "/dashboard";
+                        }
+                    } else {
+                        console.error("No access token in response:", response);
+                        alert("Login failed: No access token received.");
                     }
-                });
+
+                },
+                error: function (xhr) {
+                    console.log(xhr.responseText); // Debug response
+                    var errorMessage = xhr.responseJSON?.message || "Login failed";
+                    alert(errorMessage);
+                }
             });
         });
 
+        // Logout button click event
+
+
+        // Fetch user data if the token is present
+        if (token) {
+            $.ajax({
+                url: "http://127.0.0.1:8000/api/user",
+                type: "GET",
+                headers: { "Authorization": "Bearer " + token },
+                success: function (response) {
+                    console.log("User Data:", response);
+                },
+                error: function (xhr, status, error) {
+                    if (xhr.status === 401) {
+                        console.error("Error fetching user data: Unauthorized. Please check your token.");
+                    } else {
+                        console.error("Error fetching user data:", error);
+                    }
+                }
+            });
+        }
     });
-
-
-
 
 </script>
 

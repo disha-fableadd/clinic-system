@@ -72,18 +72,28 @@
     });
 
     $(document).ready(function () {
+        let token = localStorage.getItem('token');
+
+        if (!token) {
+            // Redirect to login if no token is found
+            window.location.href = "{{ route('login') }}";
+        }
+    });
+    $(document).ready(function () {
 
         $.ajax({
             url: '/api/rolee',
             type: 'GET',
             dataType: 'json',
+            headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+
             success: function (data) {
                 var roles = data;
                 var table = $('#example').DataTable();
                 if ($.fn.DataTable.isDataTable("#example")) {
                     table.destroy();
                 }
-                
+
                 var tableBody = $('#rolesTableBody');
                 tableBody.empty();
                 roles.forEach(function (role, index) {
@@ -112,6 +122,13 @@
                     "destroy": true
                 });
             },
+            error: function (xhr) {
+                if (xhr.status === 401) {
+                    // alert("Unauthorized: Please log in first.");
+                    window.location.href = "{{ route('login') }}";
+                }
+            },
+
         });
 
 
@@ -133,13 +150,17 @@
             $.ajax({
                 url: '/api/rolee/' + roleId,
                 type: 'DELETE',
+                headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
                 success: function () {
-                   
-                    location.reload(); 
+
+                    location.reload();
                 },
-                error: function () {
-                    alert('Failed to delete role.');
+                error: function (xhr) {
+                if (xhr.status === 401) {
+                
+                    window.location.href = "{{ route('login') }}";
                 }
+            },
             });
         }
     });

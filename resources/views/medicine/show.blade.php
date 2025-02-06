@@ -208,6 +208,8 @@
             $.ajax({
                 url: '/api/medicines/' + medicineId,
                 type: 'DELETE',
+                
+                headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
                 success: function (response) {
 
 

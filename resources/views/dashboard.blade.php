@@ -404,28 +404,14 @@
 
 
 
-
     $(document).ready(function () {
-        let token = localStorage.getItem('token');
+    let token = localStorage.getItem('token');
 
-         else {
-            $.ajax({
-                url: "{{ url('/api/user') }}",
-                type: "GET",
-                headers: { "Authorization": "Bearer " + token },
-                success: function (response) {
-                    console.log("User Data:", response);
-                },
-
-            });
-        }
-
-
-    });
-
-
-
-
+    if (!token) {
+        // Redirect to login if no token is found
+        window.location.href = "{{ route('login') }}";
+    }
+});
 
 
 

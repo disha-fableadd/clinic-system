@@ -65,7 +65,7 @@
     <div class="content">
         <div class="row">
             <div class="col-6">
-                <h4 class="page-title" style="text-align:center;padding-right:200px">Add User</h4>
+                <h4 class="page-title" style="text-align:center;padding-right:200px">Edit User</h4>
             </div>
             <div class="col-6 text-center m-b-2" style="padding-left:220px">
                 <a href="{{ route('user.index') }}" class="btn btn-primary btn-rounded">
@@ -75,14 +75,15 @@
             </div>
         </div>
         <div id="successMessage" class="alert alert-success" style="display:none;"></div>
-                <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
+        <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
 
         <div class="row">
             <div class="col-12">
                 <form class="form-container" id="multiStepForm" method="POST" action=""
                     style="width:80% ;padding-bottom: 30px;">
                     @csrf
-                 
+                    <input type="hidden" name="user_id" id="user_id">
+
 
                     <!-- Step 1: Personal Information -->
                     <div class="form-step" id="step-1">
@@ -167,10 +168,17 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
+
                                             <label><i class="fas fa-image icon-style"></i> Profile Picture</label>
                                             <input type="file" class="form-control" name="profile">
+
+                                            <div id="imagePreviewContainer">
+                                                <img id="imagePreview" src="" alt="profile Image"
+                                                    style="max-width: 100px; display: none;">
+                                            </div>
                                         </div>
                                     </div>
+
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label><i class="fas fa-cake-candles icon-style"></i> Birthdate</label>
@@ -320,13 +328,25 @@
 
 <script>
 
-$(document).ready(function () {
+    $(document).ready(function () {
         let token = localStorage.getItem('token');
 
         if (!token) {
             // Redirect to login if no token is found
             window.location.href = "{{ route('login') }}";
         }
+
+    });
+
+    $(document).ready(function () {
+        // Preview the selected image
+        $('#profileImageInput').on('change', function (event) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').attr('src', e.target.result).show();
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        });
     });
 
     document.getElementById("selectAll").addEventListener("change", function () {
@@ -373,58 +393,22 @@ $(document).ready(function () {
 
     $(document).ready(function () {
 
-        $('#multiStepForm').submit(function (e) {
-            e.preventDefault();
 
-            var formData = new FormData(this);
+        let token = localStorage.getItem('token');
 
-            // Capture selected permissions
-            var permissions = [];
-            $('tbody tr').each(function () {
-                var moduleId = $(this).data('module-id');
-                var modulePermissions = {
-                    module_id: moduleId,
-                    create: $(this).find('.create').prop('checked'),
-                    view: $(this).find('.view').prop('checked'),
-                    update: $(this).find('.update').prop('checked'),
-                    delete: $(this).find('.delete').prop('checked'),
-                };
-                permissions.push(modulePermissions);
-            });
+        if (!token) {
+            // Redirect to login if no token is found
+            window.location.href = "{{ route('login') }}";
+        }
+        var userId = "{{ $user_id }}";
 
-   
-            formData.append('permissions', JSON.stringify(permissions));
-
-        
-            $.ajax({
-                url: '/api/users',
-                method: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
-                success: function (response) {
-                    $('#successMessage').text(response.message ).show();
-                    $('#multiStepForm')[0].reset();
-                    setTimeout(function () {
-                        window.location.href = "{{ route('user.index') }}";
-                    }, 1500);
-                },
-                error: function (response) {
-                    alert('Error adding user');
-                    console.log(response);
-                }
-            });
-        });
-
-        
         fetch('/api/modules')
             .then(response => response.json())
             .then(modules => {
                 const tbody = $('tbody');
                 modules.forEach(module => {
                     const row = $('<tr>').attr('data-module-id', module.id);
-                 
+
                     row.append(`<td>${module.name}</td>`);
 
                     const permissions = ['view', 'create', 'update', 'delete', 'all'];
@@ -444,8 +428,110 @@ $(document).ready(function () {
                     tbody.append(row);
                 });
             });
-    });
 
+
+
+
+
+        if (userId) {
+            $.ajax({
+                url: '/api/users/' + userId,
+                method: 'GET',
+                headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+                success: function (data) {
+
+
+                    data.permissions.forEach(permission => {
+                        var moduleRow = $('tr[data-module-id="' + permission.module_id + '"]');
+
+                        ['view', 'create', 'update', 'delete'].forEach(function (permissionType) {
+                            var checkbox = moduleRow.find('.' + permissionType);
+                            if (checkbox.length) {
+                                if (permission[permissionType] == 1) {
+                                    checkbox.prop('checked', true);
+                                }
+                            }
+
+
+                        });
+                    });
+
+
+
+                    // Populate the form fields with the user data
+                    $('input[name="username"]').val(data.username);
+                    $('input[name="fullname"]').val(data.fullname);
+                    $('input[name="email"]').val(data.email);
+                    $('input[name="phone"]').val(data.phone);
+                    $('input[name="gender"][value="' + data.gender + '"]').prop('checked', true);
+                    $('input[name="birth_date"]').val(data.birth_date);
+                    $('input[name="address"]').val(data.address);
+                    $('select[name="city"]').val(data.city);
+                    $('select[name="state"]').val(data.state);
+                    $('select[name="shift"]').val(data.shift);
+                    $('input[name="salary"]').val(data.salary);
+                    $('#role-select').val(data.role_id); // Set selected 
+
+
+                    if (data.profile) {
+                        $('#imagePreview').attr('src', '/storage/' + data.profile).show();
+                        $('#imagePreviewContainer').show();
+                    }
+                },
+                error: function (error) {
+                    console.log('Error fetching user data:', error);
+                }
+            });
+
+
+            $("#multiStepForm").on('submit', function (e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+                formData.append('_method', 'PUT');
+                var permissions = [];
+                $('tbody tr').each(function () {
+                    var moduleId = $(this).data('module-id');
+                    var modulePermissions = {
+                        module_id: moduleId,
+                        create: $(this).find('.create').prop('checked'),
+                        view: $(this).find('.view').prop('checked'),
+                        update: $(this).find('.update').prop('checked'),
+                        delete: $(this).find('.delete').prop('checked'),
+                    };
+                    permissions.push(modulePermissions);
+                });
+
+
+                formData.append('permissions', JSON.stringify(permissions));
+
+                $.ajax({
+                    url: '/api/users/' + userId,
+                    method: 'POST',
+                    headers: {
+                        "Authorization": "Bearer " + localStorage.getItem('token'),
+                    },
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+
+                        $('#successMessage').text(response.message).show();
+                        $('#errorMessage').hide();
+                        setTimeout(function () {
+                            window.location.href = "{{ route('user.index') }}";
+                        }, 2000);
+                    },
+                    error: function (xhr, status, error) {
+                        // On error, show an error message
+                        $('#errorMessage').text(xhr.responseJSON.message).show();
+                        $('#successMessage').hide();
+                    }
+                });
+            });
+        }
+
+    });
 
 </script>
 

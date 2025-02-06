@@ -88,6 +88,16 @@
 
 
 <script>
+
+    $(document).ready(function () {
+        let token = localStorage.getItem('token');
+
+        if (!token) {
+            // Redirect to login if no token is found
+            window.location.href = "{{ route('login') }}";
+        }
+    });
+
     $(document).ready(function () {
         var roleId = "{{ $role_id }}";
 
@@ -95,6 +105,8 @@
             url: '/api/rolee/' + roleId,
             type: 'GET',
             dataType: 'json',
+            headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+
             success: function (role) {
 
                 $('.role_name').text(role.name);
@@ -104,9 +116,13 @@
                 $('#role_created_at').text(role.created_at);
                 $('#role_updated_at').text(role.updated_at);
             },
-            error: function () {
-                alert('Failed to fetch role details.');
-            }
+            error: function (xhr) {
+                if (xhr.status === 401) {
+                    // alert("Unauthorized: Please log in first.");
+                    window.location.href = "{{ route('login') }}";
+                }
+            },
+
         });
     });
 
@@ -124,6 +140,8 @@
             $.ajax({
                 url: '/api/rolee/' + roleId,
                 type: 'DELETE',
+                headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+
 
                 success: function (response) {
                     // alert('Role deleted successfully!');
@@ -136,6 +154,12 @@
                     setTimeout(function () {
                         window.location.href = "{{ route('role.index') }}";
                     }, 2000);
+                },
+                error: function (xhr) {
+                    if (xhr.status === 401) {
+                        // alert("Unauthorized: Please log in first.");
+                        window.location.href = "{{ route('login') }}";
+                    }
                 },
 
             });
@@ -161,14 +185,20 @@
         $.ajax({
             url: "/api/rolee/" + roleId,
             type: "GET",
+            headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+
             success: function (role) {
                 $("#roleName").val(role.name);
                 $("#roleDescription").val(role.description);
                 $(".edit-role-btn").attr("href", "/role/edit/" + role.id);
             },
-            error: function () {
-                alert("Failed to fetch role details.");
-            }
+            error: function (xhr) {
+                if (xhr.status === 401) {
+                    // alert("Unauthorized: Please log in first.");
+                    window.location.href = "{{ route('login') }}";
+                }
+            },
+
         });
 
 

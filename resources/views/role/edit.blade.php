@@ -63,7 +63,14 @@
         });
     });
 
+    $(document).ready(function () {
+        let token = localStorage.getItem('token');
 
+        if (!token) {
+            // Redirect to login if no token is found
+            window.location.href = "{{ route('login') }}";
+        }
+    });
 
     $(document).ready(function () {
         var pathParts = window.location.pathname.split('/');
@@ -82,13 +89,18 @@
         $.ajax({
             url: "/api/rolee/" + roleId,
             type: "GET",
+            headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+
             success: function (role) {
                 $("#roleName").val(role.name);
                 $("#roleDescription").val(role.description);
             },
-            error: function () {
-                alert("Failed to fetch role details.");
-            }
+            error: function (xhr) {
+                if (xhr.status === 401) {
+                    // alert("Unauthorized: Please log in first.");
+                    window.location.href = "{{ route('login') }}";
+                }
+            },
         });
 
 
@@ -123,6 +135,8 @@
                     description: roleDescription
                 }),
                 contentType: "application/json",
+                headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+
                 success: function (response) {
                     console.log("Update Success:", response);
                     $("#successMessage").text("Role updated successfully!").fadeIn().delay(3000).fadeOut();
@@ -132,8 +146,12 @@
                     }, 2000);
                 },
                 error: function (xhr) {
-                    alert("Error: " + xhr.responseJSON.message);
-                }
+                    if (xhr.status === 401) {
+                        // alert("Unauthorized: Please log in first.");
+                        window.location.href = "{{ route('login') }}";
+                    }
+                },
+
             });
         });
     });
