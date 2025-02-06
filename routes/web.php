@@ -26,8 +26,11 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // login
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+// Route::get('/login', [LoginController::class, 'index'])->name('login');
 // Route::post('login', [LoginController::class, 'loginSubmit'])->name('login.submit');
+
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 // profile
 
@@ -44,6 +47,10 @@ Route::get('/user/show/{id}', function ($id) {
 Route::get('/user/edit/{id}', function ($id) {
     return view('user.edit', ['user_id' => $id]);
 })->name('user.edit');
+
+Route::get('/user/profile/{id}', function ($id) {
+    return view('user.profile', ['user_id' => $id]);
+})->name('user.profile');
 
 
 

@@ -79,20 +79,21 @@
         display: none;
     }
 
-  .mini-sidebar .regular-logo {
+    .mini-sidebar .regular-logo {
         display: none;
     }
 
-   .mini-sidebar .mini-logo {
+    .mini-sidebar .mini-logo {
         display: block;
     }
 </style>
 <div class="header">
     <div class="header-left d-flex align-items-center h-100">
         <a href="{{ route('dashboard') }}" class="logo">
-            <img src="{{asset('admin/assets/img/cliniclogo.png')}}" class="regular-logo" alt="" style="height:auto;width:60%;">
-            </a>
-            <a href="{{ route('dashboard') }}" class="logo1">
+            <img src="{{asset('admin/assets/img/cliniclogo.png')}}" class="regular-logo" alt=""
+                style="height:auto;width:60%;">
+        </a>
+        <a href="{{ route('dashboard') }}" class="logo1">
             <img src="{{asset('admin/assets/img/cliniclogohalf.png')}}" alt="Mini Logo" class="mini-logo"
                 style="height:auto;width:70%;">
             <!-- <span>Preclinic</span> -->
@@ -111,9 +112,9 @@
     </div>
     <ul class="nav user-menu float-right d-flex align-items-center h-100">
 
-        <li class="nav-item dropdown has-arrow" >
+        <li class="nav-item dropdown has-arrow">
             <a href="{{ route('appointment.create') }}" style="padding-right:0">
-            <button class="btn custom-btn"><i class="fa-solid fa-plus"></i> Create Appointment</button>
+                <button class="btn custom-btn"><i class="fa-solid fa-plus"></i> Create Appointment</button>
             </a>
         </li>
         <li class="nav-item dropdown has-arrow">
@@ -136,20 +137,20 @@
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                 <span class="user-img">
-                    <img class="rounded-circle mr-1" src="{{asset('admin/assets/img/user.jpg')}}" width="24"
-                        alt="Admin">
+                    <img id="" class="rounded-circle mr-1 user-image" src="" width="24" alt="User Profile Image">
+
                     <span class="status online"></span>
                 </span>
-                <span>Admin</span>
+                <span class="user-name"></span>
             </a>
             <div class="dropdown-menu"
                 style="position: absolute;will-change: transform;top: 8px;box-shadow: -1px 0px 4px 0px rgba(0, 0, 0, 0.15);left: -10px;transform: translate3d(0px, 50px, 0px);border: none;">
-                <a class="dropdown-item" href="{{ route('profile') }}" style="font-size: 16px;"><i
+                <a class="dropdown-item" href="{{ route('profile')}}" style="font-size: 16px;"><i
                         class="fa fa-user"></i> My Profile</a>
 
-                <!-- <a class="dropdown-item" href="settings.html" style="font-size: 16px;"><i class="fa-solid fa-file"></i>
-                    User Log</a> -->
-                <a class="dropdown-item" href="" style="font-size: 16px;" id="logout"><i class="fa fa-sign-out-alt"></i>
+
+                <a class="dropdown-item" href="" style="font-size: 16px;" id="logout-button"><i
+                        class="fa fa-sign-out-alt"></i>
                     Logout</a>
             </div>
         </li>
@@ -158,30 +159,62 @@
 </div>
 <script>
 
-if (!localStorage.getItem('token')) {
-      
-        window.location.href = "{{ route('login') }}";
-    }
+    $(document).ready(function () {
+        $('#logout-button').on('click', function () {
+            token = localStorage.getItem('token');
+            if (!token) {
+                console.error("No token found in localStorage.");
+                alert("No token found. Please log in again.");
+                window.location.href = "{{ route('login') }}";
+                return;
+            }
 
+            console.log("Token:", token);
 
-    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: "http://127.0.0.1:8000/api/logout",
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + token,
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                    console.log("Logout successful:", response);
+                    localStorage.removeItem('token');
+                    window.location.href = "{{ route('login') }}";
+                },
+                error: function (xhr) {
+                    console.error("Logout failed:", xhr.responseText);
+                    var errorMessage = xhr.responseJSON?.message || "Logout failed. Please try again.";
+                    alert(errorMessage);
+                    localStorage.removeItem('token');
+                    // window.location.href = "{{ route('login') }}";
+                }
+            });
+        });
+    });
 
-    $('#logout').click(function() {
+    $(document).ready(function () {
         $.ajax({
-            url: "{{ url('/api/logout') }}",  
-            type: "POST",
+            url: '/api/profile',
+            method: 'GET',
             headers: {
-                "Authorization": "Bearer " + localStorage.getItem('token'),
-                "X-CSRF-TOKEN": csrfToken 
+                'Authorization': 'Bearer ' + your_access_token
             },
-            success: function(response) {
-                localStorage.removeItem('token');  
-                window.location.href = "{{ route('login') }}";  
+            success: function (response) {
+                if (response.profileImage) {
+
+                    $('.user-image').attr('src', response.profileImage);
+                    $('.user-name').text(response.user.fullname);
+                } else {
+                    console.log('No profile image found');
+                }
             },
-            error: function(xhr, status, error) {
-                console.error('Logout failed: ', error);
-                alert('Error during logout!');
+            error: function () {
+                console.log('Error fetching profile data');
             }
         });
     });
+
+
 </script>

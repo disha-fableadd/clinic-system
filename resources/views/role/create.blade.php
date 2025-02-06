@@ -48,6 +48,18 @@
 </div>
 
 <script>
+
+    $(document).ready(function () {
+        let token = localStorage.getItem('token');
+
+        if (!token) {
+            // Redirect to login if no token is found
+            window.location.href = "{{ route('login') }}";
+        }
+    });
+
+
+
     $(document).ready(function () {
         $('#roleForm').on('submit', function (e) {
             e.preventDefault();
@@ -60,7 +72,8 @@
                 data: formData,
                 processData: false,
                 contentType: false,
-               
+                headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+                
                 success: function (response) {
                     $('#successMessage').text(response.message || 'Role created successfully').show();
                     $('#roleForm')[0].reset();

@@ -6,8 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
+
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum'); // Protect all methods with authentication
+    }
+
     // Get all roles
     public function index()
     {
@@ -31,11 +38,6 @@ class RoleController extends Controller
     }
 
     // Get a single role by ID
-    // public function show($id)
-    // {
-    //     $role = Role::findOrFail($id);
-    //     return response()->json($role, 200);
-    // }
     public function show($id)
     {
         $role = Role::find($id);
@@ -43,21 +45,19 @@ class RoleController extends Controller
             return response()->json(['message' => 'Role not found'], 404);
         }
         return response()->json($role);
-        // return view('role.show', compact('role'));
     }
+
     // Update a role
     public function update(Request $request, $id)
     {
         try {
             $role = Role::findOrFail($id);
 
-            // Validate the request
             $request->validate([
                 'name' => 'required|string|unique:role,name,' . $role->id,
                 'description' => 'required|string',
             ]);
 
-            // If validation passes, update the role
             $role->update([
                 'name' => $request->name,
                 'description' => $request->description,
@@ -66,9 +66,8 @@ class RoleController extends Controller
             return response()->json($role, 200);
 
         } catch (ValidationException $e) {
-            // Return a custom error response in JSON
             return response()->json([
-                'errors' => $e->errors(), // Get the validation errors
+                'errors' => $e->errors(),
             ], 422);
         }
     }
@@ -82,4 +81,3 @@ class RoleController extends Controller
         return response()->json(['message' => 'Role deleted successfully'], 200);
     }
 }
-

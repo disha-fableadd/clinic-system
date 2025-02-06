@@ -20,9 +20,26 @@ use App\Models\Categories;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\DashboardController;
 
-Route::post('/login', [AuthController::class, 'login'])->withoutMiddleware('auth:sanctum');
-Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
-Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'user']);
+
+
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+// Protected routes
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/user', [AuthController::class, 'user'])->name('user');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::apiResource('rolee', RoleController::class);
+    Route::apiResource('users', UserController::class);
+});
+// routes/api.php
+Route::middleware('auth:sanctum')->get('/profile', [AuthController::class, 'profile']);
+
+Route::middleware('auth:sanctum')->put('/profile', [AuthController::class, 'updateProfile']);
+
+
+
+
 
 
 Route::post('add-user', [UserController::class, 'store']);
@@ -33,13 +50,13 @@ Route::post('add-user', [UserController::class, 'store']);
 Route::get('/user_permissions/{userId}', [UserPermissionController::class, 'getPermissions']);
 
 
-Route::apiResource('rolee', RoleController::class);
+// Route::apiResource('rolee', RoleController::class);
 
 Route::apiResource('medicines', MedicineController::class);
 
 Route::apiResource('patient', PatientController::class);
 
-Route::apiResource('users', UserController::class);
+// Route::apiResource('users', UserController::class);
 
 Route::apiResource('user-details', UserDetailsController::class);
 

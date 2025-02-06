@@ -101,13 +101,6 @@
             text-align: left !important;
         }
 
-        /* 
-        .menu-link1.active {
-            font-weight: bold;
-            text-decoration-line: underline;
-            text-decoration-style: double;
-
-        } */
 
 
         .chart-container {

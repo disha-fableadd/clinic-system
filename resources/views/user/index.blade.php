@@ -52,6 +52,14 @@
 
 
 <script>
+    $(document).ready(function () {
+        let token = localStorage.getItem('token');
+
+        if (!token) {
+            // Redirect to login if no token is found
+            window.location.href = "{{ route('login') }}";
+        }
+    });
     document.addEventListener('DOMContentLoaded', function () {
         const toggleBtn = document.getElementById('toggle_btn');
         toggleBtn.addEventListener('click', function () {
@@ -83,6 +91,7 @@
 
                 type: 'GET',
                 dataType: 'json',
+                headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
                 success: function (data) {
                     var users = data;
                     var table = $('#example').DataTable();
@@ -139,6 +148,25 @@
     $(document).on('click', '.edit-user', function () {
         var userId = $(this).data('id');
         window.location.href = '/user/edit/' + userId;
+    });
+    $(document).on('click', '.delete-user', function () {
+        var userId = $(this).data('id');
+
+      
+        if (confirm("Are you sure you want to delete this user?")) {
+            $.ajax({
+                url: '/api/users/' + userId,  // Endpoint to delete the user
+                type: 'DELETE',
+                dataType: 'json',
+                headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    alert("An error occurred while deleting the user.");
+                }
+            });
+        }
     });
 
 

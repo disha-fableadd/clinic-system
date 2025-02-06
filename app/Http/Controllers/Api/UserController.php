@@ -11,12 +11,48 @@ use App\Models\UserPermission;
 use App\Models\UserDetails;
 use Illuminate\Support\Facades\Log;
 
-
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
-    /**
-     * Get All Users
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+
+
+    public function profile($id)
+    {
+        $userId = Auth::id();  // Get the logged-in user's ID
+        $user = User::with('details')->find($id);
+    
+        if ($user) {
+            // Add role and other details to the user
+            $user->roleName = $user->role ? $user->role->name : 'N/A';
+            $user->address = $user->details ? $user->details->address : 'N/A';
+            $user->city = $user->details ? $user->details->city : 'N/A';
+            $user->state = $user->details ? $user->details->state : 'N/A';
+            $user->gender = $user->details ? $user->details->gender : 'N/A';
+            $user->birth_date = $user->details ? $user->details->birth_date : 'N/A';
+            $user->shift = $user->details ? $user->details->shift : 'N/A';
+            $user->salary = $user->details ? $user->details->salary : 'N/A';
+    
+            // Fetch user permissions
+            $permissions = UserPermission::where('user_id', $id)->get();
+            $user->permissions = $permissions;
+    
+            // Return the user data along with the userId in a single response
+            return response()->json([
+                'user' => $user,
+                'userId' => $userId
+            ]);
+        }
+    
+        return response()->json(['message' => 'User not found'], 404);
+    }
+    
+
+
+
     public function index()
     {
         $users = User::all()->map(function ($user) {
@@ -146,37 +182,6 @@ class UserController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function show($id)
     {
         // Fetch user with details
@@ -209,60 +214,171 @@ class UserController extends Controller
 
 
 
-
-    /**
-     * Update a user
-     */
-    public function update(Request $request, $id)
+    public function Update(Request $request, $id = null)
     {
-        $user = User::find($id);
-
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
-        }
-
-        // Validate Input
-        $validator = Validator::make($request->all(), [
+        // Validate User Input
+        $userValidator = Validator::make($request->all(), [
             'role_id' => 'required|int|max:255',
-            'username' => 'required|string|max:255|unique:user,username,' . $id,
+            'username' => "required|string|max:255|unique:user,username," . $id,
             'fullname' => 'required|string|max:255',
-            'email' => 'required|email|unique:user,email,' . $id,
+            'email' => "required|email|unique:user,email," . $id,
             'phone' => 'nullable|string|max:15',
-            'profile' => 'nullable|string',
-            'password' => 'nullable|string|min:6',
+            'profile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'password' => $id ? 'nullable|string|min:6' : 'required|string|min:6',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+        if ($userValidator->fails()) {
+            return response()->json(['errors' => $userValidator->errors()], 422);
         }
 
-        // Update Password if Provided
-        if ($request->has('password')) {
-            $request->merge(['password' => Hash::make($request->password)]);
+        $user = $id ? User::findOrFail($id) : new User();
+
+        // Handle Image Upload
+        if ($request->hasFile('profile')) {
+            $image = $request->file('profile');
+            $imagePath = $image->store('users', 'public');
+            $user->profile = $imagePath;
         }
 
-        // Update User
-        $user->update($request->all());
+        // Update or Create User
+        $user->role_id = $request->role_id;
+        $user->username = $request->username;
+        $user->fullname = $request->fullname;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
+
+        // Validate and Update/Create User Details
+        $detailsValidator = Validator::make($request->all(), [
+            'address' => 'required|string|max:500',
+            'state' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'gender' => 'required|in:Male,Female,Other',
+            'birth_date' => 'required|date',
+            'shift' => 'nullable|string|max:50',
+            'salary' => 'nullable|numeric|min:0',
+        ]);
+
+        if ($detailsValidator->fails()) {
+            return response()->json(['errors' => $detailsValidator->errors()], 422);
+        }
+
+        $details = UserDetails::updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'address' => $request->address,
+                'state' => $request->state,
+                'city' => $request->city,
+                'gender' => $request->gender,
+                'birth_date' => $request->birth_date,
+                'shift' => $request->shift,
+                'salary' => $request->salary,
+            ]
+        );
+
+        // Decode the permissions JSON
+        $permissions = json_decode($request->permissions, true);
+
+        // Validate the permissions data
+        $permissionsValidator = Validator::make(['permissions' => $permissions], [
+            'permissions' => 'required|array',
+            'permissions.*.module_id' => 'required|exists:modules,id',
+            'permissions.*.create' => 'nullable|boolean',
+            'permissions.*.view' => 'nullable|boolean',
+            'permissions.*.update' => 'nullable|boolean',
+            'permissions.*.delete' => 'nullable|boolean',
+        ]);
+
+        if ($permissionsValidator->fails()) {
+            return response()->json(['errors' => $permissionsValidator->errors()], 422);
+        }
+
+        $currentPermissions = UserPermission::where('user_id', $user->id)->get();
+
+        foreach ($permissions as $permission) {
+            // Make sure every permission has the 'create', 'view', 'update', and 'delete' keys
+            $permission['create'] = $permission['create'] ?? false;
+            $permission['view'] = $permission['view'] ?? false;
+            $permission['update'] = $permission['update'] ?? false;
+            $permission['delete'] = $permission['delete'] ?? false;
+
+            // Check if the permission for the module already exists
+            $existingPermission = $currentPermissions->firstWhere('module_id', $permission['module_id']);
+
+            // If permission exists and no changes in permission, skip update
+            if (
+                $existingPermission &&
+                $existingPermission->create == $permission['create'] &&
+                $existingPermission->view == $permission['view'] &&
+                $existingPermission->update == $permission['update'] &&
+                $existingPermission->delete == $permission['delete']
+            ) {
+                continue; // Skip this iteration if no changes
+            }
+
+            // If permission exists, update it; if not, create new
+            if ($existingPermission) {
+                $existingPermission->update([
+                    'create' => $permission['create'],
+                    'view' => $permission['view'],
+                    'update' => $permission['update'],
+                    'delete' => $permission['delete'],
+                ]);
+            } else {
+                UserPermission::create([
+                    'user_id' => $user->id,
+                    'module_id' => $permission['module_id'],
+                    'create' => $permission['create'],
+                    'view' => $permission['view'],
+                    'update' => $permission['update'],
+                    'delete' => $permission['delete'],
+                ]);
+            }
+        }
 
         return response()->json([
-            'message' => 'User updated successfully',
-            'user' => $user
-        ]);
+            'message' => $id ? 'User updated successfully' : 'User created successfully',
+            'user' => $user,
+            'details' => $details,
+        ], $id ? 200 : 201);
+
+
+
     }
 
-    /**
-     * Delete a user
-     */
+
+
+
+
+
+
+
+
+
+
     public function destroy($id)
-    {
-        $user = User::find($id);
+{
+   
+    $user = User::find($id);
 
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
-        }
-
-        $user->delete();
-
-        return response()->json(['message' => 'User deleted successfully']);
+   
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
     }
+
+  
+    $user->details()->delete();  
+    $user->permissions()->delete();  
+
+    
+    $user->delete();
+
+   
+    return response()->json(['message' => 'User and related details deleted successfully']);
+}
+
+    
 }
