@@ -8,17 +8,20 @@
             <div class="col-6">
                 <h4 class="page-title text-center" style="padding-left: 130px;">Add Appointment</h4>
             </div>
+            @if(app('hasPermission')(29, 'view'))
             <div class="col-6 text-center m-b-2" style="padding-right: 75px;">
                 <a href="{{ route('appointment.index') }}" class="btn btn-primary btn-rounded">
                     <i class="fa fa-eye m-r-5 icon3  "></i>
                     All Appointment
                 </a>
             </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-12">
                 <form class="form-container" id="multiStepForm" method="POST" action=""
                     style="width:60% ;padding-bottom: 60px;">
+                    @csrf
                     <!-- Step 1 -->
                     <div class="form-step" id="step-1">
                         <div class="row">

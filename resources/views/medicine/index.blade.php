@@ -18,9 +18,12 @@
                     <div class="card-header" style="background-color:#f89884;">
                         <h3 class="card-title d-inline-block text-white"> <i class="fas fa-pills px-2"
                                 style="font-size:20px"></i>All Medicines </h3>
-                        <a href="{{ route('medicine.create') }}" class="btn  btn-rounded float-right"
-                            style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Medicines
-                        </a>
+                        @if(app('hasPermission')(27, 'create'))
+
+                            <a href="{{ route('medicine.create') }}" class="btn  btn-rounded float-right"
+                                style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Medicines
+                            </a>
+                        @endif
                     </div>
                     <div class="card-body ">
                         <div class="table-responsive">
@@ -95,7 +98,7 @@
                 tableBody.empty();
 
 
-                data.forEach(function (medicine,index) {
+                data.forEach(function (medicine, index) {
                     tableBody.append(`
                         <tr>
                              <td>${index + 1}</td>
@@ -105,9 +108,9 @@
                             <td>${medicine.description}</td>
                             <td>
                                 <div class="icon" style="cursor:pointer">
-                                    <i class="fa fa-eye m-r-5 icon3 view-medicine" data-id="${medicine.id}"></i>
-                                    <i class="fa fa-pencil m-r-5 icon1 edit-medicine" data-id="${medicine.id}"></i>
-                                    <i class="fa fa-trash-o m-r-5 icon2 delete-medicine" data-id="${medicine.id}"></i>
+                                   @if(app('hasPermission')(27, 'view'))  <i class="fa fa-eye m-r-5 icon3 view-medicine" data-id="${medicine.id}"></i>@endif
+                                     @if(app('hasPermission')(27, 'update'))<i class="fa fa-pencil m-r-5 icon1 edit-medicine" data-id="${medicine.id}"></i>@endif
+                                     @if(app('hasPermission')(27, 'delete'))<i class="fa fa-trash-o m-r-5 icon2 delete-medicine" data-id="${medicine.id}"></i>@endif
                                 </div>
                             </td>
                         </tr>
@@ -150,7 +153,7 @@
                 url: '/api/medicines/' + medicineId, // Ensure this matches your route
                 type: 'DELETE',
                 success: function (response) {
-                
+
                     location.reload(); // Reload the page to update the list
                 },
                 error: function (xhr) {

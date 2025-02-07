@@ -67,12 +67,14 @@
             <div class="col-6">
                 <h4 class="page-title" style="text-align:center;padding-right:200px">Edit User</h4>
             </div>
-            <div class="col-6 text-center m-b-2" style="padding-left:220px">
-                <a href="{{ route('user.index') }}" class="btn btn-primary btn-rounded">
-                    <i class="fa fa-eye m-r-5"></i>
-                    All Users
-                </a>
-            </div>
+            @if(app('hasPermission')(26, 'view'))
+                <div class="col-6 text-center m-b-2" style="padding-left:220px">
+                    <a href="{{ route('user.index') }}" class="btn btn-primary btn-rounded">
+                        <i class="fa fa-eye m-r-5"></i>
+                        All Users
+                    </a>
+                </div>
+            @endif
         </div>
         <div id="successMessage" class="alert alert-success" style="display:none;"></div>
         <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
@@ -197,24 +199,7 @@
                     <!-- Step 2: Profile & Address -->
                     <div class="form-step" id="step-2" style="display:none;">
                         <div class="row">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label><i class="fas fa-lock icon-style"></i> Password</label>
-                                            <input type="password" class="form-control" name="password"
-                                                placeholder="Enter Password">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label><i class="fas fa-lock icon-style"></i> Confirm Password</label>
-                                            <input type="password" class="form-control" name="password_confirmation"
-                                                placeholder="Confirm Password">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
 
                             <div class="col-12">
                                 <div class="form-group">
@@ -256,6 +241,7 @@
                                         <option value="Morning">Morning</option>
                                         <option value="Afternoon">Afternoon</option>
                                         <option value="Night">Night</option>
+                                        <option value="FullDay">FullDay</option>
                                     </select>
                                 </div>
                             </div>
@@ -408,7 +394,6 @@
                 const tbody = $('tbody');
                 modules.forEach(module => {
                     const row = $('<tr>').attr('data-module-id', module.id);
-
                     row.append(`<td>${module.name}</td>`);
 
                     const permissions = ['view', 'create', 'update', 'delete', 'all'];
@@ -427,11 +412,40 @@
 
                     tbody.append(row);
                 });
+
+
+
+                if (userId) {
+                    $.ajax({
+                        url: '/api/users/' + userId,
+                        method: 'GET',
+                        headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+                        success: function (data) {
+                            console.log('User Data:', data);
+
+                            data.permissions.forEach(permission => {
+                                var moduleRow = $('tr[data-module-id="' + permission.module_id + '"]');
+
+                                if (moduleRow.length === 0) {
+                                    console.log('Module row not found for module_id:', permission.module_id);
+                                }
+
+                                ['view', 'create', 'update', 'delete'].forEach(function (permissionType) {
+                                    var checkbox = moduleRow.find('.' + permissionType);
+                                    if (checkbox.length) {
+                                        if (permission[permissionType] == 1) {
+                                            checkbox.prop('checked', true);
+                                        }
+                                    }
+                                });
+                            });
+                        },
+                        error: function (error) {
+                            console.log('Error fetching user data:', error);
+                        }
+                    });
+                }
             });
-
-
-
-
 
         if (userId) {
             $.ajax({
@@ -441,20 +455,20 @@
                 success: function (data) {
 
 
-                    data.permissions.forEach(permission => {
-                        var moduleRow = $('tr[data-module-id="' + permission.module_id + '"]');
+                    // data.permissions.forEach(permission => {
+                    //     var moduleRow = $('tr[data-module-id="' + permission.module_id + '"]');
 
-                        ['view', 'create', 'update', 'delete'].forEach(function (permissionType) {
-                            var checkbox = moduleRow.find('.' + permissionType);
-                            if (checkbox.length) {
-                                if (permission[permissionType] == 1) {
-                                    checkbox.prop('checked', true);
-                                }
-                            }
+                    //     ['view', 'create', 'update', 'delete'].forEach(function (permissionType) {
+                    //         var checkbox = moduleRow.find('.' + permissionType);
+                    //         if (checkbox.length) {
+                    //             if (permission[permissionType] == 1) {
+                    //                 checkbox.prop('checked', true);
+                    //             }
+                    //         }
 
 
-                        });
-                    });
+                    //     });
+                    // });
 
 
 

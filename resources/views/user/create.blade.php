@@ -67,12 +67,14 @@
             <div class="col-6">
                 <h4 class="page-title" style="text-align:center;padding-right:200px">Add User</h4>
             </div>
+            @if(app('hasPermission')(26, 'view'))
             <div class="col-6 text-center m-b-2" style="padding-left:220px">
                 <a href="{{ route('user.index') }}" class="btn btn-primary btn-rounded">
                     <i class="fa fa-eye m-r-5"></i>
                     All Users
                 </a>
             </div>
+            @endif
         </div>
         <div id="successMessage" class="alert alert-success" style="display:none;"></div>
                 <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>

@@ -6,22 +6,19 @@
             <div class="col-sm-12 col-12">
                 <h4 class="page-title" style="text-align:left; !important">All Treatment Details</h4>
             </div>
-            <!-- <div class="col-sm-8 col-9 text-right m-b-2 ">
-                <a href="{{ route('treatment.create') }}" class="btn btn-primary  btn-rounded"><i
-                        class="fa fa-plus"></i>
-                    Add Treatment</a>
-            </div> -->
         </div>
 
         <div class="row mt-2">
             <div class="col-md-12">
-                <div class="card" >
-                    <div class="card-header"
-                        style="background-color:#f89884;">
-                        <h3 class="card-title d-inline-block text-white"><i class="fa fa-calendar-check-o px-2" style="font-size:20px"></i> All Treatment </h3>
-                        <a href="{{ route('treatment.create') }}" class="btn  btn-rounded float-right"
-                            style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Treatment
-                        </a>
+                <div class="card">
+                    <div class="card-header" style="background-color:#f89884;">
+                        <h3 class="card-title d-inline-block text-white"><i class="fa fa-calendar-check-o px-2"
+                                style="font-size:20px"></i> All Treatment </h3>
+                        @if(app('hasPermission')(30, 'create'))
+                            <a href="{{ route('treatment.create') }}" class="btn  btn-rounded float-right"
+                                style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Treatment
+                            </a>
+                        @endif
                     </div>
                     <div class="card-body ">
                         <div class="table-responsive">
@@ -33,110 +30,10 @@
                                         <th>Treatment Name</th>
                                         <th>Doctor Name</th>
                                         <th>Description</th>
-
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody >
-                                    <tr>
-
-                                        <td>1</td>
-                                        <td>Dentists</td>
-                                        <td>john doe</td>
-                                        <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-
-                                        <td>
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i>
-                                                <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td>2</td>
-                                        <td>Neurology</td>
-                                        <td>john doe</td>
-                                        <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                        <td>
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i>
-                                                <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td>3</td>
-                                        <td>Opthalmology</td>
-                                        <td>john doe</td>
-                                        <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                        <td>
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i>
-                                                <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td>4</td>
-                                        <td>Orthopedics</td>
-                                        <td>john doe</td>
-                                        <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                        <td>
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i>
-                                                <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td>5</td>
-                                        <td>Cancer Department</td>
-                                        <td>john doe</td>
-                                        <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                        <td>
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i>
-                                                <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td>6</td>
-                                        <td>ENT Department</td>
-                                        <td>john doe</td>
-                                        <td>asjdhfjytdfdvdsgkffwkuyfekfvrykrfteuyf</td>
-                                        <td>
-                                            <div class="icon">
-                                                <i class="fa fa-eye m-r-5 icon3"></i> <i
-                                                    class="fa fa-pencil m-r-5 icon1"></i>
-                                                <i class="fa fa-trash-o m-r-5 icon2"></i>
-
-                                            </div>
-
-                                        </td>
-                                    </tr>
-
-
+                                <tbody id="treatmentTableBody">
                                 </tbody>
                             </table>
                         </div>
@@ -145,31 +42,56 @@
             </div>
         </div>
     </div>
-
 </div>
 
-
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const toggleBtn = document.getElementById('toggle_btn');
-        const sidebar = document.querySelector('.sidebar'); // Assuming the sidebar has this class
+    $(document).ready(function () {
+        let token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = "{{ route('login') }}";
+        }
 
-        toggleBtn.addEventListener('click', function () {
-            if (sidebar) {
-                sidebar.classList.toggle('mini-sidebar'); // This toggles the class on the sidebar
+        $.ajax({
+            url: '/api/treatments', // Adjust API endpoint for treatments
+            type: 'GET',
+            dataType: 'json',
+            headers: { "Authorization": "Bearer " + token },
+            success: function (data) {
+                console.log(data);
+                var treatments = data;
+                var table = $('#example').DataTable();
+                if ($.fn.DataTable.isDataTable("#example")) {
+                    table.destroy();
+                }
+                var tableBody = $('#treatmentTableBody');
+                tableBody.empty();
+                treatments.forEach(function (treatment, index) {
+                    var row = '<tr>';
+                    row += '<td>' + (index + 1) + '</td>';
+                    row += '<td>' + treatment.name + '</td>';
+                    row += '<td>' + treatment.doctor_name + '</td>';
+                    row += '<td>' + treatment.description + '</td>';
+                    row += '<td>';
+                    row += '<div class="icon" style="cursor:pointer">';
+                    row += '   @if(app('hasPermission')(31, 'view'))<i class="fa fa-eye m-r-5 icon3 view-treatment" data-id="' + treatment.id + '"></i>@endif';
+                    row += '   @if(app('hasPermission')(31, 'update'))<i class="fa fa-pencil m-r-5 icon1 edit-treatment" data-id="' + treatment.id + '"></i>@endif';
+                    row += '   @if(app('hasPermission')(31, 'delete'))<i class="fa fa-trash-o m-r-5 icon2 delete-treatment" data-id="' + treatment.id + '"></i>@endif';
+                    row += '</div>';
+                    row += '</td>';
+                    row += '</tr>';
+                    tableBody.append(row);
+                });
+                $('#example').DataTable({
+                    paging: true,
+                    searching: true,
+                    ordering: true,
+                    destroy: true
+                });
+            },
+            error: function () {
+                $('#treatmentTableBody').append('<tr><td colspan="5" class="text-center">No data available</td></tr>');
             }
         });
     });
-    new DataTable('#example');
-    function eventFired(type) {
-        let n = document.querySelector('#demo_info');
-
-        n.scrollTop = n.scrollHeight;
-    }
-
-    new DataTable('#example')
-        .on('order.dt', () => eventFired('Order'))
-        .on('search.dt', () => eventFired('Search'))
-        .on('page.dt', () => eventFired('Page'));
 </script>
 @endsection

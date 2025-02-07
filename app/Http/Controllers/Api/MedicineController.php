@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Medicine;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class MedicineController extends Controller
 {
@@ -61,13 +62,22 @@ class MedicineController extends Controller
     
             // Handle image upload
             $imagePath = null;
+
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
             
-                
+                // Ensure the 'medicines' directory exists inside 'storage/app/public'
+                if (!Storage::exists('public/medicines')) {
+                    Storage::makeDirectory('public/medicines');
+                }
+            
+                // Store the file in 'storage/app/public/medicines'
                 $imagePath = $image->store('medicines', 'public');
-                // dd($imagePath);
+            
+                // Get the public URL of the stored image
+                // dd(Storage::url($imagePath));
             }
+            
             
     
             // Create new medicine entry

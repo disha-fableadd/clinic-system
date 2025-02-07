@@ -80,42 +80,42 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  
-
-  $(document).ready(function() {
-    let token = localStorage.getItem('token');
 
 
+    $(document).ready(function () {
+        let token = localStorage.getItem('token');
 
-    $.ajax({
-        url: '/api/profile',  // Adjust the URL if needed
-        method: 'GET',
-        headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
-        success: function(response) {
-            if(response.user && response.userDetails) {
-                $('.user-name').text(response.user.fullname);
-                $('#role-select').text(response.user.role ? response.user.role.name : 'N/A');
-                $('#user-name-detail').text(response.user.username);
-                $('#user-email').text(response.user.email);
-                $('#user-phone').text(response.user.phone);
-                $('#user-dob').text(response.userDetails.birth_date);
-                $('#user-address').text(response.userDetails.address);
-                $('#user-gender').text(response.userDetails.gender);
-                $('#city').text(response.userDetails.city);
-                $('#state').text(response.userDetails.state);
-                $('#shift').text(response.userDetails.shift);
-                $('#salary').text(response.userDetails.salary);
-                // If there's a profile image path, update it
-                $('.user-image').attr('src', response.user.profile ? '/storage/' + response.user.profile : 'default-avatar.jpg');
-            } else {
-                console.log('User or user details not found');
+
+
+        $.ajax({
+            url: '/api/profile',  // Adjust the URL if needed
+            method: 'GET',
+            headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+            success: function (response) {
+                if (response.user && response.userDetails) {
+                    $('.user-name').text(response.user.fullname);
+                    $('#role-select').text(response.user.role ? response.user.role.name : 'N/A');
+                    $('#user-name-detail').text(response.user.username);
+                    $('#user-email').text(response.user.email);
+                    $('#user-phone').text(response.user.phone);
+                    $('#user-dob').text(response.userDetails.birth_date);
+                    $('#user-address').text(response.userDetails.address);
+                    $('#user-gender').text(response.userDetails.gender);
+                    $('#city').text(response.userDetails.city);
+                    $('#state').text(response.userDetails.state);
+                    $('#shift').text(response.userDetails.shift);
+                    $('#salary').text(response.userDetails.salary);
+                    // If there's a profile image path, update it
+                    $('.user-image').attr('src', response.user.profile ? '/storage/' + response.user.profile : 'default-avatar.jpg');
+                } else {
+                    console.log('User or user details not found');
+                }
+            },
+            error: function (error) {
+                console.log('Error fetching profile:', error);
             }
-        },
-        error: function(error) {
-            console.log('Error fetching profile:', error);
-        }
+        });
     });
-});
 
 </script>
 

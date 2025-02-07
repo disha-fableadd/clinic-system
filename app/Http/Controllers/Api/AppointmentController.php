@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Validator;
 
 class AppointmentController extends Controller
 {
-    /**
-     * Get all appointments.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
     public function index()
     {
         $appointments = Appointments::with(['patient', 'doctor', 'treatment'])->get();

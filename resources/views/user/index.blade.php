@@ -18,9 +18,11 @@
                     <div class="card-header" style="background-color:#f89884;">
                         <h3 class="card-title d-inline-block text-white"><i class="fas fa-user  px-2"
                                 style="font-size:20px"></i>All User </h3>
+                                @if(app('hasPermission')(26, 'create'))
                         <a href="{{ route('user.create') }}" class="btn  btn-rounded float-right"
                             style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add User
                         </a>
+                        @endif
                     </div>
                     <div class="card-body ">
                         <div class="table-responsive">
@@ -115,9 +117,9 @@
                         <td>${user.roleName}</td> 
                         <td>
                            <div class="icon" style="cursor:pointer">
-                                    <i class="fa fa-eye m-r-5 icon3 view-user" data-id="${user.id}"></i>
-                                    <i class="fa fa-pencil m-r-5 icon1 edit-user" data-id="${user.id}"></i>
-                                    <i class="fa fa-trash-o m-r-5 icon2 delete-user" data-id="${user.id}"></i>
+                                        @if(app('hasPermission')(26, 'view')) <i class="fa fa-eye m-r-5 icon3 view-user" data-id="${user.id}"></i> @endif
+                                        @if(app('hasPermission')(26, 'update')) <i class="fa fa-pencil m-r-5 icon1 edit-user" data-id="${user.id}"></i> @endif
+                                        @if(app('hasPermission')(26, 'delete')) <i class="fa fa-trash-o m-r-5 icon2 delete-user" data-id="${user.id}"></i>@endif
                                 </div>
                         </td>
                     </tr>`;

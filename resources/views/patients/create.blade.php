@@ -7,12 +7,14 @@
             <div class=" col-6">
                 <h4 class="page-title text-center" style="padding-left: 70px;">Add Patient</h4>
             </div>
+            @if(app('hasPermission')(28, 'view'))
             <div class=" col-6 text-center m-b-2" style="padding-right: 60px;">
                 <a href="{{ route('patients.index') }}" class="btn btn-primary btn-rounded">
                     <i class="fa fa-eye m-r-5 icon3  "></i>
                     All Patients
                 </a>
             </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-12">

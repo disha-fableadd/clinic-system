@@ -19,9 +19,11 @@
                     <div class="card-header"
                         style="background-color:#f89884;">
                         <h3 class="card-title d-inline-block text-white"><i class="fa fa-cogs px-2" style="font-size:20px"></i>All Inventory </h3>
+                        @if(app('hasPermission')(34, 'create'))
                         <a href="{{ route('inventory.create') }}" class="btn  btn-rounded float-right"
                             style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Inventory
                         </a>
+                        @endif
                     </div>
                     <div class="card-body ">
                         <div class="table-responsive">

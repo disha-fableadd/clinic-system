@@ -15,13 +15,15 @@
 
         <div class="row mt-2">
             <div class="col-md-12">
-                <div class="card" >
-                    <div class="card-header"
-                        style="background-color:#f89884;">
-                        <h3 class="card-title d-inline-block text-white"><i class="fa fa-calendar px-2" style="font-size:20px"></i>All Appointment </h3>
-                        <a href="{{ route('appointment.create') }}" class="btn  btn-rounded float-right"
-                            style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Appointment
-                        </a>
+                <div class="card">
+                    <div class="card-header" style="background-color:#f89884;">
+                        <h3 class="card-title d-inline-block text-white"><i class="fa fa-calendar px-2"
+                                style="font-size:20px"></i>All Appointment </h3>
+                        @if(app('hasPermission')(29, 'create'))
+                            <a href="{{ route('appointment.create') }}" class="btn  btn-rounded float-right"
+                                style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Appointment
+                            </a>
+                        @endif
                     </div>
                     <div class="card-body ">
                         <div class="table-responsive">
@@ -38,10 +40,10 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody >
+                                <tbody>
                                     <tr>
-                                    <td><img width="28" height="28" src="{{asset('admin/assets/img/user-03.jpg')}}"
-                                    class="rounded-circle" alt=""></td>
+                                        <td><img width="28" height="28" src="{{asset('admin/assets/img/user-03.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
                                         <td> Denise Stevens</td>
                                         <td>Henry Daniels</td>
                                         <td>Cardiology</td>
@@ -57,8 +59,8 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                    <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-02.jpg')}}"
-                                    class="rounded-circle" alt=""></td>
+                                        <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-02.jpg')}}"
+                                                class="rounded-circle" alt=""></td>
                                         <td> Denise Stevens</td>
                                         <td>Henry Daniels</td>
                                         <td>Cardiology</td>
@@ -87,11 +89,11 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const toggleBtn = document.getElementById('toggle_btn');
-        const sidebar = document.querySelector('.sidebar'); 
+        const sidebar = document.querySelector('.sidebar');
 
         toggleBtn.addEventListener('click', function () {
             if (sidebar) {
-                sidebar.classList.toggle('mini-sidebar'); 
+                sidebar.classList.toggle('mini-sidebar');
             }
         });
     });

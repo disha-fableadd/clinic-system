@@ -25,7 +25,24 @@ class UserPermissionController extends Controller
 
 
 
-
+    public function getUserPermissions(Request $request)
+    {
+        $user = auth()->user();
+    
+        $permissions = $user->permissions()->get()->mapWithKeys(function ($permission) {
+            return [
+                $permission->module->name => [
+                    'create' => (int) $permission->create,
+                    'view' => (int) $permission->view,
+                    'update' => (int) $permission->update,
+                    'delete' => (int) $permission->delete,
+                ]
+            ];
+        });
+    
+        return response()->json(['permissions' => $permissions]);
+    }
+    
 
 
 

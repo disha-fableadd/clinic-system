@@ -27,10 +27,12 @@
                         <h2 class="card-title d-inline-block text-white">
                             <i class="fas fa-user-tag  px-2" style="font-size:20px"></i> All Role
                         </h2>
-                        <a href="{{ route('role.create') }}" class="btn btn-rounded float-right"
-                            style="background-color: #fed9cf; padding: 6px 12px;">
-                            <i class="fa fa-plus"></i> Add Role
-                        </a>
+                        @if(app('hasPermission')(38, 'create'))
+                            <a href="{{ route('role.create') }}" class="btn btn-rounded float-right"
+                                style="background-color: #fed9cf; padding: 6px 12px;">
+                                <i class="fa fa-plus"></i> Add Role
+                            </a>
+                        @endif
                     </div>
                     <div class="card-body ">
                         <div class="table-responsive">
@@ -104,9 +106,9 @@
                     row += '<td>' + role.created_at.split(' ')[0] + '</td>';
                     row += '<td>';
                     row += '<div class="icon" style="cursor:pointer">';
-                    row += '<i class="fa fa-eye m-r-5 icon3 view-role" data-id="' + role.id + '"></i>';
-                    row += '<i class="fa fa-pencil m-r-5 icon1 edit-role" data-id="' + role.id + '"></i>';
-                    row += '<i class="fa fa-trash-o m-r-5 icon2 delete-role" data-id="' + role.id + '"></i>';
+                    row += ' @if(app('hasPermission')(38, 'view'))<i class="fa fa-eye m-r-5 icon3 view-role" data-id="' + role.id + '"></i>@endif';
+                    row += ' @if(app('hasPermission')(38, 'update'))<i class="fa fa-pencil m-r-5 icon1 edit-role" data-id="' + role.id + '"></i>@endif';
+                    row += ' @if(app('hasPermission')(38, 'delete'))<i class="fa fa-trash-o m-r-5 icon2 delete-role" data-id="' + role.id + '"></i>  @endif';
                     row += '</div>';
                     row += '</td>';
                     row += '</tr>';
@@ -156,11 +158,11 @@
                     location.reload();
                 },
                 error: function (xhr) {
-                if (xhr.status === 401) {
-                
-                    window.location.href = "{{ route('login') }}";
-                }
-            },
+                    if (xhr.status === 401) {
+
+                        window.location.href = "{{ route('login') }}";
+                    }
+                },
             });
         }
     });

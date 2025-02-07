@@ -31,6 +31,8 @@
 
 
 
+
+
     <!-- DataTables CSS -->
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
@@ -63,7 +65,7 @@
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css">
@@ -71,10 +73,11 @@
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
 
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 
-<meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
 
@@ -104,9 +107,10 @@
 
 
         .chart-container {
-    width: 512px;
-    height: 430px; /* Adjust as needed */
-}
+            width: 512px;
+            height: 430px;
+            /* Adjust as needed */
+        }
 
         .icon-style {
             background-color: white;
@@ -207,8 +211,24 @@
 
         @yield('content')
         @yield('scripts')
-        <script>
+        @php
+            $permissions = \App\Models\UserPermission::where('user_id', auth()->id())
+                ->with('module')
+                ->get()
+                ->mapWithKeys(function ($permission) {
+                    return [
+                        $permission->module->name => [
+                            'view' => $permission->view,
+                            'create' => $permission->create,
+                            'update' => $permission->update,
+                            'delete' => $permission->delete,
+                        ],
+                    ];
+                });
+        @endphp
 
+        <script>
+            localStorage.setItem('permissions', {!! json_encode($permissions) !!});
             new DataTable('#example');
             // function eventFired(type) {
             //     let n = document.querySelector('#demo_info');
