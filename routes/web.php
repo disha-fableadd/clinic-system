@@ -100,6 +100,15 @@ Route::get('/appointment/create', [AppointmentController::class, 'create'])->nam
 
 Route::get('/treatment', [TreatmentController::class, 'index'])->name('treatment.index');
 Route::get('/treatment/create', [TreatmentController::class, 'create'])->name('treatment.create');
+Route::get('/treatment/show/{id}', function ($id) {
+    return view('treatment.show', ['treatment_id' => $id]);
+})->name('treatment.show');
+
+Route::get('/treatment/edit/{id}', function ($id) {
+    return view('treatment.edit', ['treatment_id' => $id]);
+})->name('treatment.edit');
+
+
 //services
 Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
 Route::get('/service/create', [ServiceController::class, 'create'])->name('service.create');
@@ -117,6 +126,18 @@ Route::get('/inventory/create', [InventoryController::class, 'create'])->name('i
 //suplier
 Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier.index');
 Route::get('/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
+
+Route::get('/supplier/show/{id}', function ($id) {
+    return view('supplier.show', ['supplier_id' => $id]);
+})->name('supplier.show');
+
+Route::get('/supplier/edit/{id}', function ($id) {
+    return view('supplier.edit', ['supplier_id' => $id]);
+})->name('supplier.edit');
+
+
+
+
 //report
 Route::get('/report', [MedicalReportController::class, 'index'])->name('report.index');
 Route::get('/report/create', [MedicalReportController::class, 'create'])->name('report.create');

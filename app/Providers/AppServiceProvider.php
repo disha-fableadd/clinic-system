@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->app->singleton('hasPermission', function () {
+            return function ($moduleId, $action) {
+                $user = Auth::user();
+                if (!$user || !isset($user->permissions)) {
+                    return false;
+                }
+                // dd($user->role);
+                $permission = collect($user->permissions)->firstWhere('module_id', $moduleId);
+                return $permission ? $permission[$action] == 1 : false;
+            };
+        });
     }
 }

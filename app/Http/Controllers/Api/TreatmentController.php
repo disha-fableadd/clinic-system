@@ -6,16 +6,41 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Treatment;
 use Illuminate\Support\Facades\Validator;
+use App\Models\User;
+use App\Models\Role;
 
 class TreatmentController extends Controller
 {
-    /**
-     * Get all treatments.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+    
+
+
+
+
+
+
     public function index()
     {
-        return response()->json(Treatment::all(), 200);
+        $treatments = Treatment::select('treatments.*', 'user.fullname as doctor_name')
+            ->join('user', 'treatments.doctor_id', '=', 'user.id') // Adjust table names if needed
+            ->get();
+    
+        return response()->json($treatments, 200);
     }
+    
+
+
+
+
+
+
+
+
+
+    
 
     /**
      * Store a new treatment.

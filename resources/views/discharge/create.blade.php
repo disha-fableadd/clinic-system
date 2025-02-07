@@ -8,12 +8,14 @@
             <div class="col-6 ">
                 <h4 class="page-title" style="text-align:center;padding-left: 180px;">Add Discharge Details</h4>
             </div>
+            @if(app('hasPermission')(33, 'view'))
             <div class="col-6 text-center m-b-2" style="padding-right: 100px;">
                 <a href="{{ route('discharge.index') }}" class="btn btn-primary btn-rounded">
                     <i class="fa fa-eye m-r-5 icon3  "></i>
                     All Discharge Details
                 </a>
             </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-12">

@@ -92,15 +92,18 @@
                         </div>
 
                         <div class="button mb-4" style="display: flex; justify-content: end; margin: 0 5px;">
-                            <a href="#" class="btn btn-primary btn-rounded edit-medicine-btn"
-                                style="color:black; margin-right:10px">
-                                <i class="fa fa-pencil-alt"></i> Edit Medicine
-                            </a>
-
-                            <button type="button" class="btn btn-danger btn-rounded delete-medicine"
-                                data-id="{{ $medicine_id }}">
-                                <i class="fa fa-trash"></i> Delete Medicine
-                            </button>
+                            @if(app('hasPermission')(27, 'update'))
+                                <a href="#" class="btn btn-primary btn-rounded edit-medicine-btn"
+                                    style="color:black; margin-right:10px">
+                                    <i class="fa fa-pencil-alt"></i> Edit Medicine
+                                </a>
+                            @endif
+                            @if(app('hasPermission')(27, 'delete'))
+                                <button type="button" class="btn btn-danger btn-rounded delete-medicine"
+                                    data-id="{{ $medicine_id }}">
+                                    <i class="fa fa-trash"></i> Delete Medicine
+                                </button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -208,7 +211,7 @@
             $.ajax({
                 url: '/api/medicines/' + medicineId,
                 type: 'DELETE',
-                
+
                 headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
                 success: function (response) {
 

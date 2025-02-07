@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('content')  
+@section('content')
 
 <div class="page-wrapper">
     <div class="content">
@@ -8,11 +8,13 @@
             <div class=" col-6">
                 <h4 class="page-title text-center" style="padding-left: 70px;">Add Medicine</h4>
             </div>
+            @if(app('hasPermission')(27, 'view'))
             <div class=" col-6 text-center m-b-2" style="padding-right: 60px;">
                 <a href="{{ route('medicine.index') }}" class="btn btn-primary btn-rounded">
                     <i class="fa fa-eye m-r-5"></i> All Medicines
                 </a>
             </div>
+            @endif
         </div>
 
         <div class="row">
@@ -31,7 +33,6 @@
                                     <select class="form-control" name="category_id" id="categoryDropdown" required>
                                         <option value="">Select Category</option>
                                     </select>
-
                                 </div>
                             </div>
                             <div class="col-sm-12">
@@ -135,27 +136,97 @@
     </div>
 </div>
 
+<!-- Include jQuery Validation Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
 <script>
     function nextStep() {
-        document.getElementById('step-1').style.display = 'none';
-        document.getElementById('step-2').style.display = 'block';
+        // Validate only the visible step
+        var validator = $("#medicineForm").validate();
+        if (validator.element("#categoryDropdown") && validator.element("[name='name']")) {
+            document.getElementById('step-1').style.display = 'none';
+            document.getElementById('step-2').style.display = 'block';
+        }
     }
 
     function prevStep() {
         document.getElementById('step-2').style.display = 'none';
         document.getElementById('step-1').style.display = 'block';
     }
+
     $(document).ready(function () {
         $('.datetimepicker').datepicker({
             format: 'dd-mm-yyyy',
             autoclose: true,
             todayHighlight: true
         });
-    });
 
+        // Initialize form validation
+        $('#medicineForm').validate({
+            ignore: ":hidden:not(.datetimepicker)", // Ignore hidden fields except datetimepicker
+            rules: {
+                category_id: {
+                    required: true
+                },
+                name: {
+                    required: true,
+                    minlength: 3
+                },
+                unit: {
+                    required: true
+                },
+                quantity: {
+                    required: true,
+                    digits: true
+                },
+                manufacture_date: {
+                    required: true
+                },
+                expiry_date: {
+                    required: true
+                },
+                status: {
+                    required: true
+                }
+            },
+            messages: {
+                category_id: {
+                    required: "Please select a category"
+                },
+                name: {
+                    required: "Please enter the medicine name",
+                    minlength: "Medicine name must be at least 3 characters long"
+                },
+                unit: {
+                    required: "Please enter the unit"
+                },
+                quantity: {
+                    required: "Please enter the quantity",
+                    digits: "Quantity must be a number"
+                },
+                manufacture_date: {
+                    required: "Please enter the manufacture date"
+                },
+                expiry_date: {
+                    required: "Please enter the expiry date"
+                },
+                status: {
+                    required: "Please select a status"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
 
-
-    $(document).ready(function () {
         fetchCategories();
 
         function fetchCategories() {
@@ -176,66 +247,57 @@
                 }
             });
         }
-    });
 
-
-    $(document).ready(function () {
         $('#medicineForm').on('submit', function (e) {
             e.preventDefault();
 
-            var manufactureDate = $('#manufacture_date').val();
-            if (manufactureDate) {
-                var manufactureParts = manufactureDate.split('-'); // "dd-mm-yyyy"
-                manufactureDate = manufactureParts[2] + '-' + manufactureParts[1] + '-' + manufactureParts[0]; // Convert to "yyyy-mm-dd"
-                $('#manufacture_date').val(manufactureDate);
-            }
-
-            // Convert expiry_date from dd-mm-yyyy to yyyy-mm-dd
-            var expiryDate = $('#expiry_date').val();
-            if (expiryDate) {
-                var expiryParts = expiryDate.split('-'); // "dd-mm-yyyy"
-                expiryDate = expiryParts[2] + '-' + expiryParts[1] + '-' + expiryParts[0]; // Convert to "yyyy-mm-dd"
-                $('#expiry_date').val(expiryDate);
-            }
-
-
-            var formData = new FormData(this);
-
-            console.log(formData);
-            $.ajax({
-                url: "{{ url('api/medicines') }}",
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    $('#successMessage').text(response.message || 'Medicine created successfully').show();
-                    $('#medicineForm')[0].reset();
-
-
-                    setTimeout(function () {
-                        window.location.href = "{{ route('medicine.index') }}";
-                    }, 1500);
-                },
-                error: function (xhr) {
-
-                    var errors = xhr.responseJSON.errors;
-                    console.log(errors);
-
-
-
+            if ($('#medicineForm').valid()) {
+                var manufactureDate = $('#manufacture_date').val();
+                if (manufactureDate) {
+                    var manufactureParts = manufactureDate.split('-'); // "dd-mm-yyyy"
+                    manufactureDate = manufactureParts[2] + '-' + manufactureParts[1] + '-' + manufactureParts[0]; // Convert to "yyyy-mm-dd"
+                    $('#manufacture_date').val(manufactureDate);
                 }
-            });
+
+                // Convert expiry_date from dd-mm-yyyy to yyyy-mm-dd
+                var expiryDate = $('#expiry_date').val();
+                if (expiryDate) {
+                    var expiryParts = expiryDate.split('-'); // "dd-mm-yyyy"
+                    expiryDate = expiryParts[2] + '-' + expiryParts[1] + '-' + expiryParts[0]; // Convert to "yyyy-mm-dd"
+                    $('#expiry_date').val(expiryDate);
+                }
+
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: "{{ url('api/medicines') }}",
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        $('#successMessage').text(response.message || 'Medicine created successfully').show();
+                        $('#medicineForm')[0].reset();
+
+                        setTimeout(function () {
+                            window.location.href = "{{ route('medicine.index') }}";
+                        }, 1500);
+                    },
+                    error: function (xhr) {
+                        var errors = xhr.responseJSON.errors;
+                        if (errors) {
+                            $.each(errors, function (field, errorMessages) {
+                                var errorMessage = errorMessages.join('<br>');
+                                $('[name="' + field + '"]').after('<span class="invalid-feedback">' + errorMessage + '</span>');
+                            });
+                        } else {
+                            $('#errorMessage').text('Something went wrong.').show();
+                        }
+                    }
+                });
+            }
         });
     });
-
-
-
-
-
-
-
-
 </script>
 
 @endsection

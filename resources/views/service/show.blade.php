@@ -9,11 +9,13 @@
                     <i class="fa fa-cogs"></i> Service Details
                 </h4>
             </div>
+            @if(app('hasPermission')(31, 'view'))
             <div class="col-sm-8 col-9 text-right m-b-2">
                 <a href="{{ route('service.index') }}" class="btn btn-primary btn-rounded">
                     <i class="fa fa-arrow-left"></i> Back to Services
                 </a>
             </div>
+            @endif
         </div>
 
         <div class="row mt-5">
@@ -55,15 +57,18 @@
                         </p>
 
                         <div class="button mb-4" style="display: flex; justify-content: end; margin: 0 5px;">
+                        @if(app('hasPermission')(31, 'update'))
                             <a href="#" class="btn btn-primary btn-rounded edit-service-btn"
                                 style="color:black; margin-right:10px">
                                 <i class="fa fa-pencil-alt"></i> Edit Service
                             </a>
-
+                            @endif
+                            @if(app('hasPermission')(31, 'delete'))
                             <button type="button" class="btn btn-danger btn-rounded delete-service"
                                 data-id="{{ $service_id }}">
                                 <i class="fa fa-trash"></i> Delete Service
                             </button>
+                            @endif
                         </div>
 
                     </div>

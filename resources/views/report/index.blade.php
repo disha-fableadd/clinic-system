@@ -18,9 +18,11 @@
                     <div class="card-header" style="background-color:#f89884;">
                         <h3 class="card-title d-inline-block text-white"><i class="fa fa-procedures px-2"
                                 style="font-size: 20px;"></i>All Report </h3>
-                        <a href="{{ route('report.create') }}" class="btn  btn-rounded float-right"
-                            style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Report
-                        </a>
+                        @if(app('hasPermission')(36, 'create'))
+                            <a href="{{ route('report.create') }}" class="btn  btn-rounded float-right"
+                                style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Report
+                            </a>
+                        @endif
                     </div>
                     <div class="card-body ">
                         <div class="table-responsive">

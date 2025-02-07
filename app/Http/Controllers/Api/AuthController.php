@@ -7,51 +7,82 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\UserPermission;
 use Validator;
 use Illuminate\Support\Facades\Log;
 class AuthController extends Controller
 {
 
 
+    // public function login(Request $request)
+    // {
+    //     if (Auth::check()) {
+    //         return response()->json(['message' => 'User is already logged in'], 200);
+    //     }
+
+    //     $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //     ]);
+
+    //     $user = User::where('email', $request->email)->first();
+
+    //     if (!$user || !Hash::check($request->password, $user->password)) {
+    //         return response()->json(['message' => 'Invalid credentials'], 401);
+    //     }
+
+    //     // Create the token
+    //     $token = $user->createToken('auth_token')->plainTextToken;
+
+    //     return response()->json([
+    //         'access_token' => $token,
+    //         'token_type' => 'Bearer',
+    //         'user' => [
+    //             'id' => $user->id,
+    //             'email' => $user->email,
+    //             'role' => $user->role->name,
+    //         ],
+    //     ]);
+    
+    // }\
+
+
+
     public function login(Request $request)
     {
-        if (Auth::check()) {
-            return response()->json(['message' => 'User is already logged in'], 200);
+        $credentials = $request->only('email', 'password');
+    
+        if (!Auth::attempt($credentials)) {
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
-
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
-        }
-
-        // Create the token
-        $token = $user->createToken('auth_token')->plainTextToken;
-
+    
+        $user = Auth::user();
+        $token = $user->createToken('authToken')->plainTextToken;
+    
+        // Fetch User Permissions
+        $permissions = UserPermission::where('user_id', $user->id)
+            ->pluck('module_id', 'view', 'create', 'update', 'delete')
+            ->toArray();
+    
         return response()->json([
             'access_token' => $token,
-            'token_type' => 'Bearer',
             'user' => [
                 'id' => $user->id,
-                'email' => $user->email,
-                'role' => $user->role->name,
+                'role' => $user->role,
+                'permissions' => $permissions,
             ],
         ]);
-    
     }
+    
 
 
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
-        return response()->json(['message' => 'Successfully logged out']);
+    
+        return response()->json(['message' => 'Logged out successfully'], 200);
     }
-
+    
 
     public function user(Request $request)
     {

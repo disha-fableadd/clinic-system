@@ -5,18 +5,45 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Patients;
+use App\Models\Appointments;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\UserPermission;
 use App\Models\UserDetails;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:sanctum');
+    }
+
+    public function getTotalUsers()
+    {
+        $totalUsers = User::count(); // Count all users
+        return response()->json(['total_users' => $totalUsers]);
+    }
+    public function getTotalDoctors()
+    {
+        $totalDoctors = User::whereHas('role', function ($query) {
+            $query->where('name', 'Doctor'); 
+        })->count();
+    
+        return response()->json(['total_doctors' => $totalDoctors]);
+    }
+    public function getTotalPatient()
+    {
+        $totalpatient = Patients::count(); 
+        return response()->json(['total_patient' => $totalpatient]);
+    }
+    public function getTotalAppointment()
+    {
+        $totalappointment = Appointments::count(); 
+        return response()->json(['total_appointment' => $totalappointment]);
     }
 
 
@@ -95,7 +122,11 @@ class UserController extends Controller
         $imagePath = null;
         if ($request->hasFile('profile')) {
             $image = $request->file('profile');
-            // Store the image in the 'users' folder under 'public' disk
+
+
+            if (!Storage::exists('public/users')) {
+                Storage::makeDirectory('public/users');
+            }
             $imagePath = $image->store('users', 'public');
         }
 
@@ -251,7 +282,7 @@ class UserController extends Controller
         }
         $user->save();
 
-        // Validate and Update/Create User Details
+      
         $detailsValidator = Validator::make($request->all(), [
             'address' => 'required|string|max:500',
             'state' => 'required|string|max:255',
@@ -279,10 +310,10 @@ class UserController extends Controller
             ]
         );
 
-        // Decode the permissions JSON
+     
         $permissions = json_decode($request->permissions, true);
 
-        // Validate the permissions data
+       
         $permissionsValidator = Validator::make(['permissions' => $permissions], [
             'permissions' => 'required|array',
             'permissions.*.module_id' => 'required|exists:modules,id',
@@ -299,16 +330,14 @@ class UserController extends Controller
         $currentPermissions = UserPermission::where('user_id', $user->id)->get();
 
         foreach ($permissions as $permission) {
-            // Make sure every permission has the 'create', 'view', 'update', and 'delete' keys
+           
             $permission['create'] = $permission['create'] ?? false;
             $permission['view'] = $permission['view'] ?? false;
             $permission['update'] = $permission['update'] ?? false;
             $permission['delete'] = $permission['delete'] ?? false;
 
-            // Check if the permission for the module already exists
             $existingPermission = $currentPermissions->firstWhere('module_id', $permission['module_id']);
 
-            // If permission exists and no changes in permission, skip update
             if (
                 $existingPermission &&
                 $existingPermission->create == $permission['create'] &&
@@ -316,10 +345,9 @@ class UserController extends Controller
                 $existingPermission->update == $permission['update'] &&
                 $existingPermission->delete == $permission['delete']
             ) {
-                continue; // Skip this iteration if no changes
+                continue;
             }
 
-            // If permission exists, update it; if not, create new
             if ($existingPermission) {
                 $existingPermission->update([
                     'create' => $permission['create'],

@@ -15,12 +15,14 @@
         <div class="row mt-2">
             <div class="col-md-12">
                 <div class="card" style="">
-                    <div class="card-header"
-                        style="background-color:#f89884;">
-                        <h3 class="card-title d-inline-block text-white"><i class="fa fa-procedures px-2" style="font-size: 20px;"></i>All Discharge </h3>
-                        <a href="{{ route('discharge.create') }}" class="btn  btn-rounded float-right"
-                            style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Discharge
-                        </a>
+                    <div class="card-header" style="background-color:#f89884;">
+                        <h3 class="card-title d-inline-block text-white"><i class="fa fa-procedures px-2"
+                                style="font-size: 20px;"></i>All Discharge </h3>
+                        @if(app('hasPermission')(33, 'create'))
+                            <a href="{{ route('discharge.create') }}" class="btn  btn-rounded float-right"
+                                style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Discharge
+                            </a>
+                        @endif
                     </div>
                     <div class="card-body ">
                         <div class="table-responsive">

@@ -131,6 +131,8 @@
             window.location.href = "{{ route('dashboard') }}";
         }
 
+      
+
         $('#login-form').on('submit', function (e) {
             e.preventDefault();
 
@@ -141,61 +143,39 @@
                 url: "http://127.0.0.1:8000/api/login",
                 method: "POST",
                 contentType: "application/json",
-                data: JSON.stringify({
-                    email: email,
-                    password: password
-                }),
+                data: JSON.stringify({ email: email, password: password }),
                 success: function (response) {
-                    console.log("Login successful:", response);
-                    // if (response.access_token) {
-                    //     localStorage.setItem('token', response.access_token);
-                    //     console.log("Token stored:", response.access_token);
-                    //     window.location.href = "{{ route('dashboard') }}";
-                    // } else {
-                    //     console.error("No access token in response:", response);
-                    //     alert("Login failed: No access token received.");
-                    // }
-
                     if (response.access_token) {
                         localStorage.setItem('token', response.access_token);
                         localStorage.setItem('role', response.user.role);
+                        localStorage.setItem('permissions', JSON.stringify(response.user.permissions));
 
-
-                        if (response.user.role === 'Admin') {
-                            localStorage.setItem('token', response.access_token);
-                            console.log("Token stored:", response.access_token);
-                            window.location.href = "/dashboard";
-                        } 
-                        
-                        else if (response.user.role === 'Doctor') {
-                            localStorage.setItem('token', response.access_token);
-                            console.log("Token stored:", response.access_token);
-                            window.location.href = "/dashboard";
-                        }
-
-
-                        else if (response.user.role === 'Receptionist') {
-                            localStorage.setItem('token', response.access_token);
-                            console.log("Token stored:", response.access_token);
-                            window.location.href = "/dashboard";
-                        } 
-                        
-                        else {
-                            window.location.href = "/dashboard";
-                        }
+                        window.location.href = "/dashboard";
                     } else {
-                        console.error("No access token in response:", response);
                         alert("Login failed: No access token received.");
                     }
-
                 },
                 error: function (xhr) {
-                    console.log(xhr.responseText); // Debug response
-                    var errorMessage = xhr.responseJSON?.message || "Login failed";
-                    alert(errorMessage);
+                    console.log(xhr.responseText);
+                    alert(xhr.responseJSON?.message || "Login failed");
                 }
             });
         });
+
+        function fetchUserPermissions() {
+            $.ajax({
+                url: '/api/permissions',
+                type: 'GET',
+                headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+                success: function (response) {
+                    localStorage.setItem('permissions', JSON.stringify(response.permissions));
+                    location.reload(); // Reload to apply permissions
+                },
+                error: function () {
+                    console.error('Error fetching permissions.');
+                }
+            });
+        }
 
         // Logout button click event
 
@@ -219,6 +199,8 @@
             });
         }
     });
+
+
 
 </script>
 

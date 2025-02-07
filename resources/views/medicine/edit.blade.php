@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('content')  
+@section('content')
 
 <div class="page-wrapper">
     <div class="content">
@@ -8,11 +8,13 @@
             <div class=" col-6">
                 <h4 class="page-title" style="padding-left: 140px;text-align:center; !important">Edit Medicine</h4>
             </div>
-            <div class="col-6 text-center m-b-2 " style="padding-right:150px">
-                <a href="{{ route('medicine.index') }}" class="btn btn-primary  btn-rounded">
-                    <i class="fa fa-eye m-r-5 icon3  "></i>
-                    All Medicine</a>
-            </div>
+            @if(app('hasPermission')(27, 'view'))
+                <div class="col-6 text-center m-b-2 " style="padding-right:150px">
+                    <a href="{{ route('medicine.index') }}" class="btn btn-primary  btn-rounded">
+                        <i class="fa fa-eye m-r-5 icon3  "></i>
+                        All Medicine</a>
+                </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-12">
@@ -61,7 +63,6 @@
                                             <img alt="" src="{{ asset('admin/assets/img/medicine.jpg') }}">
                                         </div>
                                         <div class="upload-input">
-                                            <!-- <input type="file" class="form-control" name="image" id="image"> -->
                                             <input type="file" id="imageInput" name="image" accept="image/*">
                                         </div>
                                     </div>
@@ -108,7 +109,6 @@
                                     <div class="cal-icon">
                                         <input type="text" class="form-control datetimepicker" name="expiry_date"
                                             id="expiry_date" required>
-
                                     </div>
                                 </div>
                             </div>
@@ -143,8 +143,10 @@
 
 </div>
 
-<script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         const toggleBtn = document.getElementById('toggle_btn');
         toggleBtn.addEventListener('click', function () {
@@ -152,27 +154,100 @@
         });
     });
 
-
     function nextStep() {
-        document.getElementById('step-1').style.display = 'none';
-        document.getElementById('step-2').style.display = 'block';
+        var validator = $("#medicineForm").validate();
+        if (validator.element("#categoryDropdown") && validator.element("[name='name']")) {
+            document.getElementById('step-1').style.display = 'none';
+            document.getElementById('step-2').style.display = 'block';
+        }
     }
 
     function prevStep() {
         document.getElementById('step-2').style.display = 'none';
         document.getElementById('step-1').style.display = 'block';
     }
+
     $(document).ready(function () {
         $('.datetimepicker').datepicker({
             format: 'dd-mm-yyyy',
             autoclose: true,
             todayHighlight: true
         });
-    });
 
+        // Initialize form validation
+        $('#medicineForm').validate({
+            ignore: ":hidden:not(.datetimepicker)", // Ignore hidden fields except datetimepicker
+            rules: {
+                category_id: {
+                    required: true
+                },
+                name: {
+                    required: true,
+                    minlength: 3
+                },
+                description: {
+                    required: true,
+                    minlength: 3
+                },
+                unit: {
+                    required: true
+                },
+                quantity: {
+                    required: true,
+                    digits: true
+                },
+                manufacture_date: {
+                    required: true
+                },
+                expiry_date: {
+                    required: true
+                },
+                status: {
+                    required: true
+                }
+            },
+            messages: {
+                category_id: {
+                    required: "Please select a category"
+                },
+                name: {
+                    required: "Please enter the medicine name",
+                    minlength: "Medicine name must be at least 3 characters long"
+                },
+                description: {
+                    required: "Please enter the medicine description",
+                    minlength: "Medicine description must be at least 3 characters long"
+                },
+                unit: {
+                    required: "Please enter the unit"
+                },
+                quantity: {
+                    required: "Please enter the quantity",
+                    digits: "Quantity must be a number"
+                },
+                manufacture_date: {
+                    required: "Please enter the manufacture date"
+                },
+                expiry_date: {
+                    required: "Please enter the expiry date"
+                },
+                status: {
+                    required: "Please select a status"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
 
-
-    $(document).ready(function () {
         fetchCategories();
 
         function fetchCategories() {
@@ -193,10 +268,7 @@
                 }
             });
         }
-    });
 
-
-    $(document).ready(function () {
         var pathParts = window.location.pathname.split('/');
         var medicineId = pathParts[pathParts.length - 1];
 
@@ -226,7 +298,6 @@
                     $('#expiry_date').val(formattedExpiryDate);
                 }
 
-
                 if (data.image) {
                     $('#imagePreview').attr('src', '/storage/' + data.image).show();
                     $('#imagePreviewContainer').show();
@@ -237,64 +308,59 @@
             }
         });
 
-
         $("#medicineForm").submit(function (e) {
             e.preventDefault();
 
-            // Convert all datetime fields from dd-mm-yyyy to yyyy-mm-dd
-            $(".datetimepicker").each(function () {
-                var dateValue = $(this).val();
-                if (dateValue) {
-                    var dateParts = dateValue.split('-'); // Expecting dd-mm-yyyy format
-                    if (dateParts.length === 3) {
-                        var formattedDate = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0]; // yyyy-mm-dd
-                        $(this).val(formattedDate);
+            if ($('#medicineForm').valid()) {
+                // Convert all datetime fields from dd-mm-yyyy to yyyy-mm-dd
+                $(".datetimepicker").each(function () {
+                    var dateValue = $(this).val();
+                    if (dateValue) {
+                        var dateParts = dateValue.split('-'); // Expecting dd-mm-yyyy format
+                        if (dateParts.length === 3) {
+                            var formattedDate = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0]; // yyyy-mm-dd
+                            $(this).val(formattedDate);
+                        }
                     }
+                });
+
+                // Validate manufacture and expiry dates before submission
+                var manufactureDate = new Date($('#manufacture_date').val());
+                var expiryDate = new Date($('#expiry_date').val());
+
+                if (expiryDate <= manufactureDate) {
+                    alert("Expiry date must be after manufacture date.");
+                    return;
                 }
-            });
 
-            // Validate manufacture and expiry dates before submission
-            var manufactureDate = new Date($('#manufacture_date').val());
-            var expiryDate = new Date($('#expiry_date').val());
+                var formData = new FormData(this);
+                formData.append('_method', 'PUT');
 
-            if (expiryDate <= manufactureDate) {
-                alert("Expiry date must be after manufacture date.");
-                return;
+                $.ajax({
+                    url: '/api/medicines/' + medicineId,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        $('#successMessage').text(response.message || 'Medicine updated successfully').show();
+                        $('#medicineForm')[0].reset();
+                        setTimeout(function () {
+                            window.location.href = "{{ route('medicine.index') }}";
+                        }, 1500);
+                    },
+                    error: function (xhr) {
+                        if (xhr.responseJSON && xhr.responseJSON.errors) {
+                            let errorMessages = Object.values(xhr.responseJSON.errors).flat().join("\n");
+                            alert(errorMessages);
+                        } else {
+                            alert('Failed to update medicine.');
+                        }
+                    }
+                });
             }
-
-            var formData = new FormData(this);
-            formData.append('_method', 'PUT');
-
-            $.ajax({
-                url: '/api/medicines/' + medicineId,
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    $('#successMessage').text(response.message || 'Medicine updated successfully').show();
-                    $('#medicineForm')[0].reset();
-                    setTimeout(function () {
-                        window.location.href = "{{ route('medicine.index') }}";
-                    }, 1500);
-                },
-                error: function (xhr) {
-                    if (xhr.responseJSON && xhr.responseJSON.errors) {
-                        let errorMessages = Object.values(xhr.responseJSON.errors).flat().join("\n");
-                        alert(errorMessages);
-                    } else {
-                        alert('Failed to update medicine.');
-                    }
-                }
-            });
         });
-
-
     });
-
-
-
 </script>
-
 
 @endsection

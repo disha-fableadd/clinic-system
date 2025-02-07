@@ -68,11 +68,13 @@
                     User's Information
                 </h4>
             </div>
-            <div class="col-sm-8 col-9 text-right m-b-2">
-                <a href="{{ route('user.index') }}" class="btn btn-primary btn-rounded">
-                    <i class="fa fa-arrow-left"></i> Back to Users Details
-                </a>
-            </div>
+            @if(app('hasPermission')(26, 'view'))
+                <div class="col-sm-8 col-9 text-right m-b-2">
+                    <a href="{{ route('user.index') }}" class="btn btn-primary btn-rounded">
+                        <i class="fa fa-arrow-left"></i> Back to Users Details
+                    </a>
+                </div>
+            @endif
         </div>
 
         <div class="row mt-5">
@@ -186,15 +188,18 @@
                         </div>
 
                         <div class="button mb-4" style="display: flex; justify-content: end; margin: 0 5px;">
-                            <a href="#" class="btn btn-primary btn-rounded edit-user-btn"
-                                style="color:black; margin-right:10px">
-                                <i class="fa fa-pencil-alt"></i> Edit User
-                            </a>
-
-                            <button type="button" class="btn btn-danger btn-rounded delete-user"
-                                data-id="{{ $user_id }}">
-                                <i class="fa fa-trash"></i> Delete User
-                            </button>
+                            @if(app('hasPermission')(26, 'update'))
+                                <a href="#" class="btn btn-primary btn-rounded edit-user-btn"
+                                    style="color:black; margin-right:10px">
+                                    <i class="fa fa-pencil-alt"></i> Edit User
+                                </a>
+                            @endif
+                            @if(app('hasPermission')(26, 'delete'))
+                                <button type="button" class="btn btn-danger btn-rounded delete-user"
+                                    data-id="{{ $user_id }}">
+                                    <i class="fa fa-trash"></i> Delete User
+                                </button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -330,49 +335,49 @@
                     $('select[name="shift"]').val(data.shift);
                     $('input[name="salary"]').val(data.salary);
                     $('#role-select').val(data.role_id); // Set selected role
-                    $(".edit-user-btn").attr("href", "/user/edit/" + userId); 
+                    $(".edit-user-btn").attr("href", "/user/edit/" + userId);
                 },
                 error: function (error) {
                     console.log('Error fetching user data:', error);
                 }
             });
         }
-    
+
         $(document).on('click', '.delete-user', function () {
-        var userId = $(this).data('id');
+            var userId = $(this).data('id');
 
-        if (!userId) {
-            alert('Medicine ID not found!');
-            return;
-        }
+            if (!userId) {
+                alert('Medicine ID not found!');
+                return;
+            }
 
-        if (confirm('Are you sure you want to delete this medicine?')) {
-            $.ajax({
-                url: '/api/users/' + userId,
-                type: 'DELETE',
-                
-                headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
-                success: function (response) {
+            if (confirm('Are you sure you want to delete this medicine?')) {
+                $.ajax({
+                    url: '/api/users/' + userId,
+                    type: 'DELETE',
 
-
-                    $('button[data-id="' + userId + '"]').closest('tr').remove();
+                    headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+                    success: function (response) {
 
 
-                    $("#successMessage").text("user delete successfully!").fadeIn().delay(3000).fadeOut();
-                    setTimeout(function () {
-                        window.location.href = "{{ route('user.index') }}";
-                    }, 2000);
-                },
+                        $('button[data-id="' + userId + '"]').closest('tr').remove();
 
-            });
-        }
-    });
-    
-    
-    
-    
-    
-    
+
+                        $("#successMessage").text("user delete successfully!").fadeIn().delay(3000).fadeOut();
+                        setTimeout(function () {
+                            window.location.href = "{{ route('user.index') }}";
+                        }, 2000);
+                    },
+
+                });
+            }
+        });
+
+
+
+
+
+
     });
 
 </script>

@@ -15,10 +15,12 @@
                         <h3 class="card-title d-inline-block text-white">
                             <i class="fa fa-hospital-o px-2" style="font-size:20px"></i> All Services
                         </h3>
+                        @if(app('hasPermission')(31, 'create'))
                         <a href="{{ route('service.create') }}" class="btn btn-rounded float-right"
                             style="background-color: #fed9cf;">
                             <i class="fa fa-plus"></i> Add Services
                         </a>
+                        @endif
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -58,12 +60,23 @@
 
 
     });
+    
+    $(document).ready(function () {
+        let token = localStorage.getItem('token');
+
+        if (!token) {
+            // Redirect to login if no token is found
+            window.location.href = "{{ route('login') }}";
+        }
+    });
     $(document).ready(function () {
 
         $.ajax({
             url: '/api/services', // Your API endpoint
             type: 'GET',
             dataType: 'json',
+            headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+
             success: function (data) {
                 var services = data; // Assuming the API returns an array of services
                 var table = $('#example').DataTable();
@@ -83,9 +96,9 @@
                     row += '<td><span class="custom-badge btn ' + statusClass + ' btn-rounded">' + service.status + '</span></td>'; // Add class based on status
                     row += '<td>';
                     row += '<div class="icon" style="cursor:pointer">';
-                    row += '<i class="fa fa-eye m-r-5 icon3 view-service" data-id="' + service.id + '"></i>';
-                    row += '<i class="fa fa-pencil m-r-5 icon1 edit-service" data-id="' + service.id + '"></i>';
-                    row += '<i class="fa fa-trash-o m-r-5 icon2 delete-service" data-id="' + service.id + '"></i>';
+                    row += '   @if(app('hasPermission')(31, 'view'))<i class="fa fa-eye m-r-5 icon3 view-service" data-id="' + service.id + '"></i>@endif';
+                    row += '   @if(app('hasPermission')(31, 'update'))<i class="fa fa-pencil m-r-5 icon1 edit-service" data-id="' + service.id + '"></i>@endif';
+                    row += '   @if(app('hasPermission')(31, 'delete'))<i class="fa fa-trash-o m-r-5 icon2 delete-service" data-id="' + service.id + '"></i>@endif';
                     row += '</div>';
                     row += '</td>';
                     row += '</tr>';

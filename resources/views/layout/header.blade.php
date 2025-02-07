@@ -195,23 +195,31 @@
     });
 
     $(document).ready(function () {
+        let token = localStorage.getItem('token'); // Retrieve token from storage
+
+        if (!token) {
+            console.error("No access token found.");
+            return;
+        }
+
         $.ajax({
             url: '/api/profile',
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + your_access_token
+                'Authorization': 'Bearer ' + token
             },
             success: function (response) {
-                if (response.profileImage) {
+                console.log("Profile API Response:", response); // Debugging line
 
-                    $('.user-image').attr('src', response.profileImage);
+                if (response.user) {
+                    $('.user-image').attr('src', response.user.profile ? '/storage/' + response.user.profile : 'default-avatar.jpg');
                     $('.user-name').text(response.user.fullname);
                 } else {
-                    console.log('No profile image found');
+                    console.log('No user data found in response');
                 }
             },
-            error: function () {
-                console.log('Error fetching profile data');
+            error: function (xhr) {
+                console.error("Error fetching profile data:", xhr.responseText);
             }
         });
     });

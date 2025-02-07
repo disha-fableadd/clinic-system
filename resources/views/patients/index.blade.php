@@ -14,13 +14,15 @@
 
         <div class="row mt-2">
             <div class="col-md-12">
-                <div class="card" >
-                    <div class="card-header"
-                        style="background-color:#f89884;">
-                        <h3 class="card-title d-inline-block text-white"> <i class="fa fa-wheelchair px-2" style="font-size:20px"></i>All Patients </h3>
-                        <a href="{{ route('patients.create') }}" class="btn  btn-rounded float-right"
-                            style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Patients
-                        </a>
+                <div class="card">
+                    <div class="card-header" style="background-color:#f89884;">
+                        <h3 class="card-title d-inline-block text-white"> <i class="fa fa-wheelchair px-2"
+                                style="font-size:20px"></i>All Patients </h3>
+                        @if(app('hasPermission')(28, 'create'))
+                            <a href="{{ route('patients.create') }}" class="btn  btn-rounded float-right"
+                                style="background-color: #fed9cf;"><i class="fa fa-plus"></i> Add Patients
+                            </a>
+                        @endif
                     </div>
                     <div class="card-body ">
                         <div class="table-responsive">
@@ -37,7 +39,7 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody >
+                                <tbody>
                                     <tr>
                                         <td>1</td>
                                         <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-02.jpg')}}"
@@ -132,8 +134,7 @@
                                         <td> <img width="28" height="28" src="{{asset('admin/assets/img/user-06
                                         
                                         
-                                        .jpg')}}"
-                                                class="rounded-circle" alt=""></td>
+                                        .jpg')}}" class="rounded-circle" alt=""></td>
 
                                         <td>
 
@@ -163,19 +164,7 @@
     </div>
 
 </div>
-<div id="delete_employee" class="modal fade delete-modal" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <img src="{{asset('admin/assets/img/sent.png')}}" alt="" width="50" height="46">
-                <h3>Are you sure want to delete this User?</h3>
-                <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
