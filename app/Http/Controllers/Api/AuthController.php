@@ -43,7 +43,7 @@ class AuthController extends Controller
     //             'role' => $user->role->name,
     //         ],
     //     ]);
-    
+
     // }\
 
 
@@ -51,19 +51,19 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-    
+
         if (!Auth::attempt($credentials)) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-    
+
         $user = Auth::user();
         $token = $user->createToken('authToken')->plainTextToken;
-    
+
         // Fetch User Permissions
         $permissions = UserPermission::where('user_id', $user->id)
             ->pluck('module_id', 'view', 'create', 'update', 'delete')
             ->toArray();
-    
+
         return response()->json([
             'access_token' => $token,
             'user' => [
@@ -73,16 +73,26 @@ class AuthController extends Controller
             ],
         ]);
     }
-    
+
 
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
-    
+        $user = $request->user();
+
+        if ($user && $request->bearerToken()) {
+            // If using API Token Authentication (Bearer Token)
+            $user->tokens()->delete();
+        } elseif (Auth::check()) {
+            // If using session-based authentication
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
+
         return response()->json(['message' => 'Logged out successfully'], 200);
     }
-    
+
 
     public function user(Request $request)
     {
@@ -93,53 +103,53 @@ class AuthController extends Controller
 
 
     public function profile(Request $request)
-{
-    if (!Auth::check()) {
-        return response()->json(['message' => 'User not found'], 404);
+    {
+        if (!Auth::check()) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        // Eager load the 'role' and 'details' relationships
+        $user = Auth::user()->load('role', 'details');
+
+        return response()->json([
+            'user' => $user,
+            'userId' => $user->id,
+            'userDetails' => $user->details,
+            'role' => $user->role,
+        ]);
     }
 
-    // Eager load the 'role' and 'details' relationships
-    $user = Auth::user()->load('role', 'details');  
+    public function updateProfile(Request $request)
+    {
+        // Validate incoming data
+        $validated = $request->validate([
+            'username' => 'required|string|max:255',
+            'fullname' => 'nullable|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:15',
+            'gender' => 'nullable|string',
+            'birth_date' => 'nullable|date',
+            'address' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:255',
+            'state' => 'nullable|string|max:255',
+            'profile' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
 
-    return response()->json([
-        'user' => $user,
-        'userId' => $user->id,
-        'userDetails' => $user->details,
-        'role' => $user->role, 
-    ]);
-}
+        // Get the authenticated user
+        $user = $request->user();
 
-public function updateProfile(Request $request)
-{
-    // Validate incoming data
-    $validated = $request->validate([
-        'username' => 'required|string|max:255',
-        'fullname' => 'nullable|string|max:255',
-        'email' => 'required|email|max:255',
-        'phone' => 'nullable|string|max:15',
-        'gender' => 'nullable|string',
-        'birth_date' => 'nullable|date',
-        'address' => 'nullable|string|max:255',
-        'city' => 'nullable|string|max:255',
-        'state' => 'nullable|string|max:255',
-        'profile' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-    ]);
+        // Update profile data
+        if ($request->hasFile('profile')) {
+            // Handle the profile image upload
+            $imagePath = $request->file('profile')->store('profile_images', 'public');
+            $validated['profile'] = $imagePath;
+        }
 
-    // Get the authenticated user
-    $user = $request->user();
+        $user->update($validated);
 
-    // Update profile data
-    if ($request->hasFile('profile')) {
-        // Handle the profile image upload
-        $imagePath = $request->file('profile')->store('profile_images', 'public');
-        $validated['profile'] = $imagePath;
+        return response()->json(['message' => 'Profile updated successfully']);
     }
 
-    $user->update($validated);
 
-    return response()->json(['message' => 'Profile updated successfully']);
-}
-
-    
 
 }

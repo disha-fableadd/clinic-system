@@ -21,7 +21,7 @@ class Patients extends Model
         'city',
         'profile',
         'blood_group',
-        'maritial_status',
+       
         'medical_history',
         'status',
         'treatment_id',

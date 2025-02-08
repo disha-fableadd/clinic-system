@@ -121,16 +121,16 @@
                             style="padding:8px 50px;border-radius:50px; float:left" onclick="prevStep()">
                             Previous
                         </button>
-
+                        <div id="successMessage" class="alert alert-success" style="display:none;"></div>
+                        <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
                         <button type="submit" class="btn btn-primary"
                             style="padding:8px 50px;border-radius:50px; float:right">
                             Submit
                         </button>
                     </div>
-
+                   
                 </form>
-                <div id="successMessage" class="alert alert-success" style="display:none;"></div>
-                <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
+             
             </div>
         </div>
     </div>

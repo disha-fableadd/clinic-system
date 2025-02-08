@@ -15,7 +15,7 @@ class TreatmentController extends Controller
     {
         $this->middleware('auth:sanctum');
     }
-    
+
 
 
 
@@ -27,10 +27,9 @@ class TreatmentController extends Controller
         $treatments = Treatment::select('treatments.*', 'user.fullname as doctor_name')
             ->join('user', 'treatments.doctor_id', '=', 'user.id') // Adjust table names if needed
             ->get();
-    
+
         return response()->json($treatments, 200);
     }
-    
 
 
 
@@ -40,7 +39,8 @@ class TreatmentController extends Controller
 
 
 
-    
+
+
 
     /**
      * Store a new treatment.
@@ -73,7 +73,10 @@ class TreatmentController extends Controller
      */
     public function show($id)
     {
-        $treatment = Treatment::findOrFail($id);
+        $treatment = Treatment::with('doctor')->findOrFail($id);
+        if ($treatment) {
+            $treatment->doctor_name = $treatment->doctor ? $treatment->doctor->fullname : 'not user ';
+        }
         return response()->json($treatment, 200);
     }
 

@@ -159,40 +159,38 @@
 </div>
 <script>
 
-    $(document).ready(function () {
-        $('#logout-button').on('click', function () {
-            token = localStorage.getItem('token');
-            if (!token) {
-                console.error("No token found in localStorage.");
-                alert("No token found. Please log in again.");
-                window.location.href = "{{ route('login') }}";
-                return;
+$(document).ready(function () {
+    $('#logout-button').on('click', function () {
+        let token = localStorage.getItem('token');
+
+        $.ajax({
+            url: "http://127.0.0.1:8000/api/logout",
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            success: function (response) {
+                console.log("Logout successful:", response);
+
+                // Clear Local Storage
+                localStorage.removeItem('token');
+                localStorage.clear();
+
+                // Redirect to login page
+                window.location.href = "/login";
+            },
+            error: function (xhr) {
+                console.error("Logout failed:", xhr.responseText);
+                alert("Logout failed. Please try again.");
+
+                // Clear token even if logout fails
+                // localStorage.removeItem('token');
+                // localStorage.clear();
+                // window.location.href = "/login";
             }
-
-            console.log("Token:", token);
-
-            $.ajax({
-                url: "http://127.0.0.1:8000/api/logout",
-                method: "POST",
-                headers: {
-                    "Authorization": "Bearer " + token,
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (response) {
-                    console.log("Logout successful:", response);
-                    localStorage.removeItem('token');
-                    window.location.href = "{{ route('login') }}";
-                },
-                error: function (xhr) {
-                    console.error("Logout failed:", xhr.responseText);
-                    var errorMessage = xhr.responseJSON?.message || "Logout failed. Please try again.";
-                    alert(errorMessage);
-                    localStorage.removeItem('token');
-                    // window.location.href = "{{ route('login') }}";
-                }
-            });
         });
     });
+});
 
     $(document).ready(function () {
         let token = localStorage.getItem('token'); // Retrieve token from storage

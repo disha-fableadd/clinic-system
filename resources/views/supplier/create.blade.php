@@ -67,14 +67,15 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div id="successMessage" class="alert alert-success" style="display:none;"></div>
+                        <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
                         <div class="m-t-20 text-center">
                             <button class="btn btn-primary submit-btn">Create Supplier Details</button>
                         </div>
                     </div>
+                    
                 </form>
-                <div id="successMessage" class="alert alert-success" style="display:none;"></div>
-                <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
+
             </div>
         </div>
     </div>
@@ -116,7 +117,7 @@
                     required: true,
                     digits: true,
                     minlength: 10,
-                    maxlength: 15
+                    maxlength: 10
                 },
                 email: {
                     required: true,
@@ -124,16 +125,43 @@
                 },
                 address: {
                     required: true,
-                    minlength: 5
+                    minlength: 10
                 }
             },
             messages: {
-            name: "<span style='color: red;'>Please enter the company name (at least 3 characters)</span>",
-            contact_person: "<span style='color: red;'>Please enter the contact person's name (at least 3 characters)</span>",
-            phone: "<span style='color: red;'>Please enter a valid phone number (10-15 digits)</span>",
-            email: "<span style='color: red;'>Please enter a valid email address</span>",
-            address: "<span style='color: red;'>Please enter the address (at least 5 characters)</span>"
-        },
+                name: {
+                    required: "Please enter the company name",
+                    minlength: "Company name must be at least 3 characters long"
+                },
+                contact_person: {
+                    required: "Please enter the contact person's name",
+                    minlength: "Contact person's name must be at least 3 characters long"
+                },
+                phone: {
+                    required: "Please enter a phone number",
+                    digits: "Please enter only numbers",
+                    minlength: "Phone number must be exactly 10 digits",
+                    maxlength: "Phone number must be exactly 10 digits"
+                },
+                email: {
+                    required: "Please enter an email address",
+                    email: "Please enter a valid email address"
+                },
+                address: {
+                    required: "Please enter an address",
+                    minlength: "Address must be at least 10 characters long"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+
+
             submitHandler: function (form) {
                 let formData = new FormData(form);
                 $.ajax({

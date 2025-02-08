@@ -80,13 +80,14 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <div id="successMessage" class="alert alert-success" style="display:none;"></div>
+                    <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
                     <div class="m-t-20 text-center">
                         <button type="submit" class="btn btn-primary submit-btn">Create Service</button>
                     </div>
                 </form>
-                <div id="successMessage" class="alert alert-success" style="display:none;"></div>
-                <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
+               
             </div>
         </div>
     </div>

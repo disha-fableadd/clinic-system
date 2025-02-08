@@ -93,5 +93,45 @@
             }
         });
     });
+
+
+    $(document).on('click', '.view-treatment', function () {
+        var treatmentId = $(this).data('id');
+        window.location.href = '/treatment/show/' + treatmentId;
+    });
+
+    $(document).on('click', '.edit-treatment', function () {
+        var treatmentId = $(this).data('id');
+        window.location.href = '/treatment/edit/' + treatmentId;
+    });
+
+
+
+
+    $(document).on('click', '.delete-treatment', function () {
+        var treatmentId = $(this).data('id');
+        let token = localStorage.getItem('token');
+
+        if (!token) {
+            window.location.href = "{{ route('login') }}";
+        }
+
+        if (confirm('Are you sure you want to delete this treatment?')) {
+            $.ajax({
+                url: '/api/treatments/' + treatmentId, // Adjust API endpoint
+                type: 'DELETE',
+                headers: { "Authorization": "Bearer " + token },
+                success: function (response) {
+                    // alert("Treatment deleted successfully!");
+                    location.reload(); // Reload page to reflect changes
+                },
+                error: function () {
+                    alert("Error deleting treatment.");
+                }
+            });
+        }
+    });
+
+
 </script>
 @endsection

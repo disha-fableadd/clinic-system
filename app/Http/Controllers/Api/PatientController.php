@@ -18,6 +18,7 @@ class PatientController extends Controller
         return response()->json($patients);
     }
 
+
     /**
      * Store a new patient
      */
@@ -34,7 +35,7 @@ class PatientController extends Controller
             'city' => 'required|string|max:255',
             'profile' => 'nullable|string',
             'blood_group' => 'nullable|string|max:5',
-            'maritial_status' => 'nullable|string|max:50',
+          
             'medical_history' => 'nullable|string',
             'status' => 'nullable|in:active,inactive',
             'treatment_id' => 'nullable|integer|exists:treatments,id',
@@ -89,7 +90,7 @@ class PatientController extends Controller
             'city' => 'required|string|max:255',
             'profile' => 'nullable|string',
             'blood_group' => 'nullable|string|max:5',
-            'maritial_status' => 'nullable|string|max:50',
+           
             'medical_history' => 'nullable|string',
             'status' => 'nullable|in:active,inactive',
             'treatment_id' => 'nullable|integer|exists:treatments,id',

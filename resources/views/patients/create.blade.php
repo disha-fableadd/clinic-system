@@ -8,12 +8,12 @@
                 <h4 class="page-title text-center" style="padding-left: 70px;">Add Patient</h4>
             </div>
             @if(app('hasPermission')(28, 'view'))
-            <div class=" col-6 text-center m-b-2" style="padding-right: 60px;">
-                <a href="{{ route('patients.index') }}" class="btn btn-primary btn-rounded">
-                    <i class="fa fa-eye m-r-5 icon3  "></i>
-                    All Patients
-                </a>
-            </div>
+                <div class=" col-6 text-center m-b-2" style="padding-right: 60px;">
+                    <a href="{{ route('patients.index') }}" class="btn btn-primary btn-rounded">
+                        <i class="fa fa-eye m-r-5 icon3  "></i>
+                        All Patients
+                    </a>
+                </div>
             @endif
         </div>
         <div class="row">
@@ -29,11 +29,10 @@
                                 <div class="form-group">
                                     <label><i class="fas fa-medkit icon-style"></i> Treatment <span
                                             class="text-danger">*</span></label>
-                                    <select class="form-control select" name="treatment" required>
+                                    <select class="form-control select" name="treatment_id" id="treatmentDropdown"
+                                        required>
                                         <option value="">Select Treatment</option>
-                                        <option value="Fever">Fever</option>
-                                        <option value="Cancer">Cancer</option>
-                                        <option value="Eye">Eye</option>
+
                                     </select>
                                 </div>
                             </div>
@@ -41,7 +40,7 @@
                                 <div class="form-group">
                                     <label><i class="fas fa-user icon-style"></i> Full Name <span
                                             class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" name="full_name"
+                                    <input class="form-control" type="text" name="fullname"
                                         placeholder="Enter Full Name" required>
                                 </div>
                             </div>
@@ -56,7 +55,8 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label><i class="fas fa-phone icon-style"></i> Phone <span class="text-danger">*</span></label>
+                                    <label><i class="fas fa-phone icon-style"></i> Phone <span
+                                            class="text-danger">*</span></label>
                                     <input class="form-control" type="text" name="phone" placeholder="Enter Phone"
                                         required>
                                 </div>
@@ -97,7 +97,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label><i class="fas fa-image icon-style"></i> Profile Image</label>
-                                    <input type="file" class="form-control" name="profile_image">
+                                    <input type="file" class="form-control" name="profile">
                                 </div>
                             </div>
                             <div class="col-12">
@@ -135,18 +135,9 @@
                                         placeholder="Enter Medical History" style="border-radius:10px"></textarea>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label><i class="fas fa-heart icon-style"></i> Marital Status</label>
-                                    <select class="form-control select" name="marital_status">
-                                        <option value="">Select Status</option>
-                                        <option value="Single">Single</option>
-                                        <option value="Married">Married</option>
-                                    </select>
-                                </div>
-                            </div>
-                          
-                            <div class="col-6">
+
+
+                            <div class="col-12">
                                 <div class="form-group">
                                     <label><i class="fas fa-users icon-style"></i> Status</label>
                                     <select class="form-control select" name="status">
@@ -161,7 +152,8 @@
                             style="padding:8px 50px;border-radius:50px; float:left" onclick="prevStep()">
                             Previous
                         </button>
-
+                        <div id="successMessage" class="alert alert-success" style="display:none;"></div>
+                        <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
                         <button type="submit" class="btn btn-primary"
                             style="padding:8px 50px;border-radius:50px; float:right">
                             Submit
@@ -172,11 +164,15 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 
 <script>
     function nextStep() {
-        document.getElementById('step-1').style.display = 'none';
-        document.getElementById('step-2').style.display = 'block';
+        var validator = $("#multiStepForm").validate();
+        if (validator.element("#treatmentDropdown") && validator.element("[name='name']")) {
+            document.getElementById('step-1').style.display = 'none';
+            document.getElementById('step-2').style.display = 'block';
+        }
     }
 
     function prevStep() {
@@ -190,5 +186,131 @@
             document.body.classList.toggle('mini-sidebar');
         });
     });
+
+    $(document).ready(function () {
+        $('#multiStepForm').validate({
+            ignore: ":hidden:not(.datetimepicker)", // Ignore hidden fields except datetimepicker
+            rules: {
+                category_id: {
+                    required: true
+                },
+                name: {
+                    required: true,
+                    minlength: 3
+                },
+                unit: {
+                    required: true
+                },
+                quantity: {
+                    required: true,
+                    digits: true
+                },
+                manufacture_date: {
+                    required: true
+                },
+                expiry_date: {
+                    required: true
+                },
+                status: {
+                    required: true
+                }
+            },
+            messages: {
+                category_id: {
+                    required: "Please select a category"
+                },
+                name: {
+                    required: "Please enter the medicine name",
+                    minlength: "Medicine name must be at least 3 characters long"
+                },
+                unit: {
+                    required: "Please enter the unit"
+                },
+                quantity: {
+                    required: "Please enter the quantity",
+                    digits: "Quantity must be a number"
+                },
+                manufacture_date: {
+                    required: "Please enter the manufacture date"
+                },
+                expiry_date: {
+                    required: "Please enter the expiry date"
+                },
+                status: {
+                    required: "Please select a status"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+        fetchCategories();
+
+        function fetchCategories() {
+            $.ajax({
+                url: '/api/treatments',
+                type: 'GET',
+                success: function (response) {
+                    var treatmentDropdown = $('select[name="treatment_id"]');
+                    treatmentDropdown.empty();
+                    treatmentDropdown.append('<option value="">Select treatments</option>');
+
+                    $.each(response, function (index, category) {
+                        treatmentDropdown.append('<option value="' + treatment.id + '">' + treatment.name + '</option>');
+                    });
+                },
+                error: function () {
+                    alert('Failed to load treatments.');
+                }
+            });
+        }
+
+
+        $('#multiStepForm').on('submit', function (e) {
+            e.preventDefault();
+
+            if ($('#multiStepForm').valid()) {
+              
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: "{{ url('api/patient') }}",
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        $('#successMessage').text(response.message || 'patient created successfully').show();
+                        $('#multiStepForm')[0].reset();
+
+                        setTimeout(function () {
+                            window.location.href = "{{ route('patients.index') }}";
+                        }, 1500);
+                    },
+                    error: function (xhr) {
+                        var errors = xhr.responseJSON.errors;
+                        if (errors) {
+                            $.each(errors, function (field, errorMessages) {
+                                var errorMessage = errorMessages.join('<br>');
+                                $('[name="' + field + '"]').after('<span class="invalid-feedback">' + errorMessage + '</span>');
+                            });
+                        } else {
+                            $('#errorMessage').text('Something went wrong.').show();
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+
 </script>
 @endsection

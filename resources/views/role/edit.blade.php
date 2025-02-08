@@ -37,19 +37,16 @@
                             </div>
                         </div>
                     </div>
+                    
+                <div id="successMessage" class="alert alert-success" style="display:none;"></div>
+                <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
                     <div class="m-t-20 text-center">
                         <button type="submit" class="btn btn-primary submit-btn">Update Role</button>
                     </div>
                 </form>
 
-                <!-- Success Message -->
-                <div id="successMessage" class="alert alert-success" style="display:none;"></div>
-
-                @if(session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
+           
+             
             </div>
         </div>
     </div>

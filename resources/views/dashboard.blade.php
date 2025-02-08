@@ -13,7 +13,7 @@ if (response.access_token) {
                               window.location.href = "/dashboard";
                        } 
         } -->
-    @if(Auth::user()->role->name == 'Admin')
+        @if(Auth::check() && Auth::user()->role->name == 'Admin')
 
         <div class="content">
             <div class="row">

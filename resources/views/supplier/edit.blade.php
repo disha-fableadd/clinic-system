@@ -9,12 +9,12 @@
                 <h4 class="page-title text-center" style="padding-left: 75px;">Edit Supplier</h4>
             </div>
             @if(app('hasPermission')(35, 'view'))
-            <div class="col-6 text-center m-b-2" style="padding-right: 55px;">
-                <a href="{{ route('supplier.index') }}" class="btn btn-primary btn-rounded">
-                    <i class="fa fa-eye m-r-5 icon3  "></i>
-                    All Supplier
-                </a>
-            </div>
+                <div class="col-6 text-center m-b-2" style="padding-right: 55px;">
+                    <a href="{{ route('supplier.index') }}" class="btn btn-primary btn-rounded">
+                        <i class="fa fa-eye m-r-5 icon3  "></i>
+                        All Supplier
+                    </a>
+                </div>
             @endif
         </div>
         <div class="row">
@@ -58,28 +58,27 @@
                                     <input type="email" class="form-control" id="email" name="email">
                                 </div>
                             </div>
-                            </div>
+                        </div>
                         <div class="row">
 
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                <label><i class="fas fa-map-marker-alt icon-style"></i> Address</label>
-                                <input type="text" class="form-control" id="address" name="address">
+                                    <label><i class="fas fa-map-marker-alt icon-style"></i> Address</label>
+                                    <input type="text" class="form-control" id="address" name="address">
                                 </div>
                             </div>
                         </div>
 
-                     
+                        <div id="successMessage" class="alert alert-success" style="display:none;"></div>
+                        <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
 
                         <div class="m-t-20 text-center">
-                        <button class="btn btn-primary submit-btn"> Edit Supplier Details</button>
+                            <button class="btn btn-primary submit-btn"> Edit Supplier Details</button>
+                        </div>
                     </div>
-                    </div>
+                   
 
-                    
                 </form>
-                <div id="successMessage" class="alert alert-success" style="display:none;"></div>
-                <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
 
 
             </div>
@@ -93,6 +92,7 @@
 
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 
 
 
@@ -128,7 +128,67 @@
                 alert("Failed to fetch supplier details.");
             }
         });
-
+        $("#editSupplierForm").validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 3
+                },
+                contact_person: {
+                    required: true,
+                    minlength: 3
+                },
+                phone: {
+                    required: true,
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 10
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                address: {
+                    required: true,
+                    minlength: 10
+                }
+            },
+            messages: {
+                name: {
+                    required: "Please enter the company name",
+                    minlength: "Company name must be at least 3 characters long"
+                },
+                contact_person: {
+                    required: "Please enter the contact person's name",
+                    minlength: "Contact person's name must be at least 3 characters long"
+                },
+                phone: {
+                    required: "Please enter a phone number",
+                    digits: "Please enter only numbers",
+                    minlength: "Phone number must be exactly 10 digits",
+                    maxlength: "Phone number must be exactly 10 digits"
+                },
+                email: {
+                    required: "Please enter an email address",
+                    email: "Please enter a valid email address"
+                },
+                address: {
+                    required: "Please enter an address",
+                    minlength: "Address must be at least 10 characters long"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
         // Handle form submission for updating supplier
         $("#editSupplierForm").submit(function (event) {
             event.preventDefault();
@@ -153,9 +213,7 @@
                         window.location.href = "{{ route('supplier.index') }}";
                     }, 2000);
                 },
-                error: function (xhr) {
-                    $("#errorMessage").text("Error: " + xhr.responseJSON.message).fadeIn().delay(3000).fadeOut();
-                }
+
             });
         });
     });

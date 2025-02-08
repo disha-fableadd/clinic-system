@@ -80,6 +80,17 @@ Route::get('/discharge/create', [DischargeController::class, 'create'])->name('d
 //patirents
 Route::get('/patients', [PatientController::class, 'index'])->name('patients.index');
 Route::get('/patients/create', [PatientController::class, 'create'])->name('patients.create');
+Route::get('/patients/show/{id}', function ($id) {
+    return view('patients.show', ['patients_id' => $id]);
+})->name('patients.show');
+
+Route::get('/patients/edit/{id}', function ($id) {
+    return view('patients.edit', ['patient_id' => $id]);
+})->name('patients.edit');
+
+
+
+
 //medicine
 Route::get('/medicine', [MedicineController::class, 'index'])->name('medicine.index');
 Route::get('/medicine/create', [MedicineController::class, 'create'])->name('medicine.create');

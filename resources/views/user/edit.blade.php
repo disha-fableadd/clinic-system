@@ -76,8 +76,7 @@
                 </div>
             @endif
         </div>
-        <div id="successMessage" class="alert alert-success" style="display:none;"></div>
-        <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
+       
 
         <div class="row">
             <div class="col-12">
@@ -267,7 +266,8 @@
                         </button>
                     </div>
 
-
+                    <div id="successMessage" class="alert alert-success" style="display:none;"></div>
+                    <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
                     <br><br>
 
                     <div class="row mt-3">
